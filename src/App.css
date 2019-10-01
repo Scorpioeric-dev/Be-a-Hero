@@ -63,8 +63,8 @@
   content: '';
   position: absolute;
   background-color: red;
-  height: 54px;
-  width: 54px;
+  height: 55px;
+  width: 55px;
   border-radius: 50%;
 }
 .heart::before {
@@ -101,3 +101,5 @@
     top:60px;
     height:380px;
 }
+
+

@@ -1,11 +1,14 @@
 const initalState = {
     user_name: "",
     email: "",
-    gender:""
+    gender:"",
+    loggedIn:false,
+    user:null
   };
   
-  const SET_USER = "SET_USER";
+  export const SET_USER = "SET_USER";
   export const CANCEL = 'CANCEL'
+  
   export function setUser(user) {
     return {
       type: SET_USER,

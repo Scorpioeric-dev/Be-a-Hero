@@ -22,7 +22,7 @@ app.use(
 //endpoints
 //auth
 app.post('/auth/register',authCtrl.register)
-// app.post('/auth/login',authCtrl.login)
+app.post('/auth/login',authCtrl.login)
 // app.delete('/auth/delete'.auth.delete) 
 //post
 
