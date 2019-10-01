@@ -10,9 +10,9 @@ export default class Landing extends Component {
       <div>
         Im Landing
         <Switch>
-          <Route path="/Donor" component={Donor} />
-          <Route path="/Donee" component={Donee} />
-          <Route path="/Categories" component={Categories} />
+          <Route path='/Donor' component={Donor} />
+          <Route path='/Donee' component={Donee} />
+          <Route path='/Categories' component={Categories} />
         </Switch>
       </div>
     );

@@ -6,6 +6,7 @@ const { port, connection_string, session_secret } = process.env;
 const session = require('express-session')
 const authCtrl = ('./authController')
 // const transCtrl = ('./transController')
+
 //middleware
 app.use(express.json());
 app.use(
@@ -21,7 +22,7 @@ app.use(
 //endpoints
 //auth
 app.post('/auth/register',authCtrl.register)
-app.post('/auth/login',authCtrl.login)
+// app.post('/auth/login',authCtrl.login)
 // app.delete('/auth/delete'.auth.delete) 
 //post
 
