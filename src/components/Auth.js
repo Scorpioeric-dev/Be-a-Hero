@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { setUser, CANCEL } from "../Ducks/reducer";
 import store from "../Ducks/store";
 import swal from 'sweetalert2'
+import styled from 'styled-components'
 
 export class Auth extends Component {
   constructor() {
@@ -78,10 +79,10 @@ export class Auth extends Component {
           onChange={e => this.handleChange(e, "password")}
         />
         <Link to="/Landing">
-          <button onClick={this.registerUser}>Register</button>
+          <Button onClick={this.registerUser}>Register</Button>
         </Link>
         <Link to="/">
-          <button onClick={this.cancel}>Cancel</button>
+          <Button onClick={this.cancel}>Cancel</Button>
         </Link>
       </div>
     );
@@ -92,3 +93,14 @@ export default connect(
   null,
   { setUser }
 )(withRouter(Auth));
+
+const Button = styled.div`
+  border-radius: 8px;
+  color: white;
+  background-color: pink;
+ 
+  font-size: 1rem;
+  width: 5vw;
+  display: flex;
+  align-items: center;
+`;
