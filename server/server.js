@@ -23,7 +23,7 @@ app.use(
 //auth
 app.post('/auth/register',authCtrl.register)
 app.post('/auth/login',authCtrl.login)
-// app.delete('/auth/delete'.auth.delete) 
+app.post('/auth/logout',authCtrl.logout) 
 //post
 
 massive(connection_string).then(db => {

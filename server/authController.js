@@ -4,7 +4,7 @@ module.exports = {
   async register(req, res) {
     const db = req.app.get("db");
     const { user_name, email, gender, password } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     const user = await db.find_email(email);
     console.log("email");
@@ -13,7 +13,7 @@ module.exports = {
 
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
-    console.log(hash);
+    // console.log(hash);
     const newUser = await db.create_user([user_name, email, gender, hash]);
     delete newUser[0].hash;
 
@@ -27,11 +27,11 @@ module.exports = {
   async login(req, res) {
     const db = req.app.get("db");
     const { email, password, id } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     const user = await db.find_email([email]);
     if (!user[0]) return res.status(200).send({ message: "Email not found" });
     const result = bcrypt.compareSync(password, user[0].hash);
-    console.log(result);
+    // console.log(result);
     if (result) {
       delete user[0].hash;
       req.session.user = user[0];
