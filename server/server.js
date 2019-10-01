@@ -4,7 +4,7 @@ const app = express();
 const massive = require("massive");
 const { port, connection_string, session_secret } = process.env;
 const session = require('express-session')
-const authCtrl = ('./authController')
+const authCtrl = require('./authController')
 // const transCtrl = ('./transController')
 
 //middleware

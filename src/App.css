@@ -1,22 +1,103 @@
-.App {
-  text-align: center;
+
+
+/* .square {
+  height: 50px;
+  width: 50px;
+  background: violet;
+  margin: 5rem;
+  /* transition: background 3s, cubic-bezier(.39,.5,.6,1.44) width 3s; */
+  /* animation-name: spin;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+} */ 
+/* .square:hover {
+  background: blue;
+  width: 1000px;
+} */
+
+/* @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    background: orange;
+  }
+  20% {
+    background: yellow;
+    transform: rotate(0deg);
+  }
+  30% {
+    background: green;
+  }
+  40% {
+    background: blue;
+  }
+  50% {
+    background: indigo;
+  }
+  60% {
+    background: violet;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} */
+
+
+
+.heart {
+
+ margin-right: 80px;
+  background: red;
+  height: 55px;
+  width: 55px;
+  transform: rotate(45deg);
+  animation: heartbeat .7s infinite;
 }
 
-.App-logo {
-  height: 40vmin;
+
+.heart::before,
+.heart::after {
+  
+  content: '';
+  position: absolute;
+  background-color: red;
+  height: 54px;
+  width: 54px;
+  border-radius: 50%;
+}
+.heart::before {
+  top: -20px;
+}
+.heart::after {
+  right: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@keyframes heartbeat {
+  0% {
+    transform: scale(1) rotate(45deg);
+  }
+  20% {
+    transform: scale(1.25) rotate(45deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(45deg);
+  }
+  40% {
+    transform: scale(1.5) rotate(45deg);
+  }
 }
-
-.App-link {
-  color: #09d3ac;
+.auth{
+  background:#00000088;
+    color:#ffffff;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:300px;
+    justify-content: space-evenly;
+    position: absolute;
+    left:550px;
+    top:60px;
+    height:380px;
 }
