@@ -3,12 +3,16 @@ import Donor from "./Donor";
 import Donee from "./Donee";
 import Categories from "./Categories";
 import { Switch, Route } from "react-router-dom";
+import styled from 'styled-components'
 
 export default class Landing extends Component {
   render() {
     return (
       <div>
-        Im Landing
+    
+      <Img src="https://www.donorcarenet.org/wp-content/uploads/2019/05/gifthero222.jpg" alt=''/>
+        
+        
         <Switch>
           <Route path='/Donor' component={Donor} />
           <Route path='/Donee' component={Donee} />
@@ -18,3 +22,13 @@ export default class Landing extends Component {
     );
   }
 }
+const Img = styled.img`
+  height: 100vh;
+  width: 100vw;
+  margin:none;
+  
+
+   
+
+ 
+`

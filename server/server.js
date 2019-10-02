@@ -5,7 +5,7 @@ const massive = require("massive");
 const { port, connection_string, session_secret } = process.env;
 const session = require('express-session')
 const authCtrl = require('./authController')
-// const transCtrl = ('./transController')
+const transCtrl = require('./transController')
 
 //middleware
 app.use(express.json());
@@ -23,8 +23,14 @@ app.use(
 //auth
 app.post('/auth/register',authCtrl.register)
 app.post('/auth/login',authCtrl.login)
-app.post('/auth/logout',authCtrl.logout) 
+app.delete('/auth/logout',authCtrl.logout) 
 //post
+app.post('/api/donor',transCtrl.postDonor)
+app.post('/api/donee',transCtrl.postDonee)
+app.get('/api/donorData',transCtrl.getDonorData)
+app.get('/api/doneeData',transCtrl.getDoneeData)
+
+
 
 massive(connection_string).then(db => {
   app.set("db", db);

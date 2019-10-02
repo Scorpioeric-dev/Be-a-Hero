@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { setUser, CANCEL } from "../Ducks/reducer";
-import store from "../Ducks/store";
 import axios from "axios";
 import swal from "sweetalert2";
 
@@ -12,7 +11,8 @@ export class Header extends Component {
     super();
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      editing: false
     };
   }
 
@@ -22,26 +22,17 @@ export class Header extends Component {
     });
   };
 
-  // login = async () => {
-  //   const { password, email } = this.state;
-  //   const res = await axios.post("/auth/login", { email, password });
-  //   if (res.data.user) {
-  //     this.props.setUser(res.data.user);
-  //   }
-  //   swal.fire(res.data.message);
-  
-  // };
-  // cancel = () => {
-  //   store.dispatch({
-  //     type: CANCEL
-  //   });
-  // };
+  toggleEdit = () => {
+    this.setState({
+     editing: !this.state.editing
+    })
+  }
 
-  // logout = async () => {
-  //   const res = await axios.delete('/auth/logout')
-  //   this.props.setUser(null)
-  //   swal.fire(res.data.message)
-  // }
+  logout = async () => {
+    const res = await axios.delete("/auth/logout");
+    this.props.setUser(null);
+    swal.fire(res.data.message);
+  };
 
   render() {
     return (
@@ -49,24 +40,39 @@ export class Header extends Component {
         <div className="heart-container">
           <div className="heart"></div>
         </div>
-        <Link to="/landing">
-          <span>Donate</span>
-        </Link>
-        <Link to="/Auth">
-          <div>
-            <span>Register</span>
-          </div>
-        </Link>
-        <Link to="/Login">
-          <span>Login</span>
-        </Link>
-        <Link to="/Categories">
-          <span>Categories</span>
-        </Link>
-    
-        
-         
-        
+        {!this.state.editing ? (
+          <Main>
+            <Link to="/landing">
+              <span>Donate</span>
+            </Link>
+            <Link to="/Auth">
+              <div>
+                <span onClick={this.toggleEdit}>Register</span>
+              </div>
+            </Link>
+            <Link to="/Login">
+              <span>Login</span>
+            </Link>
+            <Link to="/Categories">
+              <span>Categories</span>
+            </Link>
+          </Main>
+        ) : (
+          <Main>
+            <Link to="/Categories">
+              <span>Categories</span>
+            </Link>
+            <Link to="/Donor">
+              <span>donor</span>
+            </Link>
+            <Link to="/Donee">
+              <span>donee</span>
+            </Link>
+            <Link to="/">
+              <span onClick={this.logout}>logout</span>
+            </Link>
+          </Main>
+        )}
       </Main>
     );
   }
@@ -83,9 +89,10 @@ const Main = styled.div`
     padding: 1rem;
     width:100vw;
     height:10vh
-    margin:0 auto;
-    border: dotted pink;
+    margin:9px;
+    
     color:black;
+    position:fixed;
     `;
 
 //

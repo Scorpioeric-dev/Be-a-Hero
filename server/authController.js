@@ -47,5 +47,6 @@ module.exports = {
     res
       .status(200)
       .send({ message: "Logged Out", loggedin: false, user: null });
-  }
+  },
+  
 };

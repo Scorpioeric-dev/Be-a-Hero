@@ -9,6 +9,8 @@ insert into user_data ( user_name, email, gender, hash) values ('Roseanne Oldacr
 
 create table donor (
     donor_id serial primary key,
+    title varchar (200),
+    profile_pic text,
     blood_type text,
     lung_id boolean,
     kidney_id boolean,
@@ -17,10 +19,12 @@ create table donor (
     hair_id boolean,
     user_id integer references user_data(user_id)
 );
-insert into donor (blood_type, lung_id,kidney_id, liver_id, pancreas_id, hair_id) values ('A', false, false, false, false, false);
+insert into donor (title,profile_pic,blood_type, lung_id,kidney_id, liver_id, pancreas_id, hair_id,user_id) values ('donor','https://cdn.pixabay.com/photo/2015/11/30/14/10/batman-1070422_960_720.jpg','A', false, true, false, false, false,1)
 
 create table donee (
-    donee_id INT,
+    donee_id serial primary key,
+    title varchar(200),
+    profile_pic text,
     blood_type text,
     lung_id boolean,
     kidney_id boolean,
@@ -29,7 +33,7 @@ create table donee (
     hair_id boolean,
     user_id integer references user_data(user_id)
 );
-insert into donee ( blood_type, lung_id,kidney_id, liver_id, pancreas_id, hair_id) values ( 'A', false, false, false, false, false);
+insert into donee ( title,profile_pic,blood_type, lung_id,kidney_id, liver_id, pancreas_id, hair_id,user_id) values ( 'donee','https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60','A', false, false, false, false, false,4)
 
 select * from donor;
 select * from user_data;
@@ -38,3 +42,10 @@ select * from donee;
 select * from user_data
 where email = 'abangiard5@about.me';
 
+select user_name,blood_type,title,profile_pic from donor d
+join user_data u on u.user_id = d.user_id
+where blood_type = 'A';
+
+select user_name,blood_type,title,profile_pic from donee de
+join user_data u on u.user_id = de.user_id
+where blood_type = 'A';

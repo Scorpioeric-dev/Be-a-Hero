@@ -5,13 +5,17 @@ import Auth from "./components/Auth";
 import Landing from "./components/Landing";
 import Categories from './components/Categories'
 import Login from './components/Login'
+import Donee from './components/Donee'
+import Donor from './components/Donor'
 
 export default (
   <Switch>
-    <Route exact path="/Home" component={Home} />
+    <Route exact path="/" component={Home} />
     <Route path="/Auth" component={Auth} />
     <Route path="/Landing" component={Landing} />
     <Route path="/Categories" component={Categories} />
     <Route path='/Login' component={Login}/>
+    <Route path='/Donee' component={Donee}/>
+    <Route path='/Donor' component={Donor}/>
   </Switch>
 );

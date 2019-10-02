@@ -36,34 +36,37 @@ export  class Login extends Component {
 
     render() {
         return (
-            <Article>
-            <input
-            type="text"
-            placeholder="Email"
-            onChange={e => this.handleChange(e, "email")}
+          <div>
+          <Img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt=''/>
+          <Article>
+          <input
+          type="text"
+          placeholder="Email"
+          onChange={e => this.handleChange(e, "email")}
           />
           <input
-            type="text"
+          type="text"
             placeholder="Password"
             onChange={e => this.handleChange(e, "password")}
           />
           <Link to="/">
-            <Button onClick={this.login}>Login</Button>
+          <Button onClick={this.login}>Login</Button>
           </Link>
           <Link to='/'>
           <Button onClick={this.cancel}>Cancel</Button></Link>
             </Article>
-        )
+            </div>
+            )
     }
-}
+  }
 export default connect(
-    null,
+  null,
     { setUser }
   )(withRouter(Login));
 
 const Article = styled.div`
-   background: #00000088;
-  color: #ffffff;
+   background: pink;
+  color: pink;
  display: flex;
  flex-direction: column;
     align-items: center;
@@ -73,15 +76,20 @@ const Article = styled.div`
    left: 800px;
   top: 60px;
   height: 180px;
+  border-radius:20px;
  `;
  const Button = styled.div`
   border-radius: 8px;
   color: red;
   background-color: pink;
-  border:solid red;
   font-size: 1rem;
-  width: 5vw;
+  width: 6vw;
   display: flex;
   align-items: center;
+  justify-content:center;
 `;
+const Img = styled.img`
+  height: 100vh;
+  width: 100vw;
+  margin:none;`
 
