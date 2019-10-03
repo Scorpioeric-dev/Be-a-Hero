@@ -19,6 +19,7 @@ export class Donee extends Component {
     hair_id: false,
     user_id: 0,
     doneeData: [],
+    id: 0,
     editing: false
   };
 
@@ -54,7 +55,7 @@ export class Donee extends Component {
           donee: res.data
         });
       });
-    window.location.reload();
+    // window.location.reload();
   };
 
   getDoneeData = () => {
@@ -91,16 +92,23 @@ export class Donee extends Component {
     this.setState({ editing: !this.state.editing });
   };
 
-  updateDonee = id => {
+  updateDonee = (id) => {
     const { title, profile_pic, blood_type } = this.state;
+    
+   
     axios
-      .put(`/api/donor/:id`, { title, profile_pic, blood_type })
+      .put(`/api/donee/${id}`, {
+      
+        title: title,
+        profile_pic: profile_pic,
+        blood_type: blood_type
+      })
       .then(res => {
         this.setState({
-          editDonee: res.data
+          doneeData: res.data
         });
-        this.toggleEdit();
       });
+      this.toggleEdit();
   };
 
   cancel = () => {
@@ -110,11 +118,12 @@ export class Donee extends Component {
   };
   render() {
     let mapped = this.state.doneeData.map(data => {
+      console.log(data)
       return (
         <div>
           {!this.state.editing ? (
             <Flex>
-              <div key={data.id}>
+              <div key={data.id} data={data}>
                 <h5>Title: {data.title}</h5>
                 <h5>blood_type: {data.blood_type}</h5>
                 <button onClick={this.toggleEdit}>edit</button>
@@ -123,7 +132,7 @@ export class Donee extends Component {
               <Img src={data.profile_pic} alt="" />
             </Flex>
           ) : (
-            <Article>
+            <div>
               <input
                 type="text"
                 name="title"
@@ -146,8 +155,10 @@ export class Donee extends Component {
                 placeholder="Edit profile"
                 defaultValue={data.profile_pic}
               />
-              <button onClick={this.updateDonee(data.id)}>save</button>
-            </Article>
+              <Link to="">
+                <button onClick={this.updateDonee(data.id)}>save</button>
+              </Link>
+            </div>
           )}
         </div>
       );
@@ -218,7 +229,9 @@ export class Donee extends Component {
             value={this.state.hair_id}
           />
           <Img src={this.state.profile_pic} alt="preview" />
-          <button onClick={this.createDonee}>submit</button>
+          <Link to="/Donee">
+            <button onClick={this.createDonee}>submit</button>
+          </Link>
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
@@ -285,7 +298,8 @@ const Flex = styled.div`
 //   justify-content: center;
 //   margin-bottom: 50px;
 // `;
-const Article = styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;`
+// const Article = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// `;

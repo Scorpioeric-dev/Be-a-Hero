@@ -8,48 +8,50 @@ import axios from 'axios'
 import swal from 'sweetalert2'
 
 export  class Login extends Component {
-    state = {
-        email:'',
-        password:''
+  state = {
+    email:'',
+    password:''
+  }
+  
+  handleChange = (e, key) => {
+    this.setState({
+      [key]: e.target.value
+    });
+  };
+  
+  login = async () => {
+    const { password, email } = this.state;
+    const res = await axios.post("/auth/login", { email, password });
+    if (res.data.user) {
+      this.props.setUser(res.data.user);
     }
-
-    handleChange = (e, key) => {
-        this.setState({
-          [key]: e.target.value
-        });
-      };
-     
-      login = async () => {
-        const { password, email } = this.state;
-        const res = await axios.post("/auth/login", { email, password });
-        if (res.data.user) {
-          this.props.setUser(res.data.user);
-        }
-        swal.fire(res.data.message);
+    console.log(res.data.user)
+    swal.fire(res.data.message);
+    
+  };
+  cancel = () => {
+    store.dispatch({
+      type: CANCEL
+    });
+  };
+  
+  render() {
+    return (
+      <div>
+      <Img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt=''/>
+      <Article>
+      <input
+      type="text"
+      placeholder="Email"
+      onChange={e => this.handleChange(e, "email")}
+      />
       
-      };
-      cancel = () => {
-        store.dispatch({
-          type: CANCEL
-        });
-      };
-
-    render() {
-        return (
-          <div>
-          <Img src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80" alt=''/>
-          <Article>
           <input
-          type="text"
-          placeholder="Email"
-          onChange={e => this.handleChange(e, "email")}
-          />
-          <input
-          type="text"
+          type="password"
             placeholder="Password"
             onChange={e => this.handleChange(e, "password")}
           />
-          <Link to="/">
+          <Link to="/Donee">
           <Button onClick={this.login}>Login</Button>
           </Link>
           <Link to='/'>
@@ -65,7 +67,7 @@ export default connect(
   )(withRouter(Login));
 
 const Article = styled.div`
-   background: pink;
+   border:solid pink;
   color: pink;
  display: flex;
  flex-direction: column;
@@ -80,8 +82,8 @@ const Article = styled.div`
  `;
  const Button = styled.div`
   border-radius: 8px;
-  color: red;
-  background-color: pink;
+  color: white;
+  border:solid pink;
   font-size: 1rem;
   width: 6vw;
   display: flex;
