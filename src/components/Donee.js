@@ -17,9 +17,9 @@ export class Donee extends Component {
     liver_id: false,
     pancreas_id: false,
     hair_id: false,
-    user_id:0,
+    user_id: 0,
     doneeData: [],
-    editing:false
+    editing: false
   };
 
   componentDidMount() {
@@ -27,13 +27,33 @@ export class Donee extends Component {
   }
 
   createDonee = () => {
-    const { title, profile_pic, blood_type,lung_id,kidney_id,liver_id,pancreas_id,hair_id} = this.state;
-    console.log(this.state)
-    axios.post(`/api/donee`, { title, profile_pic, blood_type,lung_id,kidney_id,liver_id,pancreas_id,hair_id }).then(res=>{
-      this.setState({
-        donee:res.data
+    const {
+      title,
+      profile_pic,
+      blood_type,
+      lung_id,
+      kidney_id,
+      liver_id,
+      pancreas_id,
+      hair_id
+    } = this.state;
+    console.log(this.state);
+    axios
+      .post(`/api/donee`, {
+        title,
+        profile_pic,
+        blood_type,
+        lung_id,
+        kidney_id,
+        liver_id,
+        pancreas_id,
+        hair_id
       })
-    });
+      .then(res => {
+        this.setState({
+          donee: res.data
+        });
+      });
     window.location.reload();
   };
 
@@ -66,19 +86,22 @@ export class Donee extends Component {
     }
     // console.log(this.state)
   };
-  // toggleEdit = () => {
-  //   this.setState({ editing: !this.state.editing });
-  // };
+
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
+  };
 
   updateDonee = id => {
-    const {title,profile_pic,blood_type} = this.state
-    axios.put(`/api/donor/:id`,{title,profile_pic,blood_type}).then(res => {
-      this.setState({
-       editDonee:res.data
-      })
-      this.toggleEdit()
-    })
-  }
+    const { title, profile_pic, blood_type } = this.state;
+    axios
+      .put(`/api/donor/:id`, { title, profile_pic, blood_type })
+      .then(res => {
+        this.setState({
+          editDonee: res.data
+        });
+        this.toggleEdit();
+      });
+  };
 
   cancel = () => {
     store.dispatch({
@@ -88,15 +111,45 @@ export class Donee extends Component {
   render() {
     let mapped = this.state.doneeData.map(data => {
       return (
-        <Flex>
-          <div key={data.id}>
-          
-            <h5>Title: {data.title}</h5>
-            <h5>blood_type: {data.blood_type}</h5>
-            </div><div>
-            <Img src={data.profile_pic} alt="" />
-            </div>
-        </Flex>
+        <div>
+          {!this.state.editing ? (
+            <Flex>
+              <div key={data.id}>
+                <h5>Title: {data.title}</h5>
+                <h5>blood_type: {data.blood_type}</h5>
+                <button onClick={this.toggleEdit}>edit</button>
+              </div>
+
+              <Img src={data.profile_pic} alt="" />
+            </Flex>
+          ) : (
+            <Article>
+              <input
+                type="text"
+                name="title"
+                onChange={this.handleChange}
+                placeholder="Edit title"
+                defaultValue={data.title}
+              />
+
+              <input
+                type="text"
+                name="Blood_type"
+                onChange={this.handleChange}
+                placeholder="Edit Blood"
+                defaultValue={data.blood_type}
+              />
+              <input
+                type="text"
+                name="profile_pic"
+                onChange={this.handleChange}
+                placeholder="Edit profile"
+                defaultValue={data.profile_pic}
+              />
+              <button onClick={this.updateDonee(data.id)}>save</button>
+            </Article>
+          )}
+        </div>
       );
     });
     return (
@@ -178,10 +231,9 @@ export class Donee extends Component {
 }
 
 function mapStateToProps(reduxState) {
-  const { user } = reduxState
-  return { user }
+  const { user } = reduxState;
+  return { user };
 }
-
 
 export default connect(
   mapStateToProps,
@@ -201,7 +253,6 @@ const Section = styled.div`
   padding: 5%;
   border-radius: 20px;
   margin: 50;
-
 `;
 // const Profile = styled.img`
 //   height: 100px;
@@ -229,8 +280,12 @@ const Flex = styled.div`
   margin-left: 200px;
   padding: 20px;
 `;
-const Parent = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 50px;
-`;
+// const Parent = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   margin-bottom: 50px;
+// `;
+const Article = styled.div`
+display:flex;
+flex-direction:column;
+align-items:center;`
