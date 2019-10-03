@@ -30,6 +30,7 @@ app.post('/api/donee',transCtrl.postDonee)
 app.get('/api/donorData',transCtrl.getDonorData)
 app.get('/api/doneeData',transCtrl.getDoneeData)
 app.put('/api/editDonee/:id',transCtrl.editDonee)
+app.put('/api/editDonor/:id',transCtrl.editDonor)
 
 
 

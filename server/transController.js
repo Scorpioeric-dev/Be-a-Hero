@@ -57,7 +57,7 @@ module.exports = {
   },
   getDonorData: async (req, res) => {
     const db = req.app.get("db");
-    const { donor_id, user_name,blood_type, title, profile_pic } = req.query;
+    const { donor_id, user_name, blood_type, title, profile_pic } = req.query;
     const donorData = await db.find_donor_username_bloodtype([
       donor_id,
       user_name,
@@ -69,7 +69,7 @@ module.exports = {
   },
   getDoneeData: async (req, res) => {
     const db = req.app.get("db");
-    const { donee_id,user_name, blood_type, title, profile_pic } = req.query;
+    const { donee_id, user_name, blood_type, title, profile_pic } = req.query;
     let doneeData = await db.find_donee_username_bloodtype([
       donee_id,
       user_name,
@@ -81,10 +81,27 @@ module.exports = {
   },
 
   editDonee: async (req, res) => {
-    const { donee_id,title, profile_pic, blood_type } = req.body;
+    const { donee_id, title, profile_pic, blood_type } = req.body;
     const { id } = req.params;
     const db = req.app.get("db");
-    const edit = await db.edit_donee([donee_id, title, profile_pic, blood_type]);
+    const edit = await db.edit_donee([
+      donee_id,
+      title,
+      profile_pic,
+      blood_type
+    ]);
+    res.status(200).send(edit);
+  },
+  editDonor: async (req, res) => {
+    const { donor_id, title, profile_pic, blood_type } = req.body;
+    const { id } = req.params;
+    const db = req.app.get("db");
+    const edit = await db.edit_donor([
+      donor_id,
+      title,
+      profile_pic,
+      blood_type
+    ]);
     res.status(200).send(edit);
   }
 };
