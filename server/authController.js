@@ -22,7 +22,7 @@ module.exports = {
 
     res
       .status(201)
-      .send({ message: "Logged in", user: req.session.user, loggedIn: true });
+      .send({ message: "Welcome", user: req.session.user, loggedIn: true });
   },
   async login(req, res) {
     const db = req.app.get("db");
@@ -35,11 +35,11 @@ module.exports = {
     if (result) {
       delete user[0].hash;
       req.session.user = user[0];
+      console.log(req.session);
       return res
         .status(200)
         .send({ message: "Logged in", user: req.session.user, loggedIn: true });
     }
-    console.log(req.session);
   },
 
   logout(req, res) {

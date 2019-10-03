@@ -34,15 +34,18 @@ export class Auth extends Component {
         // });
 
         this.props.setUser({ user_name, email, gender });
-        console.log(this.props);
+        // console.log(this.props);
         // res.data[0].user_name,
         // res.data[0].email,
         // res.data[0].gender,
         // res.data[0].id
 
         swal.fire({ type: "Success", text: res.data.message });
-        this.props.history.push("/Landing");
-      });
+        // window.location.reload();
+      })
+      .catch(error => {
+        alert(error)
+      })
   };
 
   cancel = () => {

@@ -49,3 +49,9 @@ where blood_type = 'A';
 select user_name,blood_type,title,profile_pic from donee de
 join user_data u on u.user_id = de.user_id
 where blood_type = 'A';
+
+
+update donee set title = $2,
+profile_pic = $3,
+blood_type = $4
+where donee_id = $1;

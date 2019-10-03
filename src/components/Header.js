@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { setUser, CANCEL } from "../Ducks/reducer";
+import { setUser } from "../Ducks/reducer";
 import axios from "axios";
 import swal from "sweetalert2";
 
