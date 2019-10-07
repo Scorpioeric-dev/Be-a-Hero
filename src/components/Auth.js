@@ -104,7 +104,7 @@ export default connect(
 const Button = styled.div`
   border-radius: 8px;
   color: white;
-  border:solid pink;
+  border:solid white;
   justify-content: center;
   font-size: 1rem;
   width: 7vw;

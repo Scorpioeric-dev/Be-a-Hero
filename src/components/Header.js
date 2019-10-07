@@ -88,7 +88,7 @@ export default connect(
 )(withRouter(Header));
 
 const Main = styled.div`
-    background: rgb(0, 0, 0);;
+    background: #00000088;
     display:flex;
     justify-content:space-around;
 
@@ -109,7 +109,7 @@ const Main = styled.div`
       color:white;
     }
     a:hover{
-      color:rgb(10, 90, 43);
+      color:pink;
     }
     
     `;

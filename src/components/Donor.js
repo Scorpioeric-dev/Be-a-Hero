@@ -119,15 +119,16 @@ export class Donor extends Component {
           {this.state.editing ? (
             <div>
               <Flex>
-                <div>
+                <div className="text">
                   <h5>Title: {ele.title}</h5>
                   <h5>BloodType: {ele.blood_type}</h5>
-                </div>
-                {ele.user_id === this.props.user_id ? (
-                  <button onClick={this.toggleEdit}>toggleEdit</button>
-                ) : null}
-                <div>
-                  <Img src={ele.profile_pic} alt="" />
+
+                  {ele.user_id === this.props.user_id ? (
+                    <button onClick={this.toggleEdit}>toggleEdit</button>
+                  ) : null}
+                  <div>
+                    <Img src={ele.profile_pic} alt="" />
+                  </div>
                 </div>
               </Flex>
             </div>
@@ -167,54 +168,36 @@ export class Donor extends Component {
     return (
       <div>
         <Main>
-          <input
-            onChange={this.handleChange}
-            name="profile_pic"
-            type="text"
-            placeholder="Profile"
-            value={this.state.profile_pic}
-          />
-          <input
-            name="title"
-            type="text"
-            placeholder="Title"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />
-          <input
-            placeholder="Bloodtype"
-            type="text"
-            value={this.state.blood_type}
-            onChange={this.handleChange}
-            name="blood_type"
-          />
-          <h5>Lung</h5>
-          <input
-            type="checkbox"
-            name="lung_id"
-            onChange={this.handleChecked}
-            placeholder="Lung"
-            value={this.state.lung_id}
-          />
-          <h5>Kidney</h5>
-          <input
-            type="checkbox"
-            name="kidney_id"
-            onChange={this.handleChecked}
-            placeholder="kidney"
-            value={this.state.kidney_id}
-          />
-          <h5>liver</h5>
-          <input
-            type="checkbox"
-            name="liver_id"
-            onChange={this.handleChecked}
-            placeholder="liver"
-            value={this.state.liver_id}
-          />
+          <Input>
+            <div className="create">
+              <h3>Create Your Profile</h3>
+            </div>
+            <input
+              onChange={this.handleChange}
+              name="profile_pic"
+              type="text"
+              placeholder="Profile"
+              value={this.state.profile_pic}
+            />
+            <input
+              name="title"
+              type="text"
+              placeholder="Title"
+              onChange={this.handleChange}
+              value={this.state.title}
+            />
+            <input
+              placeholder="Bloodtype"
+              type="text"
+              value={this.state.blood_type}
+              onChange={this.handleChange}
+              name="blood_type"
+            />
+          </Input>
 
           <Img src={this.state.profile_pic} alt="preview" />
           <button onClick={this.createDonor}>submit</button>
+
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
@@ -307,4 +290,11 @@ const Container = styled.div`
   padding: 9px;
   margin-top: 30px;
   border: solid black;
+`;
+const Input = styled.div`
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+
+  margin-top: 100px;
 `;

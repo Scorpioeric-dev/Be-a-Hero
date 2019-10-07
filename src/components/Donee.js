@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import store from "../Ducks/store";
 import { CANCEL, setUser } from "../Ducks/reducer";
 import { Link, withRouter } from "react-router-dom";
-import Donor from './Donor'
+import Donor from "./Donor";
 export class Donee extends Component {
   state = {
     donee_id: "",
@@ -102,7 +102,7 @@ export class Donee extends Component {
         });
         console.log("hit2", res.data);
         this.toggleEdit();
-        // this.getDoneeData()
+        // this.getDoneeData();
         // window.location.reload();
       });
   };
@@ -164,8 +164,11 @@ export class Donee extends Component {
                 placeholder="Edit profile"
                 value={this.state.profile_pic}
               />
-
-              <button onClick={() => this.updateDonee(e.donee_id)}>save</button>
+            
+                <button onClick={() => this.updateDonee(e.donee_id)}>
+                  save
+                </button>
+              
             </Container>
           )}
         </div>
@@ -175,6 +178,9 @@ export class Donee extends Component {
       <div>
         <Section>
           <Input>
+            <div className="create">
+              <h3>Create Your Profile</h3>
+            </div>
             <input
               onChange={this.handleChange}
               name="profile_pic"
@@ -198,16 +204,14 @@ export class Donee extends Component {
             />
           </Input>
           <Img src={this.state.profile_pic} alt="preview" />
-
           <button onClick={this.createDonee}>submit</button>
-
-          <div>
+          
             <Link to="/landing">
               <span onClick={this.cancel}>Cancel</span>
             </Link>
-          </div>
+        
         </Section>
-<Donor/>
+
         {mapped}
       </div>
     );
@@ -233,11 +237,10 @@ const Section = styled.div`
   align-items: center;
   width: 200px;
   position: absolute;
-  right: 60px;
-  top: 300px;
-  height: 60vh;
-  margin-top: 25px;
-  padding: 8px;
+  left: 800px;
+  top: 75px;
+  height: 75vh;
+
   border-radius: 20px;
   border: solid black;
 `;
@@ -245,21 +248,21 @@ const Container = styled.div`
   background: #00000088;
   color: #ffffff;
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-eve;
   align-items: center;
   width: 300px;
-  position: absolute;
-  left: 100px;
+  position: relative;
+  left: 20px;
   top: 100px;
   height: 10vh;
   padding: 9px;
-  margin-top: 30px;
+  input{margin-bottom:5px}
 `;
 
 const Img = styled.img`
-  height: 120px;
-  width: 120px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   border: solid black;
   margin: 90px;
@@ -267,26 +270,27 @@ const Img = styled.img`
 `;
 const Flex = styled.div`
   display: flex;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+
   column-gap: 2rem;
   row-gap: 3rem;
-  justify-content: space-evenly;
-  max-width: 350px;
-  margin-top: 35px;
-  margin-left: 15px;
+  justify-content: space-between;
+  width: 300px;
 
+  margin-left: 205px;
+  height: 30vh;
   align-items: center;
-  padding: 20px;
+
   flex-direction: center;
-  background-color: #00000099;
+  background-color: #00000088;
   border: solid black;
   border-radius: 35px;
   font-size: 2rem;
+  
 `;
 const Input = styled.div`
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-  justify-content: space-evenly;
+
   margin-top: 100px;
 `;

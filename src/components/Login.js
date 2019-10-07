@@ -38,7 +38,8 @@ export  class Login extends Component {
   render() {
     return (
       <div>
-      
+      <Img src='https://cdn.memiah.co.uk/blog/wp-content/uploads/lifecoach-directory.org.uk/2018/04/Personal-development.png' alt=''/>
+     
       <Article>
       
       <input
@@ -70,8 +71,10 @@ export  class Login extends Component {
   )(withRouter(Login));
 
 const Article = styled.div`
-   border:solid pink;
-  color: pink;
+   border:solid white;
+   background:#00000088 ;
+   opacity:5px;
+  color: white;
  display: flex;
  flex-direction: column;
     align-items: center;
@@ -79,25 +82,31 @@ const Article = styled.div`
    justify-content: space-evenly;
   position:absolute
   ;
-   left: 600px;
-  top: 60px;
+   left: 650px;
+  top: 40px;
   height: 180px;
   border-radius:20px;
-  margin-top:20px;
+  margin-top:35px;
+  z-index:1000;
  `;
  const Button = styled.div`
   border-radius: 8px;
-  color: pink;
-  border:solid pink;
+  color: white;
+  border:solid white;
   font-size: 1rem;
   width: 6vw;
   display: flex;
   align-items: center;
   justify-content:center;
+  a:visited{
+    color:black;
+  }
+  a:hover{
+    color:pink;
+  }
 
 `;
 const Img = styled.img`
   height: 100vh;
-  width: 100vw;
-  margin:none;`
+  width: 100vw;`
 

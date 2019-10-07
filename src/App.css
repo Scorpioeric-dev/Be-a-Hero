@@ -223,11 +223,11 @@ table {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 300px;
+  width: 225px;
   position: absolute;
-  right: 60px;
+  left: 350px;
   top: 60px;
-  height: 380px;
+  height: 360px;
   border-radius: 20px;
 }
 .image {
@@ -272,7 +272,11 @@ h2 span {
   display:grid;
 }
 .text{
- 
-  
+ display:flex;
+  text-align:justify ;
+  align-items:center;
+  justify-items: auto;
+
+   
   
 }
