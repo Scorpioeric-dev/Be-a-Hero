@@ -53,7 +53,7 @@ export class Auth extends Component {
       type: CANCEL
     });
   };
-
+//try to create a dropdown for the register
   render() {
     return (
       <div>
@@ -83,7 +83,7 @@ export class Auth extends Component {
             value={this.state.password}
             onChange={e => this.handleChange(e, "password")}
           />
-          <Link to="/landing">
+          <Link to="/Donee">
             <Button onClick={this.registerUser}>Register</Button>
           </Link>
           <Link to="/">
@@ -103,8 +103,8 @@ export default connect(
 
 const Button = styled.div`
   border-radius: 8px;
-  color: red;
-  background-color: pink;
+  color: white;
+  border:solid pink;
   justify-content: center;
   font-size: 1rem;
   width: 7vw;

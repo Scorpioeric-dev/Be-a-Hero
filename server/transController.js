@@ -1,3 +1,5 @@
+
+
 module.exports = {
   postDonor: async (req, res) => {
     const db = req.app.get("db");
@@ -81,8 +83,10 @@ module.exports = {
   },
 
   editDonee: async (req, res) => {
-    const { donee_id, title, profile_pic, blood_type } = req.body;
-    const { id } = req.params;
+    const { title, profile_pic, blood_type } = req.body;
+    console.log(req.body)
+    const { donee_id } = req.params;
+    console.log(req.params)
     const db = req.app.get("db");
     const edit = await db.edit_donee([
       donee_id,
@@ -93,8 +97,8 @@ module.exports = {
     res.status(200).send(edit);
   },
   editDonor: async (req, res) => {
-    const { donor_id, title, profile_pic, blood_type } = req.body;
-    const { id } = req.params;
+    const { title, profile_pic, blood_type } = req.body;
+    const { donor_id } = req.params;
     const db = req.app.get("db");
     const edit = await db.edit_donor([
       donor_id,
@@ -104,4 +108,5 @@ module.exports = {
     ]);
     res.status(200).send(edit);
   }
+  
 };

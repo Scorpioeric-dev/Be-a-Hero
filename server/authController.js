@@ -7,7 +7,7 @@ module.exports = {
     // console.log(req.body);
 
     const user = await db.find_email(email);
-    console.log("email");
+    console.log(req.body);
     if (user[0])
       return res.status(200).send({ message: "Email already in use" });
 
@@ -18,7 +18,7 @@ module.exports = {
     delete newUser[0].hash;
 
     req.session.user = newUser;
-    console.log(req.session.user);
+    // console.log(req.session.user);
 
     res
       .status(201)
@@ -38,7 +38,7 @@ module.exports = {
       console.log(req.session);
       return res
         .status(200)
-        .send({ message: "Logged in", user: req.session.user, loggedIn: true });
+        .send({ message: "logged in", user: req.session.user, loggedIn: true });
     }
   },
 

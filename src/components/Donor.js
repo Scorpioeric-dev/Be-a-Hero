@@ -10,14 +10,14 @@ export class Donor extends Component {
   state = {
     title: "",
     profile_pic: "",
-
+    editing: false,
     blood_type: "",
     lung_id: false,
     kidney_id: false,
     liver_id: false,
     pancreas_id: false,
     hair_id: false,
-    user_id:0,
+    user_id: 0,
     donorData: []
   };
   componentDidMount() {
@@ -59,7 +59,7 @@ export class Donor extends Component {
           donor: res.data
         });
       });
-    window.location.reload();
+    this.getDonorData();
   };
 
   handleChange = e => {
@@ -68,38 +68,100 @@ export class Donor extends Component {
     });
     // console.log(this.state)
   };
-  handleChecked = e => {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    if (isChecked === true) {
-      this.setState({
-        [e.target.name]: true
-      });
-    }
-    if (isChecked === false) {
-      this.setState({
-        [e.target.name]: true
-      });
-    }
-    // console.log(this.state)
+
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
   };
+  // handleChecked = e => {
+  //   const item = e.target.name;
+  //   const isChecked = e.target.checked;
+  //   if (isChecked === true) {
+  //     this.setState({
+  //       [e.target.name]: true
+  //     });
+  //   }
+  //   if (isChecked === false) {
+  //     this.setState({
+  //       [e.target.name]: true
+  //     });
+  //   }
+  //   // console.log(this.state)
+  // };
+
+  updateDonor = id => {
+    const { title, profile_pic, blood_type } = this.state;
+    console.log(this.state);
+    axios
+      .put(`/api/editDonor/${id}`, {
+        donor_id: id,
+        title: title,
+        profile_pic: profile_pic,
+        blood_type: blood_type
+      })
+      .then(res => {
+        this.setState({
+          donorData: res.data,
+          editing: false
+        });
+        this.toggleEdit();
+      });
+  };
+
   cancel = () => {
     store.dispatch({
       type: CANCEL
     });
   };
   render() {
-    let donor = this.state.donorData.map(data => {
+    let donor = this.state.donorData.map(ele => {
       return (
-        <Article>
-          <div key={data.id}>
-            <h5>Title: {data.title}</h5>
-            <h5>BloodType: {data.blood_type}</h5>
-          </div>
-          <div>
-            <Img src={data.profile_pic} alt="" />
-          </div>
-        </Article>
+        <div key={ele.id}>
+          {this.state.editing ? (
+            <div>
+              <Flex>
+                <div>
+                  <h5>Title: {ele.title}</h5>
+                  <h5>BloodType: {ele.blood_type}</h5>
+                </div>
+                {ele.user_id === this.props.user_id ? (
+                  <button onClick={this.toggleEdit}>toggleEdit</button>
+                ) : null}
+                <div>
+                  <Img src={ele.profile_pic} alt="" />
+                </div>
+              </Flex>
+            </div>
+          ) : (
+            <Container>
+              <input
+                type="text"
+                name="title"
+                onChange={this.handleChange}
+                placeholder="Edit title"
+                value={this.state.title}
+              />
+
+              <input
+                type="text"
+                name="blood_type"
+                onChange={this.handleChange}
+                placeholder="Edit Blood"
+                value={this.state.blood_type}
+              />
+              <input
+                type="text"
+                name="profile_pic"
+                onChange={this.handleChange}
+                placeholder="Edit profile"
+                value={this.state.profile_pic}
+              />
+
+              <button onClick={() => this.updateDonor(ele.donor_id)}>
+                save
+              </button>
+            </Container>
+          )}
+        </div>
       );
     });
     return (
@@ -150,22 +212,7 @@ export class Donor extends Component {
             placeholder="liver"
             value={this.state.liver_id}
           />
-          <h5>Pancreas</h5>
-          <input
-            type="checkbox"
-            name="pancreas_id"
-            onChange={this.handleChecked}
-            placeholder="Pancreas"
-            value={this.state.pancreas_id}
-          />
-          <h5>Hair</h5>
-          <input
-            type="checkbox"
-            name="hair_id"
-            onChange={this.handleChecked}
-            placeholder="Hair"
-            value={this.state.hair_id}
-          />
+
           <Img src={this.state.profile_pic} alt="preview" />
           <button onClick={this.createDonor}>submit</button>
           <Link to="/landing">
@@ -178,19 +225,15 @@ export class Donor extends Component {
   }
 }
 
-
 function mapStateToProps(reduxState) {
-  const { user } = reduxState
-  return { user }
+  const { user, user_id } = reduxState;
+  return { user, user_id };
 }
-
-
 
 export default connect(
   mapStateToProps,
   { setUser }
 )(withRouter(Donor));
-
 
 const Main = styled.div`
   display: flex;
@@ -200,7 +243,7 @@ const Main = styled.div`
   justify-content: space-evenly;
   position: relative;
   left: 100px;
-  top: 60px;
+  top: 250px;
   height: 60vh;
   padding: 5%;
   border-radius: 20px;
@@ -222,12 +265,46 @@ const Img = styled.img`
   position: relative;
 `;
 const Article = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  justify-content: center;
+  max-width: 400px;
+  margin: 10;
+  border: solid black;
+  padding: 20px;
+`;
+const Flex = styled.div`
+  display: flex;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 3rem;
+  justify-content: space-evenly;
+  max-width: 400px;
+  margin-top: 35px;
+  margin-left: 15px;
+  align-items: center;
+  padding: 20px;
+  flex-direction: flex-start;
+  background-color: #00000099;
+  border: solid black;
+  border-radius: 35px;
+  font-size: 2rem;
+`;
+const Container = styled.div`
+  background: #00000088;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: left;
-  align-content: flex-start;
-  margin-left: 200px;
-  padding: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  height: 10vh;
+  padding: 9px;
+  margin-top: 30px;
+  border: solid black;
 `;

@@ -5,7 +5,8 @@ const initalState = {
   email: "",
   gender: "",
   loggedIn: false,
-  user: null
+  user: null,
+  user_id:null
 };
 
 export const SET_USER = "SET_USER";
@@ -23,8 +24,9 @@ export default (state = initalState, action) => {
 
   switch (type) {
     case SET_USER:
-      const { user_name,title,profile_pic, email, gender } = payload;
-      return { ...state, user_name,title,profile_pic, email, gender };
+      console.log(payload)
+      const { user_name,title,profile_pic, email, gender,user_id } = payload;
+      return { ...state, user_name,title,profile_pic, email, gender,user_id:user_id };
     case CANCEL:
       return { state };
     default:

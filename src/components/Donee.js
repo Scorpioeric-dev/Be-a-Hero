@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 import store from "../Ducks/store";
 import { CANCEL, setUser } from "../Ducks/reducer";
 import { Link, withRouter } from "react-router-dom";
-import Donor from "./Donor";
-
+import Donor from './Donor'
 export class Donee extends Component {
   state = {
+    donee_id: "",
     title: "",
     profile_pic: "",
     blood_type: "",
@@ -54,9 +54,16 @@ export class Donee extends Component {
         this.setState({
           donee: res.data
         });
+
+        this.getDoneeData();
       });
-    // window.location.reload();
   };
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.doneeData.length !== this.state.doneeData.length) {
+      this.render();
+    }
+  }
 
   getDoneeData = () => {
     axios.get("/api/doneeData").then(res => {
@@ -72,44 +79,40 @@ export class Donee extends Component {
     });
     // console.log(this.state)
   };
-  handleChecked = e => {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    if (isChecked === true) {
-      this.setState({
-        [e.target.name]: true
-      });
-    }
-    if (isChecked === false) {
-      this.setState({
-        [e.target.name]: true
-      });
-    }
-    // console.log(this.state)
-  };
 
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing });
   };
 
-  updateDonee = (id) => {
+  updateDonee = id => {
     const { title, profile_pic, blood_type } = this.state;
-    
-   
+    console.log("hit", id);
+
     axios
-      .put(`/api/donee/${id}`, {
-      
+      .put(`/api/editDonee/${id}`, {
+        donee_id: id,
         title: title,
         profile_pic: profile_pic,
         blood_type: blood_type
       })
       .then(res => {
         this.setState({
-          doneeData: res.data
+          doneeData: res.data,
+          editing: false
         });
+        console.log("hit2", res.data);
+        this.toggleEdit();
+        // this.getDoneeData()
+        // window.location.reload();
       });
-      this.toggleEdit();
   };
+  // delete = id => {
+  //   axios.delete(`/api/donee/${id}`).then(res => {
+  //     this.setState({
+  //       doneeData:res.data
+  //     })
+  //   })
+  // }
 
   cancel = () => {
     store.dispatch({
@@ -117,48 +120,53 @@ export class Donee extends Component {
     });
   };
   render() {
-    let mapped = this.state.doneeData.map(data => {
-      console.log(data)
+    // console.log(this.props);
+    let mapped = this.state.doneeData.map(e => {
       return (
-        <div>
+        <div key={e.donee_id}>
           {!this.state.editing ? (
-            <Flex>
-              <div key={data.id} data={data}>
-                <h5>Title: {data.title}</h5>
-                <h5>blood_type: {data.blood_type}</h5>
-                <button onClick={this.toggleEdit}>edit</button>
-              </div>
-
-              <Img src={data.profile_pic} alt="" />
-            </Flex>
-          ) : (
             <div>
+              <Flex>
+                <div className="text">
+                  <div>Title: {e.title}</div>
+                  <h5>blood_type: {e.blood_type}</h5>
+                  {e.user_id === this.props.user_id ? (
+                    <button onClick={this.toggleEdit}>edit</button>
+                  ) : null}
+
+                  <div>
+                    <Img src={e.profile_pic} alt="" />
+                  </div>
+                </div>
+              </Flex>
+            </div>
+          ) : (
+            <Container>
               <input
                 type="text"
                 name="title"
                 onChange={this.handleChange}
                 placeholder="Edit title"
-                defaultValue={data.title}
+                value={this.state.title}
               />
 
               <input
                 type="text"
-                name="Blood_type"
+                name="blood_type"
                 onChange={this.handleChange}
                 placeholder="Edit Blood"
-                defaultValue={data.blood_type}
+                value={this.state.blood_type}
               />
               <input
                 type="text"
                 name="profile_pic"
                 onChange={this.handleChange}
                 placeholder="Edit profile"
-                defaultValue={data.profile_pic}
+                value={this.state.profile_pic}
               />
-              <Link to="">
-                <button onClick={this.updateDonee(data.id)}>save</button>
-              </Link>
-            </div>
+
+              <button onClick={() => this.updateDonee(e.donee_id)}>save</button>
+            </Container>
           )}
         </div>
       );
@@ -166,77 +174,40 @@ export class Donee extends Component {
     return (
       <div>
         <Section>
-          <input
-            onChange={this.handleChange}
-            name="profile_pic"
-            type="text"
-            placeholder="Profile"
-            value={this.state.profile_pic}
-          />
-          <input
-            name="title"
-            type="text"
-            placeholder="Title"
-            onChange={this.handleChange}
-            value={this.state.title}
-          />
-          <input
-            placeholder="Bloodtype"
-            type="text"
-            value={this.state.blood_type}
-            onChange={this.handleChange}
-            name="blood_type"
-          />
-
-          <h5>Lung</h5>
-          <input
-            type="checkbox"
-            name="lung_id"
-            onChange={this.handleChecked}
-            placeholder="Lung"
-            value={this.state.lung_id}
-          />
-          <h5>Kidney</h5>
-          <input
-            type="checkbox"
-            name="kidney_id"
-            onChange={this.handleChecked}
-            placeholder="kidney"
-            value={this.state.kidney_id}
-          />
-          <h5>liver</h5>
-          <input
-            type="checkbox"
-            name="liver_id"
-            onChange={this.handleChecked}
-            placeholder="liver"
-            value={this.state.liver_id}
-          />
-          <h5>Pancreas</h5>
-          <input
-            type="checkbox"
-            name="pancreas_id"
-            onChange={this.handleChecked}
-            placeholder="Pancreas"
-            value={this.state.pancreas_id}
-          />
-          <h5>Hair</h5>
-          <input
-            type="checkbox"
-            name="hair_id"
-            onChange={this.handleChecked}
-            placeholder="Hair"
-            value={this.state.hair_id}
-          />
+          <Input>
+            <input
+              onChange={this.handleChange}
+              name="profile_pic"
+              type="text"
+              placeholder="Profile"
+              defaultvalue={this.state.profile_pic}
+            />
+            <input
+              name="title"
+              type="text"
+              placeholder="Title"
+              onChange={this.handleChange}
+              defaultvalue={this.state.title}
+            />
+            <input
+              placeholder="Bloodtype"
+              type="text"
+              defaultvalue={this.state.blood_type}
+              onChange={this.handleChange}
+              name="blood_type"
+            />
+          </Input>
           <Img src={this.state.profile_pic} alt="preview" />
-          <Link to="/Donee">
-            <button onClick={this.createDonee}>submit</button>
-          </Link>
-          <Link to="/landing">
-            <span onClick={this.cancel}>Cancel</span>
-          </Link>
+
+          <button onClick={this.createDonee}>submit</button>
+
+          <div>
+            <Link to="/landing">
+              <span onClick={this.cancel}>Cancel</span>
+            </Link>
+          </div>
         </Section>
-        <Donor />
+<Donor/>
         {mapped}
       </div>
     );
@@ -244,8 +215,8 @@ export class Donee extends Component {
 }
 
 function mapStateToProps(reduxState) {
-  const { user } = reduxState;
-  return { user };
+  const { user, user_id } = reduxState;
+  return { user, user_id };
 }
 
 export default connect(
@@ -254,52 +225,68 @@ export default connect(
 )(withRouter(Donee));
 
 const Section = styled.div`
+  background: #00000088;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 130px;
   justify-content: space-evenly;
+  align-items: center;
+  width: 200px;
   position: absolute;
-  left: 800px;
-  top: 60px;
+  right: 60px;
+  top: 300px;
   height: 60vh;
-  padding: 5%;
+  margin-top: 25px;
+  padding: 8px;
   border-radius: 20px;
-  margin: 50;
+  border: solid black;
 `;
-// const Profile = styled.img`
-//   height: 100px;
-//   width: 100px;
-// border-radius:50%;
-//   border: solid black;
-//   margin: 80px;
-//   position: relative;
-// `;
+const Container = styled.div`
+  background: #00000088;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  height: 10vh;
+  padding: 9px;
+  margin-top: 30px;
+`;
+
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 120px;
   border-radius: 50%;
   border: solid black;
-  margin: 80px;
+  margin: 90px;
   position: relative;
 `;
 const Flex = styled.div`
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 3rem;
+  justify-content: space-evenly;
+  max-width: 350px;
+  margin-top: 35px;
+  margin-left: 15px;
+
   align-items: center;
-  align-content: flex-start;
-  margin-left: 200px;
   padding: 20px;
+  flex-direction: center;
+  background-color: #00000099;
+  border: solid black;
+  border-radius: 35px;
+  font-size: 2rem;
 `;
-// const Parent = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 50px;
-// `;
-// const Article = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
+const Input = styled.div`
+  display: flex;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 100px;
+`;

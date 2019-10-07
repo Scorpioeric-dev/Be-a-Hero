@@ -1,22 +1,153 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+* {
+  box-sizing: border-box;
+}
 
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 
 /* .square {
   height: 50px;
   width: 50px;
   background: violet;
   margin: 5rem;
-  /* transition: background 3s, cubic-bezier(.39,.5,.6,1.44) width 3s; */
-  /* animation-name: spin;
+  transition: background 3s, cubic-bezier(0.39, 0.5, 0.6, 1.44) width 3s;
+  animation-name: spin;
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-} */ 
-/* .square:hover {
+}
+.square:hover {
   background: blue;
   width: 1000px;
-} */
+}
 
-/* @keyframes spin {
+@keyframes spin {
   0% {
     transform: rotate(0deg);
   }
@@ -44,24 +175,20 @@
   }
 } */
 
-
-
-.heart {
-position:relative;
-margin-top: 3%;
- margin-right: 1600px;
+/* .heart {
+  position: relative;
+  margin-top: 3%;
+  margin-right: 1600px;
   background: red;
   height: 55px;
   width: 55px;
   transform: rotate(45deg);
-  animation: heartbeat .7s infinite;
+  animation: heartbeat 0.7s infinite;
 }
-
 
 .heart::before,
 .heart::after {
-  
-  content: '';
+  content: "";
   position: absolute;
   background-color: red;
   height: 55px;
@@ -73,9 +200,9 @@ margin-top: 3%;
 }
 .heart::after {
   right: 30px;
-}
+} */
 
-@keyframes heartbeat {
+/* @keyframes heartbeat {
   0% {
     transform: scale(1) rotate(45deg);
   }
@@ -88,21 +215,64 @@ margin-top: 3%;
   40% {
     transform: scale(1.5) rotate(45deg);
   }
+} */
+.auth {
+  background: #00000088;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 300px;
+  position: absolute;
+  right: 60px;
+  top: 60px;
+  height: 380px;
+  border-radius: 20px;
 }
-.auth{
-  background:pink;
-    color:pink;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    width:200px;
-    justify-content: space-evenly;
-    position: absolute;
-    left:550px;
-    top:60px;
-    height:280px;
-    border-radius:20px;
+.image {
+  position: relative;
+  width: 100%; /* for IE 6 */
 }
 
+h2 {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 100%;
+}
+.image {
+  position: static;
+}
 
+h2 {
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 100%;
+}
+h2 span.spacer {
+  padding: 0 5px;
+  font-size: 3rem;
+}
+h2 span {
+  color:white;
+  font: bold 24px/45px Helvetica, Sans-Serif;
+  letter-spacing: -1px;
+  /* fallback color */
+  margin-top: 30px;
+  padding: 10px;
+  display:flex;
+  justify-content: center;
 
+}
+
+.profile-text{
+  font-display: center;
+  display:grid;
+}
+.text{
+ 
+  
+  
+}

@@ -6,6 +6,13 @@ const { port, connection_string, session_secret } = process.env;
 const session = require('express-session')
 const authCtrl = require('./authController')
 const transCtrl = require('./transController')
+const socket = require('socket.io')
+
+
+const server = app.listen(port, () => {
+  console.log(`${port} mariachis in town`);
+});
+const io = socket(server)
 
 //middleware
 app.use(express.json());
@@ -29,14 +36,30 @@ app.post('/api/donor',transCtrl.postDonor)
 app.post('/api/donee',transCtrl.postDonee)
 app.get('/api/donorData',transCtrl.getDonorData)
 app.get('/api/doneeData',transCtrl.getDoneeData)
-app.put('/api/editDonee/:id',transCtrl.editDonee)
-app.put('/api/editDonor/:id',transCtrl.editDonor)
+app.put('/api/editDonee/:donee_id',transCtrl.editDonee)
+app.put('/api/editDonor/:donor_id',transCtrl.editDonor)
 
 
 
 massive(connection_string).then(db => {
   app.set("db", db);
-  app.listen(port, () => {
-    console.log(`${port} mariachis in town`);
-  });
 });
+
+io.on('connection',socket =>{
+  
+  socket.on('join chat', data => {
+    socket.join(data.room)
+
+  })
+  socket.on('emit to room socket',data => {
+    socket.emit('room response',data)
+  })
+  socket.on('blast to room socket',data => {
+    io.to(data.room).emit('room response',data)
+  })
+  socket.on('disconnect',() => {
+
+  })
+
+})
+

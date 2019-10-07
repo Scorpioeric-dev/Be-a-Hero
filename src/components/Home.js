@@ -1,35 +1,37 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
+import Zoom from "react-reveal/Zoom";
+import Header from './Header'
 
 export default class Home extends Component {
-    render() {
-        return (
-            <div>
-            
-            <Content>
-            <img src="https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=''/>
-            
-            
-            <Img src="https://www.donorcarenet.org/wp-content/uploads/2019/05/gifthero222.jpg" alt=''/>
-            
-            
-            <img src='https://images.pexels.com/photos/1374360/pexels-photo-1374360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' alt="" />
-            </Content>
-            
-
-           </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <Zoom>
+          <div className="image">
+          <Header/>
+            <img
+              src="https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt=""
+            />
+            <h2>
+              <span className="spacer">Make A Difference Change a life</span>
+            </h2>
+          </div>
+        </Zoom>
+      </div>
+    );
+  }
 }
 
 const Img = styled.img`
   height: 100vh;
   width: 100vw;
-  margin:none;
-  `
+  margin: none;
+  clip-path: polygon(0 12%, 100% 12%, 100% 77%, 35% 100%, 0 100%);
+`;
 const Content = styled.div`
-display:flex;
-justify-content:center;
-flex-direction:column;`
-
-
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;

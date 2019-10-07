@@ -6,6 +6,7 @@ import { setUser } from "../Ducks/reducer";
 import axios from "axios";
 import swal from "sweetalert2";
 
+
 export class Header extends Component {
   constructor() {
     super();
@@ -24,9 +25,9 @@ export class Header extends Component {
 
   toggleEdit = () => {
     this.setState({
-     editing: !this.state.editing
-    })
-  }
+      editing: !this.state.editing
+    });
+  };
 
   logout = async () => {
     const res = await axios.delete("/auth/logout");
@@ -36,44 +37,48 @@ export class Header extends Component {
 
   render() {
     return (
+    
       <Main>
-        <div className="heart-container">
-          <div className="heart"></div>
-        </div>
-        {!this.state.editing ? (
-          <Main>
-            <Link to="/landing">
-              <span>Donate</span>
-            </Link>
-            <Link to="/Auth">
+        
+    
+        
+          {!this.state.editing ? (
+            <Main>
+              <Link to="/landing">
+                <span>Donate</span>
+              </Link>
+
               <div>
-                <span onClick={this.toggleEdit}>Register</span>
+                <Link to="/Auth">
+                  <span onClick={this.toggleEdit}>Register</span>
+                </Link>
               </div>
-            </Link>
-            <Link to="/Login">
-              <span>Login</span>
-            </Link>
-            <Link to="/Categories">
-              <span>Categories</span>
-            </Link>
+
+              <Link to="/Login">
+                <span>Login</span>
+              </Link>
+              <Link to="/Categories">
+                <span>Categories</span>
+              </Link>
+            </Main>
+          ) : (
+            <Main>
+              <Link to="/Categories">
+                <span>Categories</span>
+              </Link>
+              <Link to="/Donor">
+                <span>donor</span>
+              </Link>
+              <Link to="/Donee">
+                <span>donee</span>
+              </Link>
+              <Link to="/">
+                <span onClick={this.logout}>logout</span>
+              </Link>
+            </Main>
+          )}
           </Main>
-        ) : (
-          <Main>
-            <Link to="/Categories">
-              <span>Categories</span>
-            </Link>
-            <Link to="/Donor">
-              <span>donor</span>
-            </Link>
-            <Link to="/Donee">
-              <span>donee</span>
-            </Link>
-            <Link to="/">
-              <span onClick={this.logout}>logout</span>
-            </Link>
-          </Main>
-        )}
-      </Main>
+  
     );
   }
 }
@@ -83,16 +88,30 @@ export default connect(
 )(withRouter(Header));
 
 const Main = styled.div`
+    background: rgb(0, 0, 0);;
     display:flex;
     justify-content:space-around;
+
     align-items: center;
-    padding: 1rem;
+     font:bold 24px/45px sans-serif;
     width:100vw;
     height:10vh
-    margin:9px;
-    
-    color:black;
+    margin-bottom:15px;
+    cursor:hover;
+    color:white;
+    opacity: 0.5;
     position:fixed;
+  
+      
+
+    
+    a:visited{
+      color:white;
+    }
+    a:hover{
+      color:rgb(10, 90, 43);
+    }
+    
     `;
 
 //
