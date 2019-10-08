@@ -38,8 +38,8 @@ export class Donee extends Component {
       pancreas_id,
       hair_id
     } = this.state;
-    
-    console.log(this.state);
+
+    // console.log(this.state);
     axios
       .post(`/api/donee`, {
         title,
@@ -87,7 +87,7 @@ export class Donee extends Component {
 
   updateDonee = id => {
     const { title, profile_pic, blood_type } = this.state;
-    console.log("hit", id);
+    // console.log("hit", id);
 
     axios
       .put(`/api/editDonee/${id}`, {
@@ -101,7 +101,7 @@ export class Donee extends Component {
           doneeData: res.data,
           editing: false
         });
-        console.log("hit2", res.data);
+        // console.log("hit2", res.data);
         this.toggleEdit();
         // this.getDoneeData();
         // window.location.reload();
@@ -124,23 +124,21 @@ export class Donee extends Component {
     // console.log(this.props);
     let mapped = this.state.doneeData.map(e => {
       return (
-        <div key={e.donee_id}>
+        <div className="donee" key={e.donee_id}>
           {!this.state.editing ? (
-            <div>
-              <Flex>
-                <div className="text">
-                  <div>Title: {e.title}</div>
-                  <h5>blood_type: {e.blood_type}</h5>
-                  {e.user_id === this.props.user_id ? (
-                    <button onClick={this.toggleEdit}>edit</button>
-                  ) : null}
+            <Flex>
+              <div className="text">
+                <div>Title: {e.title}</div>
+                <h5>blood_type: {e.blood_type}</h5>
+                {e.user_id === this.props.user_id ? (
+                  <button onClick={this.toggleEdit}>edit</button>
+                ) : null}
+              </div>
 
-                  <div>
-                    <Img src={e.profile_pic} alt="" />
-                  </div>
-                </div>
-              </Flex>
-            </div>
+              <div>
+                <Img src={e.profile_pic} alt="" />
+              </div>
+            </Flex>
           ) : (
             <Container>
               <input
@@ -165,11 +163,8 @@ export class Donee extends Component {
                 placeholder="Edit profile"
                 value={this.state.profile_pic}
               />
-            
-                <button onClick={() => this.updateDonee(e.donee_id)}>
-                  save
-                </button>
-              
+
+              <button onClick={() => this.updateDonee(e.donee_id)}>save</button>
             </Container>
           )}
         </div>
@@ -204,13 +199,12 @@ export class Donee extends Component {
               name="blood_type"
             />
           </Input>
-          <Img src={this.state.profile_pic} alt="preview" />
+          <Imag src={this.state.profile_pic} alt="preview" />
           <button onClick={this.createDonee}>submit</button>
-          
-            <Link to="/landing">
-              <span onClick={this.cancel}>Cancel</span>
-            </Link>
-        
+
+          <Link to="/landing">
+            <span onClick={this.cancel}>Cancel</span>
+          </Link>
         </Section>
 
         {mapped}
@@ -258,8 +252,10 @@ const Container = styled.div`
   top: 100px;
   height: 10vh;
   padding: 9px;
-  input{margin-bottom:5px}
-  float:center;
+  input {
+    margin-bottom: 5px;
+  }
+  float: center;
 `;
 
 const Img = styled.img`
@@ -269,25 +265,33 @@ const Img = styled.img`
   border: solid black;
   margin: 90px;
   position: relative;
+  margin-left:10px;
 `;
+
+const Imag = styled.img`
+height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: solid black;
+  margin: 90px;
+  position: relative;
+  `
 const Flex = styled.div`
   display: flex;
 
-  column-gap: 2rem;
-  row-gap: 3rem;
+  
   justify-content: space-between;
   width: 300px;
 
-  margin-left: 205px;
+  margin-left: 15px;
   height: 30vh;
   align-items: center;
 
-  flex-direction: center;
-  background-color: #00000088;
+  flex-direction: flex-start;
+  
   border: solid black;
   border-radius: 35px;
   font-size: 2rem;
-  
 `;
 const Input = styled.div`
   display: flex;

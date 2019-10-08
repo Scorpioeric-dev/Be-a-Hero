@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 export class Donor extends Component {
   state = {
+    donor_id: "",
     title: "",
     profile_pic: "",
     editing: false,
@@ -42,7 +43,7 @@ export class Donor extends Component {
       pancreas_id,
       hair_id
     } = this.state;
-    
+
     axios
       .post(`/api/donor`, {
         title,
@@ -59,9 +60,15 @@ export class Donor extends Component {
           donor: res.data
         });
       });
-    
+
     this.getDonorData();
   };
+
+  componentDidUpdate(previousProps, previousState) {
+    if (previousState.donorData.length !== this.state.donorData.length) {
+      this.render();
+    }
+  }
 
   handleChange = e => {
     this.setState({
@@ -91,7 +98,7 @@ export class Donor extends Component {
 
   updateDonor = id => {
     const { title, profile_pic, blood_type } = this.state;
-    console.log(this.state);
+    console.log("hit", id);
     axios
       .put(`/api/editDonor/${id}`, {
         donor_id: id,
@@ -104,7 +111,9 @@ export class Donor extends Component {
           donorData: res.data,
           editing: false
         });
+        console.log("hit2", res.data);
         this.toggleEdit();
+        this.getDonorData()
       });
   };
 
@@ -116,52 +125,54 @@ export class Donor extends Component {
   render() {
     let donor = this.state.donorData.map(ele => {
       return (
-        <div key={ele.id}>
-          {this.state.editing ? (
-            <div>
-              <Flex>
-                <div className="text">
-                  <h5>Title: {ele.title}</h5>
-                  <h5>BloodType: {ele.blood_type}</h5>
-
-                  {ele.user_id === this.props.user_id ? (
-                    <button onClick={this.toggleEdit}>toggleEdit</button>
-                  ) : null}
-                  <div>
-                    <Img src={ele.profile_pic} alt="" />
-                  </div>
-                </div>
-              </Flex>
+        <div className='donor' 
+        <DonorProfile key={ele.donor_id} 
+        />
+        {!this.state.editing ? (
+          
+          <Flex>
+          <div className="text">
+          <h4>Title: {ele.title}</h4>
+          <h4>BloodType: {ele.blood_type}</h4>
+          
+          {ele.user_id === this.props.user_id ? (
+            <button onClick={this.toggleEdit}>Edit</button>
+            ) : null}
             </div>
-          ) : (
-            <Container>
+            <div className='img'>
+            <Img src={ele.profile_pic} alt="" />
+            </div>
+            </Flex>
+            
+            ) : (
+              <Container>
               <input
-                type="text"
-                name="title"
-                onChange={this.handleChange}
-                placeholder="Edit title"
-                value={this.state.title}
+              type="text"
+              name="title"
+              onChange={this.handleChange}
+              placeholder=" title"
+              defaultvalue={this.state.title}
               />
-
+              
               <input
-                type="text"
-                name="blood_type"
-                onChange={this.handleChange}
-                placeholder="Edit Blood"
-                value={this.state.blood_type}
+              type="text"
+              name="blood_type"
+              onChange={this.handleChange}
+              placeholder=" Blood"
+              defaultvalue={this.state.blood_type}
               />
               <input
-                type="text"
-                name="profile_pic"
-                onChange={this.handleChange}
-                placeholder="Edit profile"
-                value={this.state.profile_pic}
+              type="text"
+              name="profile_pic"
+              onChange={this.handleChange}
+              placeholder="Profile"
+              defaultvalue={this.state.profile_pic}
               />
-
+              
               <button onClick={() => this.updateDonor(ele.donor_id)}>
-                save
+              save
               </button>
-            </Container>
+              </Container>
           )}
         </div>
       );
@@ -194,14 +205,14 @@ export class Donor extends Component {
               onChange={this.handleChange}
               name="blood_type"
             />
-            <div>
-              <button onClick={this.createDonor}>submit</button>
-            </div>
           </Input>
+          <Imag src={this.state.profile_pic} alt="preview" />
+
+          <button onClick={this.createDonor}>submit</button>
+
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
-          <Img src={this.state.profile_pic} alt="preview" />
         </Main>
         {donor}
       </div>
@@ -230,7 +241,6 @@ const Main = styled.div`
   top: 75px;
   height: 75vh;
 
-
   border-radius: 20px;
   border: solid black;
   background-color: #00000088;
@@ -250,7 +260,16 @@ const Img = styled.img`
   border: solid black;
   margin: 90px;
   position: relative;
+  margin-left:10px;
 `;
+const Imag = styled.img`
+height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: solid black;
+  margin: 90px;
+  position: relative;
+  `
 const Article = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -264,34 +283,31 @@ const Article = styled.div`
 `;
 const Flex = styled.div`
   display: flex;
-  column-gap: 2rem;
-  row-gap: 3rem;
-  justify-content: space-evenly;
-  max-width: 400px;
-  margin-top: 35px;
+
+  justify-content: space-between;
+  width: 300px;
+
   margin-left: 15px;
   align-items: center;
-  padding: 20px;
+  height: 30vh;
   flex-direction: flex-start;
-  background-color: #00000099;
+  
   border: solid black;
   border-radius: 35px;
   font-size: 2rem;
 `;
 const Container = styled.div`
-  background: #00000088;
-  color: #ffffff;
+  
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 300px;
+  width: 200px;
   position: absolute;
-  left: 100px;
-  top: 100px;
+  left: 100px
   height: 10vh;
-  padding: 9px;
-  margin-top: 30px;
+
+  margin-top: 60px;
   border: solid black;
 `;
 const Input = styled.div`
