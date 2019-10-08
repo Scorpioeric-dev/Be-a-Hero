@@ -17,7 +17,7 @@ module.exports = {
     const newUser = await db.create_user([user_name, email, gender, hash]);
     delete newUser[0].hash;
 
-    req.session.user = newUser;
+    req.session.user = newUser[0];
     // console.log(req.session.user);
 
     res
@@ -48,6 +48,11 @@ module.exports = {
     res
       .status(200)
       .send({ message: "Logged Out", loggedin: false, user: null });
+  },
+  getSession(req,res){
+    if(req.session){
+      res.status(200).send(req.session)
+    }
   },
   pay:(req,res) => {
     const {token:{id},amount} = req.body

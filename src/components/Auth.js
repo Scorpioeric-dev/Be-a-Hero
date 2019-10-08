@@ -15,7 +15,7 @@ export class Auth extends Component {
       email: "",
       gender: "",
       password: "",
-      editing:false
+      editing: false
     };
   }
   handleChange = (e, key) => {
@@ -39,19 +39,19 @@ export class Auth extends Component {
       gender,
       password
     });
+    if (res.data.user) {
+      this.props.setUser(res.data.user);
+    }
 
-    this.props.setUser({ user_name, email, gender });
-    
     swal.fire({ type: "success", text: res.data.message });
     // let result = await res.data;
     if (res.data.message === "Email already in use") {
       swal.fire({ type: "error", text: res.data.message });
     } else {
-      return  this.props.history.push("/"); 
-      
+      return this.props.history.push("/");
     }
-    this.toggleEdit()
-    console.log(res.data)
+    this.toggleEdit();
+    console.log(res.data);
   };
 
   cancel = () => {
@@ -61,7 +61,6 @@ export class Auth extends Component {
   };
   //try to create a dropdown for the register
   render() {
-    
     return (
       <div>
         <Img

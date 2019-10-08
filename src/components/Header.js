@@ -56,7 +56,7 @@ export class Header extends Component {
               </div>
 
               <Link to="/Login">
-                <span>Login</span>
+                <span onClick={this.toggleEdit}>Login</span>
               </Link>
               <Link to="/Categories">
                 <span>Categories</span>

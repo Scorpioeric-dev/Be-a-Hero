@@ -33,7 +33,8 @@ app.use(
 //auth
 app.post('/auth/register',authCtrl.register)
 app.post('/auth/login',authCtrl.login)
-app.delete('/auth/logout',authCtrl.logout) 
+app.delete('/auth/logout',authCtrl.logout)
+app.get('/auth/session',authCtrl.getSession)
 //post
 app.post('/api/donor',transCtrl.postDonor)
 app.post('/api/donee',transCtrl.postDonee)
