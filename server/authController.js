@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-
+const stripe = require('stripe')(process.env.stripe_secret)
 module.exports = {
   async register(req, res) {
     const db = req.app.get("db");
@@ -22,7 +22,7 @@ module.exports = {
 
     res
       .status(201)
-      .send({ message: "Welcome", user: req.session.user, loggedIn: true });
+      .send({ message: "Success", user: req.session.user, loggedIn: true });
   },
   async login(req, res) {
     const db = req.app.get("db");
@@ -44,9 +44,32 @@ module.exports = {
 
   logout(req, res) {
     req.session.destroy();
+    
     res
       .status(200)
       .send({ message: "Logged Out", loggedin: false, user: null });
   },
+  pay:(req,res) => {
+    const {token:{id},amount} = req.body
+    stripe.charges.create(
+      {
+        ampunt:amount,
+        currency:'usd',
+        source:id,
+        description:'test Charge'
+      },
+      (err,charge) => {
+        if(err){
+          console.log(err)
+          return res.status(500).send(err)
+        } else {
+          console.log('Successful payment',charge)
+          //Do something with that purchase or donation
+          return res.status(200).send(charge)
+
+        }
+      }
+    )
+  }
   
 };

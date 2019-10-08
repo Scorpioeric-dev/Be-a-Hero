@@ -38,6 +38,7 @@ export class Donee extends Component {
       pancreas_id,
       hair_id
     } = this.state;
+    
     console.log(this.state);
     axios
       .post(`/api/donee`, {
@@ -258,6 +259,7 @@ const Container = styled.div`
   height: 10vh;
   padding: 9px;
   input{margin-bottom:5px}
+  float:center;
 `;
 
 const Img = styled.img`

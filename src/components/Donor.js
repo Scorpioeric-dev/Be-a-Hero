@@ -42,7 +42,7 @@ export class Donor extends Component {
       pancreas_id,
       hair_id
     } = this.state;
-    console.log(this.state);
+    
     axios
       .post(`/api/donor`, {
         title,
@@ -59,6 +59,7 @@ export class Donor extends Component {
           donor: res.data
         });
       });
+    
     this.getDonorData();
   };
 
@@ -193,14 +194,14 @@ export class Donor extends Component {
               onChange={this.handleChange}
               name="blood_type"
             />
+            <div>
+              <button onClick={this.createDonor}>submit</button>
+            </div>
           </Input>
-
-          <Img src={this.state.profile_pic} alt="preview" />
-          <button onClick={this.createDonor}>submit</button>
-
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
+          <Img src={this.state.profile_pic} alt="preview" />
         </Main>
         {donor}
       </div>
@@ -222,14 +223,17 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 130px;
+  width: 200px;
   justify-content: space-evenly;
-  position: relative;
-  left: 100px;
-  top: 250px;
-  height: 60vh;
-  padding: 5%;
+  position: absolute;
+  left: 800px;
+  top: 75px;
+  height: 75vh;
+
+
   border-radius: 20px;
+  border: solid black;
+  background-color: #00000088;
 `;
 // const Profile = styled.img`
 //   height: 100px;
@@ -240,11 +244,11 @@ const Main = styled.div`
 //   position: relative;
 // `;
 const Img = styled.img`
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   border: solid black;
-  margin: 80px;
+  margin: 90px;
   position: relative;
 `;
 const Article = styled.div`
@@ -260,7 +264,6 @@ const Article = styled.div`
 `;
 const Flex = styled.div`
   display: flex;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 2rem;
   row-gap: 3rem;
   justify-content: space-evenly;

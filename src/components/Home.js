@@ -7,9 +7,11 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <Zoom>
-          <div className="image">
-          <Header/>
+        
+        <div className="image">
+        <div>
+        
+        </div>
             <img
               src="https://images.pexels.com/photos/461049/pexels-photo-461049.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               alt=""
@@ -18,7 +20,7 @@ export default class Home extends Component {
               <span className="spacer">Make A Difference Change a life</span>
             </h2>
           </div>
-        </Zoom>
+      
       </div>
     );
   }

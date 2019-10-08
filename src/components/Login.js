@@ -26,7 +26,7 @@ export  class Login extends Component {
       this.props.setUser(res.data.user);
     }
     console.log(res.data.user)
-    swal.fire(res.data.message);
+    swal.fire({type:"success" ,text: res.data.message});
     
   };
   cancel = () => {

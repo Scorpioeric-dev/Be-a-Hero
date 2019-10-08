@@ -2,10 +2,11 @@ require("dotenv/config");
 const express = require("express");
 const app = express();
 const massive = require("massive");
-const { port, connection_string, session_secret } = process.env;
+const { port, connection_string, session_secret} = process.env;
 const session = require('express-session')
 const authCtrl = require('./authController')
 const transCtrl = require('./transController')
+
 const socket = require('socket.io')
 
 
@@ -27,6 +28,8 @@ app.use(
   })
 );
 //endpoints
+//stripe endpoint
+// app.post('/api/payment',authCtrl.pay)
 //auth
 app.post('/auth/register',authCtrl.register)
 app.post('/auth/login',authCtrl.login)

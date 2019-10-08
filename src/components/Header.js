@@ -31,11 +31,12 @@ export class Header extends Component {
 
   logout = async () => {
     const res = await axios.delete("/auth/logout");
-    this.props.setUser(null);
-    swal.fire(res.data.message);
+    this.props.history.push('/');
+    swal.fire({type:"success" ,text:res.data.message});
   };
-
+  
   render() {
+    
     return (
     
       <Main>
@@ -88,7 +89,8 @@ export default connect(
 )(withRouter(Header));
 
 const Main = styled.div`
-    background: #00000088;
+    background: #00000099;
+    color:white;
     display:flex;
     justify-content:space-around;
 
@@ -97,14 +99,14 @@ const Main = styled.div`
     width:100vw;
     height:10vh
     margin-bottom:15px;
-    cursor:hover;
     color:white;
     opacity: 0.5;
     position:fixed;
-  
-      
-
     
+    
+    
+    
+    cursor:hover;
     a:visited{
       color:white;
     }

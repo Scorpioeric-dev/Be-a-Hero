@@ -14,7 +14,8 @@ export class Auth extends Component {
       user_name: "",
       email: "",
       gender: "",
-      password: ""
+      password: "",
+      editing:false
     };
   }
   handleChange = (e, key) => {
@@ -22,30 +23,35 @@ export class Auth extends Component {
       [key]: e.target.value
     });
   };
-  registerUser = () => {
+
+  toggleEdit = () => {
+    this.setState({
+      editing: !this.state.editing
+    });
+  };
+
+  registerUser = async () => {
     const { user_name, email, gender, password } = this.state;
-    axios
-      .post("/auth/register", { user_name, email, gender, password })
-      .then(res => {
-        // this.setState({
-        //   user_name: res.data[0],
-        //   email: res.data[0],
-        //   gender: res.data[0]
-        // });
 
-        this.props.setUser({ user_name, email, gender });
-        // console.log(this.props);
-        // res.data[0].user_name,
-        // res.data[0].email,
-        // res.data[0].gender,
-        // res.data[0].id
+    const res = await axios.post("/auth/register", {
+      user_name,
+      email,
+      gender,
+      password
+    });
 
-        swal.fire({ type: "Success", text: res.data.message });
-        // window.location.reload();
-      })
-      .catch(error => {
-        alert(error)
-      })
+    this.props.setUser({ user_name, email, gender });
+    
+    swal.fire({ type: "success", text: res.data.message });
+    // let result = await res.data;
+    if (res.data.message === "Email already in use") {
+      swal.fire({ type: "error", text: res.data.message });
+    } else {
+      return  this.props.history.push("/"); 
+      
+    }
+    this.toggleEdit()
+    console.log(res.data)
   };
 
   cancel = () => {
@@ -53,11 +59,15 @@ export class Auth extends Component {
       type: CANCEL
     });
   };
-//try to create a dropdown for the register
+  //try to create a dropdown for the register
   render() {
+    
     return (
       <div>
-      <Img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80" alt=''/>
+        <Img
+          src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+          alt=""
+        />
         <div className="auth">
           <input
             placeholder="username"
@@ -83,14 +93,13 @@ export class Auth extends Component {
             value={this.state.password}
             onChange={e => this.handleChange(e, "password")}
           />
-          <Link to="/Donee">
-            <Button onClick={this.registerUser}>Register</Button>
-          </Link>
+
+          <Button onClick={this.registerUser}>Register</Button>
+
           <Link to="/">
             <Button onClick={this.cancel}>Cancel</Button>
           </Link>
         </div>
-
       </div>
     );
   }
@@ -104,21 +113,16 @@ export default connect(
 const Button = styled.div`
   border-radius: 8px;
   color: white;
-  border:solid white;
+  border: solid white;
   justify-content: center;
   font-size: 1rem;
   width: 7vw;
   display: flex;
   align-items: center;
+  float: left;
 `;
 const Img = styled.img`
   height: 100vh;
   width: 100vw;
-  margin:none;`
-  
-
-   
-
- 
-
-
+  margin: none;
+`;
