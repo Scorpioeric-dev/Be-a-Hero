@@ -22,9 +22,9 @@ export class Donor extends Component {
     user_id: 0,
     donorData: []
   };
-  // componentDidMount() {
-  //   this.getDonorData();
-  // }
+  componentDidMount() {
+    this.getDonorData();
+  }
   getDonorData = () => {
     axios.get("/api/donorData").then(res => {
       this.setState({
@@ -99,7 +99,7 @@ export class Donor extends Component {
               
               updateDonor = id => {
                 const { title, profile_pic, blood_type } = this.state;
-                console.log("hit", id);
+                // console.log("hi", id);
                 axios
                 .put(`/api/editDonor/${id}`, {
                   donor_id: id,
@@ -124,7 +124,7 @@ export class Donor extends Component {
                 });
               };
               render() {
-                console.log(this.state.donorData)
+                // console.log(this.state.donorData)
                 var mapdonor = this.state.donorData.map(ele => {
                   return(
                     
@@ -132,7 +132,7 @@ export class Donor extends Component {
                     key={ele.id}
                     ele={ele}
                     edit={this.toggleEdit}
-                    update={this.updateDonor(ele.donor_id)}
+                    update={() => this.updateDonor(ele.donor_id)}
                     handle={this.handleChange}
                     editing={this.state.editing}
                     />

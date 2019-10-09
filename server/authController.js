@@ -68,9 +68,9 @@ module.exports = {
           console.log(err)
           return res.status(500).send(err)
         } else {
-          console.log('Successful Donation',charge)
+          // console.log('Successful Donation',charge)
           //Do something with that purchase or donation
-          return res.status(200).send({charge})
+          return res.status(200).send({message:'You are amazing!!',charge})
 
         }
       }

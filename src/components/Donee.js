@@ -5,7 +5,9 @@ import { connect } from "react-redux";
 import store from "../Ducks/store";
 import { CANCEL, setUser } from "../Ducks/reducer";
 import { Link, withRouter } from "react-router-dom";
-import Donor from "./Donor";
+
+import DoneeProfile from "./DoneeProfile";
+
 export class Donee extends Component {
   state = {
     donee_id: "",
@@ -60,11 +62,11 @@ export class Donee extends Component {
       });
   };
 
-  componentDidUpdate(previousProps, previousState) {
-    if (previousState.doneeData.length !== this.state.doneeData.length) {
-      this.render();
-    }
-  }
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousState.doneeData.length !== this.state.doneeData.length) {
+  //     this.render();
+  //   }
+  // }
 
   getDoneeData = () => {
     axios.get("/api/doneeData").then(res => {
@@ -87,7 +89,7 @@ export class Donee extends Component {
 
   updateDonee = id => {
     const { title, profile_pic, blood_type } = this.state;
-    // console.log("hit", id);
+    console.log("hi", id);
 
     axios
       .put(`/api/editDonee/${id}`, {
@@ -124,49 +126,14 @@ export class Donee extends Component {
     // console.log(this.props);
     let mapped = this.state.doneeData.map(e => {
       return (
-        <div className="donee" key={e.donee_id}>
-          {!this.state.editing ? (
-            <Flex>
-              <div className="text">
-                <div>Title: {e.title}</div>
-                <h5>blood_type: {e.blood_type}</h5>
-                <Img src={e.profile_pic} alt="" />
-                {e.user_id === this.props.user_id ? (
-                  <button onClick={this.toggleEdit}>edit</button>
-                ) : null}
-              </div>
-
-              
-            </Flex>
-          ) : (
-            <Container>
-              <input
-                type="text"
-                name="title"
-                onChange={this.handleChange}
-                placeholder="Edit title"
-                defaultvalue={e.title}
-              />
-
-              <input
-                type="text"
-                name="blood_type"
-                onChange={this.handleChange}
-                placeholder="Edit Blood"
-                defaultvalue={e.blood_type}
-              />
-              <input
-                type="text"
-                name="profile_pic"
-                onChange={this.handleChange}
-                placeholder="Edit profile"
-                defaultvalue={e.profile_pic}
-              />
-
-              <button onClick={() => this.updateDonee(e.donee_id)}>save</button>
-            </Container>
-          )}
-        </div>
+        <DoneeProfile
+          key={e.id}
+          e={e}
+          edit={this.toggleEdit}
+          update={() => this.updateDonee(e.donee_id)}
+          handle={this.handleChange}
+          editing={this.state.editing}
+        />
       );
     });
     return (
@@ -238,24 +205,7 @@ const Section = styled.div`
   border-radius: 20px;
   border: solid black;
 `;
-const Container = styled.div`
-  background: #00000088;
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-eve;
-  align-items: center;
-  width: 300px;
-  position: relative;
-  left: 20px;
-  top: 100px;
-  height: 10vh;
-  padding: 9px;
-  input {
-    margin-bottom: 5px;
-  }
-  float: center;
-`;
+
 
 const Img = styled.img`
   height: 100px;
@@ -264,21 +214,20 @@ const Img = styled.img`
   border: solid black;
   margin: 90px;
   position: relative;
-  margin-left:10px;
+  margin-left: 10px;
 `;
 
 const Imag = styled.img`
-height: 100px;
+  height: 100px;
   width: 100px;
   border-radius: 50%;
   border: solid black;
   margin: 90px;
   position: relative;
-  `
+`;
 const Flex = styled.div`
   display: flex;
 
-  
   justify-content: space-between;
   width: 300px;
 
@@ -287,7 +236,7 @@ const Flex = styled.div`
   align-items: center;
 
   flex-direction: flex-start;
-  
+
   border: solid black;
   border-radius: 35px;
   font-size: 2rem;
