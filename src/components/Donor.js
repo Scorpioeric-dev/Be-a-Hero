@@ -5,6 +5,7 @@ import store from "../Ducks/store";
 import { CANCEL, setUser } from "../Ducks/reducer";
 import axios from "axios";
 import styled from "styled-components";
+import DonorProfile from "./DonorProfile";
 
 export class Donor extends Component {
   state = {
@@ -21,9 +22,9 @@ export class Donor extends Component {
     user_id: 0,
     donorData: []
   };
-  componentDidMount() {
-    this.getDonorData();
-  }
+  // componentDidMount() {
+  //   this.getDonorData();
+  // }
   getDonorData = () => {
     axios.get("/api/donorData").then(res => {
       this.setState({
@@ -31,7 +32,7 @@ export class Donor extends Component {
       });
     });
   };
-
+  
   createDonor = () => {
     const {
       title,
@@ -43,9 +44,9 @@ export class Donor extends Component {
       pancreas_id,
       hair_id
     } = this.state;
-
+    
     axios
-      .post(`/api/donor`, {
+    .post(`/api/donor`, {
         title,
         profile_pic,
         blood_type,
@@ -53,130 +54,92 @@ export class Donor extends Component {
         kidney_id,
         liver_id,
         pancreas_id,
-        hair_id
+        hair_id,
       })
       .then(res => {
         this.setState({
           donor: res.data
         });
       });
-
-    this.getDonorData();
-  };
-
-  componentDidUpdate(previousProps, previousState) {
-    if (previousState.donorData.length !== this.state.donorData.length) {
-      this.render();
-    }
-  }
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-    // console.log(this.state)
-  };
-
-  toggleEdit = () => {
-    this.setState({ editing: !this.state.editing });
-  };
-  // handleChecked = e => {
-  //   const item = e.target.name;
-  //   const isChecked = e.target.checked;
-  //   if (isChecked === true) {
-  //     this.setState({
-  //       [e.target.name]: true
-  //     });
-  //   }
-  //   if (isChecked === false) {
-  //     this.setState({
-  //       [e.target.name]: true
-  //     });
-  //   }
-  //   // console.log(this.state)
-  // };
-
-  updateDonor = id => {
-    const { title, profile_pic, blood_type } = this.state;
-    console.log("hit", id);
-    axios
-      .put(`/api/editDonor/${id}`, {
-        donor_id: id,
-        title: title,
-        profile_pic: profile_pic,
-        blood_type: blood_type
-      })
-      .then(res => {
-        this.setState({
-          donorData: res.data,
-          editing: false
-        });
-        console.log("hit2", res.data);
-        this.toggleEdit();
-        this.getDonorData()
+      
+      this.getDonorData();
+    };
+    
+    // componentDidUpdate(previousProps, previousState) {
+    //   if (previousState.donorData.length !== this.state.donorData.length) {
+    //     this.render();
+    //   }
+    // }
+    
+    handleChange = e => {
+      this.setState({
+        [e.target.name]: e.target.value
       });
-  };
+      // console.log(this.state)
+    };
+    
+    toggleEdit = () => {
+      this.setState({ editing: !this.state.editing });
+    };
+    // handleChecked = e => {
+      //   const item = e.target.name;
+      //   const isChecked = e.target.checked;
+      //   if (isChecked === true) {
+        //     this.setState({
+          //       [e.target.name]: true
+          //     });
+          //   }
+          //   if (isChecked === false) {
+            //     this.setState({
+              //       [e.target.name]: true
+              //     });
+              //   }
+              //   // console.log(this.state)
+              // };
+              
+              updateDonor = id => {
+                const { title, profile_pic, blood_type } = this.state;
+                console.log("hit", id);
+                axios
+                .put(`/api/editDonor/${id}`, {
+                  donor_id: id,
+                  title: title,
+                  profile_pic: profile_pic,
+                  blood_type: blood_type
+                })
+                .then(res => {
+                  this.setState({
+                    donorData: res.data,
+                    editing: false
+                  });
+                  console.log("hit2", res.data);
+                  this.toggleEdit();
+                  // this.getDonorData();
+                });
+              };
+              
+              cancel = () => {
+                store.dispatch({
+                  type: CANCEL
+                });
+              };
+              render() {
+                console.log(this.state.donorData)
+                var mapdonor = this.state.donorData.map(ele => {
+                  return(
+                    
+                    <DonorProfile
+                    key={ele.id}
+                    ele={ele}
+                    edit={this.toggleEdit}
+                    update={this.updateDonor(ele.donor_id)}
+                    handle={this.handleChange}
+                    editing={this.state.editing}
+                    />
+                    )
+                  });
+                  // console.log('hit',mapdonor)
 
-  cancel = () => {
-    store.dispatch({
-      type: CANCEL
-    });
-  };
-  render() {
-    let donor = this.state.donorData.map(ele => {
-      return (
-        <div className='donor' 
-        <DonorProfile key={ele.donor_id} 
-        />
-        {!this.state.editing ? (
-          
-          <Flex>
-          <div className="text">
-          <h4>Title: {ele.title}</h4>
-          <h4>BloodType: {ele.blood_type}</h4>
-          
-          {ele.user_id === this.props.user_id ? (
-            <button onClick={this.toggleEdit}>Edit</button>
-            ) : null}
-            </div>
-            <div className='img'>
-            <Img src={ele.profile_pic} alt="" />
-            </div>
-            </Flex>
-            
-            ) : (
-              <Container>
-              <input
-              type="text"
-              name="title"
-              onChange={this.handleChange}
-              placeholder=" title"
-              defaultvalue={this.state.title}
-              />
-              
-              <input
-              type="text"
-              name="blood_type"
-              onChange={this.handleChange}
-              placeholder=" Blood"
-              defaultvalue={this.state.blood_type}
-              />
-              <input
-              type="text"
-              name="profile_pic"
-              onChange={this.handleChange}
-              placeholder="Profile"
-              defaultvalue={this.state.profile_pic}
-              />
-              
-              <button onClick={() => this.updateDonor(ele.donor_id)}>
-              save
-              </button>
-              </Container>
-          )}
-        </div>
-      );
-    });
     return (
       <div>
         <Main>
@@ -189,19 +152,19 @@ export class Donor extends Component {
               name="profile_pic"
               type="text"
               placeholder="Profile"
-              value={this.state.profile_pic}
+              defaultvalue={this.state.profile_pic}
             />
             <input
               name="title"
               type="text"
               placeholder="Title"
               onChange={this.handleChange}
-              value={this.state.title}
+              defaultvalue={this.state.title}
             />
             <input
               placeholder="Bloodtype"
               type="text"
-              value={this.state.blood_type}
+              defaultvalue={this.state.blood_type}
               onChange={this.handleChange}
               name="blood_type"
             />
@@ -214,7 +177,7 @@ export class Donor extends Component {
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Main>
-        {donor}
+        {mapdonor}
       </div>
     );
   }
@@ -260,16 +223,16 @@ const Img = styled.img`
   border: solid black;
   margin: 90px;
   position: relative;
-  margin-left:10px;
+  margin-left: 10px;
 `;
 const Imag = styled.img`
-height: 100px;
+  height: 100px;
   width: 100px;
   border-radius: 50%;
   border: solid black;
   margin: 90px;
   position: relative;
-  `
+`;
 const Article = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -291,7 +254,7 @@ const Flex = styled.div`
   align-items: center;
   height: 30vh;
   flex-direction: flex-start;
-  
+
   border: solid black;
   border-radius: 35px;
   font-size: 2rem;

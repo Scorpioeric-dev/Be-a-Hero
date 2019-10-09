@@ -58,9 +58,11 @@ io.on('connection',socket =>{
   socket.on('emit to room socket',data => {
     socket.emit('room response',data)
   })
+  //this connects to room
   socket.on('blast to room socket',data => {
+    //emit sends it back to room
     io.to(data.room).emit('room response',data)
-  })
+  }) 
   socket.on('disconnect',() => {
 
   })

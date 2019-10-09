@@ -130,14 +130,13 @@ export class Donee extends Component {
               <div className="text">
                 <div>Title: {e.title}</div>
                 <h5>blood_type: {e.blood_type}</h5>
+                <Img src={e.profile_pic} alt="" />
                 {e.user_id === this.props.user_id ? (
                   <button onClick={this.toggleEdit}>edit</button>
                 ) : null}
               </div>
 
-              <div>
-                <Img src={e.profile_pic} alt="" />
-              </div>
+              
             </Flex>
           ) : (
             <Container>
@@ -146,7 +145,7 @@ export class Donee extends Component {
                 name="title"
                 onChange={this.handleChange}
                 placeholder="Edit title"
-                value={this.state.title}
+                defaultvalue={e.title}
               />
 
               <input
@@ -154,14 +153,14 @@ export class Donee extends Component {
                 name="blood_type"
                 onChange={this.handleChange}
                 placeholder="Edit Blood"
-                value={this.state.blood_type}
+                defaultvalue={e.blood_type}
               />
               <input
                 type="text"
                 name="profile_pic"
                 onChange={this.handleChange}
                 placeholder="Edit profile"
-                value={this.state.profile_pic}
+                defaultvalue={e.profile_pic}
               />
 
               <button onClick={() => this.updateDonee(e.donee_id)}>save</button>

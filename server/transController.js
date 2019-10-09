@@ -2,6 +2,7 @@
 
 module.exports = {
   postDonor: async (req, res) => {
+    console.log(req.body)
     const db = req.app.get("db");
     const { user_id } = req.session.user;
     const {
@@ -29,6 +30,7 @@ module.exports = {
     res.status(200).send(donor);
   },
   postDonee: async (req, res) => {
+    console.log(req.body)
     const db = req.app.get("db");
     const { user_id } = req.session.user;
 
