@@ -29,7 +29,7 @@ app.use(
 );
 //endpoints
 //stripe endpoint
-// app.post('/api/payment',authCtrl.pay)
+app.post('/api/payment',authCtrl.pay)
 //auth
 app.post('/auth/register',authCtrl.register)
 app.post('/auth/login',authCtrl.login)

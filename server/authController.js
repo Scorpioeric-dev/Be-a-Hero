@@ -70,7 +70,7 @@ module.exports = {
         } else {
           console.log('Successful Donation',charge)
           //Do something with that purchase or donation
-          return res.status(200).send(charge)
+          return res.status(200).send({charge})
 
         }
       }

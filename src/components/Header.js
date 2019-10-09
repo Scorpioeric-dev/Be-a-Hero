@@ -45,7 +45,7 @@ export class Header extends Component {
         
           {!this.state.editing ? (
             <Main>
-              <Link to="/landing">
+              <Link to="/Donate">
                 <span>Donate</span>
               </Link>
 

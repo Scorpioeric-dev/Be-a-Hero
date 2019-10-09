@@ -1,0 +1,10 @@
+
+
+.chatInput{
+    display: flex;
+  justify-content: column;
+  position: absolute;
+  top:25vh;
+  left:40%;
+
+}

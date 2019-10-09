@@ -8,6 +8,8 @@ import Login from './components/Login'
 import Donee from './components/Donee'
 import Donor from './components/Donor'
 import Matched from './components/Matched'
+import Donate from  './components/Donate'
+import Room from './components/Room'
 
 export default (
   <Switch>
@@ -19,5 +21,7 @@ export default (
     <Route path='/Donee' component={Donee}/>
     <Route path='/Donor' component={Donor}/>
     <Route path='/Matched' component={Matched}/>
+    <Route path='/Donate' component={Donate}/>
+    <Route path='/Room' component={Room}/>
   </Switch>
 );
