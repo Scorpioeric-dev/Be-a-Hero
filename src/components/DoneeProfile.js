@@ -1,68 +1,69 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
-import {setUser} from '../Ducks/reducer'
+import React, { Component } from "react";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { setUser } from "../Ducks/reducer";
 
-export  class DoneeProfile extends Component {
-    render() {
-        return (
-            <div className='Donee'>
-            {!this.props.editing ? (
-                <Flex>
-                  <div className="text">
-                    <div>Title: {this.props.e.title}</div>
-                    <h5>blood_type: {this.props.e.blood_type}</h5>
-                    {this.props.e.user_id === this.props.user_id ? (
-                        <button onClick={this.props.edit}>edit</button>
-                        ) : null}
-                        </div>
-                       <div className='img'>
-                       <Img src={this.props.e.profile_pic} alt="" />
-                       </div> 
-                  
-                </Flex>
-              ) : (
-                <Container>
-                  <input
-                    type="text"
-                    name="title"
-                    onChange={this.props.handle}
-                    placeholder="Edit title"
-                    defaultvalue={this.props.title}
-                  />
-    
-                  <input
-                    type="text"
-                    name="blood_type"
-                    onChange={this.handleChange}
-                    placeholder="Edit Blood"
-                    defaultvalue={this.props.blood_type}
-                  />
-                  <input
-                    type="text"
-                    name="profile_pic"
-                    onChange={this.handleChange}
-                    placeholder="Edit profile"
-                    defaultvalue={this.props.profile_pic}
-                  />
-    
-                  <button onClick={() => this.props.update(this.props.donee_id)}>save</button>
-                </Container>
-              )}
+export class DoneeProfile extends Component {
+  render() {
+    return (
+      <div className="Donee">
+        {!this.props.editing ? (
+          <Flex>
+            <div className="text">
+              <div>Title: {this.props.e.title}</div>
+              <h5>Bloodtype: {this.props.e.blood_type}</h5>
+              {this.props.e.user_id === this.props.user_id ? (
+                <button onClick={this.props.edit}>edit</button>
+              ) : null}
             </div>
-        )
-    }
+            <div className="img">
+              <Img src={this.props.e.profile_pic} alt="" />
+            </div>
+          </Flex>
+        ) : (
+          <Container>
+            <input
+              type="text"
+              name="title"
+              onChange={this.props.handle}
+              placeholder=" title"
+              defaultvalue={this.props.title}
+            />
+
+            <input
+              type="text"
+              name="blood_type"
+              onChange={this.props.handle}
+              placeholder="Blood"
+              defaultvalue={this.props.blood_type}
+            />
+            <input
+              type="text"
+              name="profile_pic"
+              onChange={this.props.handle}
+              placeholder="profile"
+              defaultvalue={this.props.profile_pic}
+            />
+
+            <button onClick={() => this.props.update(this.props.donee_id)}>
+              save
+            </button>
+          </Container>
+        )}
+      </div>
+    );
+  }
 }
 function mapStateToProps(reduxState) {
-    const { user, user_id } = reduxState;
-    return { user, user_id };
-  }
-  
-  export default connect(
-    mapStateToProps,
-    { setUser }
-  )(withRouter(DoneeProfile));
+  const { user, user_id } = reduxState;
+  return { user, user_id };
+}
+
+export default connect(
+  mapStateToProps,
+  { setUser }
+)(withRouter(DoneeProfile));
 const Img = styled.img`
   height: 100px;
   width: 100px;

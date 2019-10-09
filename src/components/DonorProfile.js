@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import styled from 'styled-components'
-import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import styled from "styled-components";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import { setUser } from "../Ducks/reducer";
 
 export class DonorProfile extends Component {
-   
   render() {
     return (
       <div className="donor">
@@ -20,8 +19,6 @@ export class DonorProfile extends Component {
                 <button onClick={this.props.edit}>Edit</button>
               ) : null}
             </div>
-           
-
             <div className="img">
               <Img src={this.props.ele.profile_pic} alt="" />
             </div>
@@ -33,7 +30,7 @@ export class DonorProfile extends Component {
               name="title"
               onChange={this.props.handle}
               placeholder=" title"
-              defaultValue={this.props.title}
+              defaultvalue={this.props.title}
             />
 
             <input
@@ -41,14 +38,14 @@ export class DonorProfile extends Component {
               name="blood_type"
               onChange={this.props.handle}
               placeholder=" Blood"
-              defaultValue={this.props.blood_type}
+              defaultvalue={this.props.blood_type}
             />
             <input
               type="text"
               name="profile_pic"
               onChange={this.props.handle}
               placeholder="Profile"
-              defaultValue={this.props.profile_pic}
+              defaultvalue={this.props.profile_pic}
             />
 
             <button onClick={() => this.props.update(this.props.donor_id)}>
@@ -61,14 +58,14 @@ export class DonorProfile extends Component {
   }
 }
 function mapStateToProps(reduxState) {
-    const { user, user_id } = reduxState;
-    return { user, user_id };
-  }
-  
-  export default connect(
-    mapStateToProps,
-    { setUser }
-  )(withRouter(DonorProfile));
+  const { user, user_id } = reduxState;
+  return { user, user_id };
+}
+
+export default connect(
+  mapStateToProps,
+  { setUser }
+)(withRouter(DonorProfile));
 const Img = styled.img`
   height: 100px;
   width: 100px;

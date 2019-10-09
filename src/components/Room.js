@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Room.css";
+import PropTypes from "prop-types";
 
 export default class Room extends Component {
   constructor(props) {
@@ -16,13 +17,17 @@ export default class Room extends Component {
 
       room: "connect"
     };
+    //connecting to server
     this.socket = io.connect(":4400");
+    //functions being invoked within sockets
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
   }
 
   componentDidMount = () => {
-    this.socket.emit("join chat", { room: this.state.room });
+    if (this.props.room !== "global") {
+      this.socket.emit("join chat", { room: this.state.room });
+    }
   };
 
   // getMessages = () => {
@@ -34,6 +39,17 @@ export default class Room extends Component {
   //         })
   //     })
   // }
+
+  emit = () => {
+    this.socket.emit(
+      `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
+      {
+        message: this.state.message,
+        username: this.state.username,
+        room: this.props.room
+      }
+    );
+  };
 
   blast = () => {
     this.socket.emit(`blast to room socket`, {
@@ -50,14 +66,23 @@ export default class Room extends Component {
     });
   };
 
+  setuserName = () => {
+    if (this.state.username) {
+      this.setState({
+        usernameSet: true
+      });
+    }
+    console.log("hit");
+  };
+
   updateMessages = data => {
     this.setState({
       messages: [
         ...this.state.messages,
         {
           message: data.message,
-          user_name: data.user_name,
-          profile_pic: data.profile_pic
+          username: data.username
+          //   profile_pic: data.profile_pic
         }
       ]
     });
@@ -80,16 +105,23 @@ export default class Room extends Component {
     ));
     return (
       <div className="chatInput">
-      {messages}
-        <input
-          type="text"
-          onChange={e => this.handlechange(e)}
-          name="message"
-          value={this.state.message}
-          placeholder="type here "
-        />
-        <button onClick={() => this.blast()}>send</button>
+        <h5>Room: {this.props.room}</h5>
+        {messages}
+        <div className="inputs">
+          <input
+            type="text"
+            onChange={this.handlechange}
+            name="message"
+            value={this.state.message}
+            placeholder="type here "
+          />
+          <button onClick={this.blast}>send</button>
+        </div>
       </div>
     );
   }
 }
+
+Room.propTypes = {
+  room: PropTypes.string
+};

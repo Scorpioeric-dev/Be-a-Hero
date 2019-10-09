@@ -32,7 +32,7 @@ export class Donor extends Component {
       });
     });
   };
-  
+
   createDonor = () => {
     const {
       title,
@@ -44,9 +44,9 @@ export class Donor extends Component {
       pancreas_id,
       hair_id
     } = this.state;
-    
+
     axios
-    .post(`/api/donor`, {
+      .post(`/api/donor`, {
         title,
         profile_pic,
         blood_type,
@@ -54,91 +54,94 @@ export class Donor extends Component {
         kidney_id,
         liver_id,
         pancreas_id,
-        hair_id,
+        hair_id
       })
       .then(res => {
         this.setState({
           donor: res.data
         });
       });
-      
-      this.getDonorData();
-    };
-    
-    // componentDidUpdate(previousProps, previousState) {
-    //   if (previousState.donorData.length !== this.state.donorData.length) {
-    //     this.render();
-    //   }
-    // }
-    
-    handleChange = e => {
-      this.setState({
-        [e.target.name]: e.target.value
+
+    this.getDonorData();
+  };
+
+  // componentDidUpdate(previousProps, previousState) {
+  //   if (previousState.donorData.length !== this.state.donorData.length) {
+  //     this.render();
+  //   }
+  // }
+  //create a matching functiion that allows a match between donor bloodtype and donee bloodtype
+  // findMatch= () => {
+
+  // }
+
+  handleChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    // console.log(this.state)
+  };
+
+  toggleEdit = () => {
+    this.setState({ editing: !this.state.editing });
+  };
+  // handleChecked = e => {
+  //   const item = e.target.name;
+  //   const isChecked = e.target.checked;
+  //   if (isChecked === true) {
+  //     this.setState({
+  //       [e.target.name]: true
+  //     });
+  //   }
+  //   if (isChecked === false) {
+  //     this.setState({
+  //       [e.target.name]: true
+  //     });
+  //   }
+  //   // console.log(this.state)
+  // };
+
+  updateDonor = id => {
+    const { title, profile_pic, blood_type } = this.state;
+    // console.log("hi", id);
+    axios
+      .put(`/api/editDonor/${id}`, {
+        donor_id: id,
+        title: title,
+        profile_pic: profile_pic,
+        blood_type: blood_type
+      })
+      .then(res => {
+        this.setState({
+          donorData: res.data,
+          editing: false
+        });
+        console.log("hit2", res.data);
+        this.toggleEdit();
+        // this.getDonorData();
       });
-      // console.log(this.state)
-    };
-    
-    toggleEdit = () => {
-      this.setState({ editing: !this.state.editing });
-    };
-    // handleChecked = e => {
-      //   const item = e.target.name;
-      //   const isChecked = e.target.checked;
-      //   if (isChecked === true) {
-        //     this.setState({
-          //       [e.target.name]: true
-          //     });
-          //   }
-          //   if (isChecked === false) {
-            //     this.setState({
-              //       [e.target.name]: true
-              //     });
-              //   }
-              //   // console.log(this.state)
-              // };
-              
-              updateDonor = id => {
-                const { title, profile_pic, blood_type } = this.state;
-                // console.log("hi", id);
-                axios
-                .put(`/api/editDonor/${id}`, {
-                  donor_id: id,
-                  title: title,
-                  profile_pic: profile_pic,
-                  blood_type: blood_type
-                })
-                .then(res => {
-                  this.setState({
-                    donorData: res.data,
-                    editing: false
-                  });
-                  console.log("hit2", res.data);
-                  this.toggleEdit();
-                  // this.getDonorData();
-                });
-              };
-              
-              cancel = () => {
-                store.dispatch({
-                  type: CANCEL
-                });
-              };
-              render() {
-                // console.log(this.state.donorData)
-                var mapdonor = this.state.donorData.map(ele => {
-                  return(
-                    
-                    <DonorProfile
-                    key={ele.id}
-                    ele={ele}
-                    edit={this.toggleEdit}
-                    update={() => this.updateDonor(ele.donor_id)}
-                    handle={this.handleChange}
-                    editing={this.state.editing}
-                    />
-                    )
-                  });
-                  // console.log('hit',mapdonor)
+  };
+
+  cancel = () => {
+    store.dispatch({
+      type: CANCEL
+    });
+  };
+  render() {
+    // console.log(this.state.donorData)
+    var mapdonor = this.state.donorData.map(ele => {
+      return (
+        <DonorProfile
+          key={ele.id}
+          ele={ele}
+          edit={this.toggleEdit}
+          update={() => this.updateDonor(ele.donor_id)}
+          handle={this.handleChange}
+          editing={this.state.editing}
+        />
+      );
+    });
+    // console.log('hit',mapdonor)
 
     return (
       <div>

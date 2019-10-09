@@ -218,12 +218,15 @@ const Img = styled.img`
 `;
 
 const Imag = styled.img`
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
+height: 140px;
+width: 140px;
+z-index: 20;
+border-radius: 50%;
+border: 0.7px groove grey;
+margin-top: 1.4rem;
+box-shadow: 4px 2px 4px 3px #706f6f;
+border-left: 0px groove rgba(28, 110, 164, 0.18);
+margin-bottom: 30px;
 `;
 const Flex = styled.div`
   display: flex;
