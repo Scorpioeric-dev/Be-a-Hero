@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./Room.css";
 import PropTypes from "prop-types";
 
-export default class Room extends Component {
+export  class Room extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,8 @@ export default class Room extends Component {
       username: "",
       usernameSet: false,
 
-      room: "connect"
+      room:[],
+      roomName:''
     };
     //connecting to server
     this.socket = io.connect(":4400");
@@ -39,6 +40,14 @@ export default class Room extends Component {
   //         })
   //     })
   // }
+  joinRoom = () => {
+      const roomsArr = this.state.rooms.slice()
+      roomsArr.push(this.state.roomName)
+      this.setState({
+          roomName:'',
+          rooms:roomsArr
+      })
+  }
 
   emit = () => {
     this.socket.emit(
@@ -55,45 +64,49 @@ export default class Room extends Component {
     this.socket.emit(`blast to room socket`, {
       message: this.state.message,
       username: this.state.username,
-
+      user_name: this.props.reduxState.user_name,
+      profile_pic: this.props.reduxState.profile_pic,
+      title:this.props.reduxState.title,
       room: this.state.room
     });
-  };
+};
 
-  handlechange = e => {
+handlechange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+        [e.target.name]: e.target.value
     });
-  };
+};
 
-  setuserName = () => {
+setuserName = () => {
     if (this.state.username) {
-      this.setState({
-        usernameSet: true
-      });
+        this.setState({
+            usernameSet: true
+        });
     }
     console.log("hit");
-  };
+};
 
-  updateMessages = data => {
+updateMessages = data => {
     this.setState({
-      messages: [
-        ...this.state.messages,
-        {
-          message: data.message,
-          username: data.username
-          //   profile_pic: data.profile_pic
-        }
-      ]
+        messages: [
+            ...this.state.messages,
+            {
+                message: data.message,
+                username: data.username
+                //   profile_pic: data.profile_pic
+            }
+        ]
     });
     this.setState({
-      message: ""
+        message: ""
     });
-  };
+};
 
-  render() {
+render() {
+    
+    console.log('message')
     const messages = this.state.messages.map((message, i) => (
-      <div
+        <div
         key={i}
         className={
           message.username === this.state.username ? "my-message" : "message"
@@ -121,6 +134,12 @@ export default class Room extends Component {
     );
   }
 }
+function mapStateToProps(reduxState){
+    return{reduxState}
+}
+
+
+export default connect(mapStateToProps,{})(Room)
 
 Room.propTypes = {
   room: PropTypes.string

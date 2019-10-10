@@ -72,6 +72,7 @@ module.exports = {
     res.status(200).send(donorData);
   },
   getDoneeData: async (req, res) => {
+    
     const db = req.app.get("db");
     const { donee_id, user_name, blood_type, title, profile_pic } = req.query;
     let doneeData = await db.find_donee_username_bloodtype([

@@ -20,16 +20,29 @@ export class Donor extends Component {
     pancreas_id: false,
     hair_id: false,
     user_id: 0,
-    donorData: []
+    donorData: [],
+    match: false,
+    doneeData: []
   };
   componentDidMount() {
     this.getDonorData();
+    this.getDoneeData();
   }
   getDonorData = () => {
     axios.get("/api/donorData").then(res => {
+      console.log(res.data)
       this.setState({
         donorData: res.data
       });
+    });
+  };
+
+  getDoneeData = () => {
+    axios.get("/api/doneeData").then(res => {
+      this.setState({
+        doneeData: res.data
+      });
+      //axios call not being hit here
     });
   };
 
@@ -57,6 +70,7 @@ export class Donor extends Component {
         hair_id
       })
       .then(res => {
+      
         this.setState({
           donor: res.data
         });
@@ -84,6 +98,12 @@ export class Donor extends Component {
 
   toggleEdit = () => {
     this.setState({ editing: !this.state.editing });
+  };
+
+  toggleMatch = () => {
+    this.setState({
+      match: !this.state.match
+    });
   };
   // handleChecked = e => {
   //   const item = e.target.name;
@@ -128,8 +148,7 @@ export class Donor extends Component {
     });
   };
   render() {
-    // console.log(this.state.donorData)
-    var mapdonor = this.state.donorData.map(ele => {
+    var zack = this.state.donorData.filter(el=> el.blood_type === this.props.blood_type).map(ele => {
       return (
         <DonorProfile
           key={ele.id}
@@ -140,9 +159,9 @@ export class Donor extends Component {
           editing={this.state.editing}
         />
       );
-    });
-    // console.log('hit',mapdonor)
-
+    })
+    console.log(this.state.donorData)
+    
     return (
       <div>
         <Main>
@@ -154,18 +173,18 @@ export class Donor extends Component {
               onChange={this.handleChange}
               name="profile_pic"
               type="text"
-              placeholder="Profile"
+              placeholder="Profile Picture"
               defaultvalue={this.state.profile_pic}
             />
             <input
               name="title"
               type="text"
-              placeholder="Title"
+              placeholder="Donee/Donor"
               onChange={this.handleChange}
               defaultvalue={this.state.title}
             />
             <input
-              placeholder="Bloodtype"
+              placeholder="Enter Bloodtype"
               type="text"
               defaultvalue={this.state.blood_type}
               onChange={this.handleChange}
@@ -176,19 +195,23 @@ export class Donor extends Component {
 
           <button onClick={this.createDonor}>submit</button>
 
+          <button onClick={this.toggleMatch}>Match</button>
+
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Main>
-        {mapdonor}
+
+      {zack}
+       
       </div>
     );
   }
 }
 
 function mapStateToProps(reduxState) {
-  const { user, user_id } = reduxState;
-  return { user, user_id };
+  const { user, user_id, blood_type } = reduxState;
+  return { user, user_id, blood_type };
 }
 
 export default connect(

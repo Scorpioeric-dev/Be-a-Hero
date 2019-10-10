@@ -123,7 +123,7 @@ export class Donee extends Component {
     });
   };
   render() {
-    // console.log(this.props);
+    console.log(this.state.doneeData);
     let mapped = this.state.doneeData.map(e => {
       return (
         <DoneeProfile

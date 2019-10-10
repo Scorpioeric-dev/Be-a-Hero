@@ -6,7 +6,8 @@ const initalState = {
   gender: "",
   loggedIn: false,
   user: null,
-  user_id:null
+  user_id:null,
+  blood_type:''
 };
 
 export const SET_USER = "SET_USER";
