@@ -15,6 +15,7 @@ export class Auth extends Component {
       email: "",
       gender: "",
       password: "",
+      blood_type:'',
       editing: false
     };
   }
@@ -31,13 +32,14 @@ export class Auth extends Component {
   };
 
   registerUser = async () => {
-    const { user_name, email, gender, password } = this.state;
+    const { user_name, email, gender, password,blood_type } = this.state;
 
     const res = await axios.post("/auth/register", {
       user_name,
       email,
       gender,
-      password
+      password,
+      blood_type
     });
     if (res.data.user) {
       this.props.setUser(res.data.user);
@@ -91,6 +93,12 @@ export class Auth extends Component {
             type="password"
             value={this.state.password}
             onChange={e => this.handleChange(e, "password")}
+          />
+          <input 
+          placeholder='bloodtype'
+          type='text'
+          value={this.state.blood_type}
+          onChange={e => this.handleChange(e,'blood_type')} 
           />
 
           <Button onClick={this.registerUser}>Register</Button>

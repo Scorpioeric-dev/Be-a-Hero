@@ -3,9 +3,10 @@ create table user_data (
     user_name VARCHAR(50),
     email VARCHAR(50),
     gender VARCHAR(50),
-    hash VARCHAR(100)
+    hash VARCHAR(300),
+    blood_type varchar(100)
 );
-insert into user_data ( user_name, email, gender, hash) values ('Roseanne Oldacre', 'roldacre0@cafepress.com', 'Female', 'jFAA0N');
+insert into user_data ( user_name, email, gender, hash,blood_type) values ('Roseanne Oldacre', 'roldacre0@cafepress.com', 'Female', 'jFAA0N','A');
 
 create table donor (
     donor_id serial primary key,

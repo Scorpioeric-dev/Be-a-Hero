@@ -148,7 +148,7 @@ export class Donor extends Component {
     });
   };
   render() {
-    var zack = this.state.donorData.filter(el=> el.blood_type === this.props.blood_type).map(ele => {
+    var zack = this.state.donorData.filter(el => el.blood_type === this.props.blood_type).map(ele => {
       return (
         <DonorProfile
           key={ele.id}
@@ -195,7 +195,7 @@ export class Donor extends Component {
 
           <button onClick={this.createDonor}>submit</button>
 
-          <button onClick={this.toggleMatch}>Match</button>
+          
 
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>

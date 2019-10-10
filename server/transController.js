@@ -56,19 +56,20 @@ module.exports = {
       hair_id,
       user_id
     ]);
-    console.log(donee);
+    // console.log(req.session.user);
     res.status(200).send(donee);
   },
   getDonorData: async (req, res) => {
     const db = req.app.get("db");
     const { donor_id, user_name, blood_type, title, profile_pic } = req.query;
     const donorData = await db.find_donor_username_bloodtype([
-      donor_id,
-      user_name,
-      blood_type,
-      title,
-      profile_pic
+      // donor_id,
+      // user_name,
+      // blood_type,
+      // title,
+      // profile_pic
     ]);
+    console.log(req.session.user)
     res.status(200).send(donorData);
   },
   getDoneeData: async (req, res) => {
@@ -76,11 +77,11 @@ module.exports = {
     const db = req.app.get("db");
     const { donee_id, user_name, blood_type, title, profile_pic } = req.query;
     let doneeData = await db.find_donee_username_bloodtype([
-      donee_id,
-      user_name,
-      blood_type,
-      title,
-      profile_pic
+      // donee_id,
+      // user_name,
+      // blood_type,
+      // title,
+      // profile_pic
     ]);
     res.status(200).send(doneeData);
   },

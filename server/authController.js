@@ -3,8 +3,8 @@ const stripe = require('stripe')(process.env.stripe_secret)
 module.exports = {
   async register(req, res) {
     const db = req.app.get("db");
-    const { user_name, email, gender, password } = req.body;
-    // console.log(req.body);
+    const { user_name, email, gender, password,blood_type } = req.body;
+    console.log(req.body);
 
     const user = await db.find_email(email);
     console.log(req.body);
@@ -14,11 +14,11 @@ module.exports = {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
     // console.log(hash);
-    const newUser = await db.create_user([user_name, email, gender, hash]);
+    const newUser = await db.create_user([user_name, email, gender, hash,blood_type]);
     delete newUser[0].hash;
 
     req.session.user = newUser[0];
-    // console.log(req.session.user);
+    console.log(req.session.user);
 
     res
       .status(201)
