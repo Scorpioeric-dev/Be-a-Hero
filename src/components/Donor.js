@@ -99,11 +99,11 @@ export class Donor extends Component {
     this.setState({ editing: !this.state.editing });
   };
 
-  toggleMatch = () => {
-    this.setState({
-      match: !this.state.match
-    });
-  };
+  // toggleMatch = () => {
+  //   this.setState({
+  //     match: !this.state.match
+  //   });
+  // };
   // handleChecked = e => {
   //   const item = e.target.name;
   //   const isChecked = e.target.checked;
@@ -147,7 +147,7 @@ export class Donor extends Component {
     });
   };
   render() {
-    var zack = this.state.donorData
+    var mack = this.state.donorData
       .filter(el => el.blood_type === this.props.blood_type)
       .map(ele => {
         return (
@@ -161,49 +161,50 @@ export class Donor extends Component {
           />
         );
       });
-    console.log(this.state.donorData);
+    // console.log(this.state.donorData);
 
     return (
       <div>
-      <div className='navoffset'>
-      </div>
-      <Main>
-      <Input>
+        <div className="navoffset"></div>
+        <Main>
+          <Input>
             <div className="create">
-            <h3>Create Your Profile</h3>
+              <h3>Create Your Profile</h3>
             </div>
-            <input
-              onChange={this.handleChange}
-              name="profile_pic"
-              type="text"
-              placeholder="Profile Picture"
-              defaultvalue={this.state.profile_pic}
-            />
-            <input
-              name="title"
-              type="text"
-              placeholder="Donee/Donor"
-              onChange={this.handleChange}
-              defaultvalue={this.state.title}
+            <div className="createinput">
+              <input className='input'
+                onChange={this.handleChange}
+                name="profile_pic"
+                type="text"
+                placeholder="Profile Picture"
+                defaultvalue={this.state.profile_pic}
               />
-            <input
-            placeholder="Enter Bloodtype"
-              type="text"
-              defaultvalue={this.state.blood_type}
-              onChange={this.handleChange}
-              name="blood_type"
-            />
+              <input className='input'
+                name="title"
+                type="text"
+                placeholder="Donee/Donor"
+                onChange={this.handleChange}
+                defaultvalue={this.state.title}
+              />
+              <input className='input'
+                placeholder="Enter Bloodtype"
+                type="text"
+                defaultvalue={this.state.blood_type}
+                onChange={this.handleChange}
+                name="blood_type"
+              />
+            </div>
           </Input>
           <Imag src={this.state.profile_pic} alt="preview" />
 
-          <button onClick={this.createDonor}>submit</button>
+          <Button onClick={this.createDonor}>submit</Button>
 
-          <Link to="/landing">
+          <Link to="/">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Main>
 
-        <div className="flex">{zack}</div>
+        <div className="flex">{mack}</div>
       </div>
     );
   }
@@ -223,16 +224,15 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
-  justify-content: space-evenly;
-  position: absolute;
-  left: 1000px;
-  top: 75px;
+  width: 250px;
+  justify-content: space-between;
+  position: relative;
+  left: 900px;
   height: 75vh;
-margin-top:15px;
+  margin-top: 15px;
   border-radius: 20px;
   border: solid black;
-  background-color: #00000088;
+  background-color: aqua;
 `;
 // const Profile = styled.img`
 //   height: 100px;
@@ -242,58 +242,27 @@ margin-top:15px;
 //   margin: 80px;
 //   position: relative;
 // `;
-const Img = styled.img`
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
-  margin-left: 10px;
-`;
+
 const Imag = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 140px;
+  width: 140px;
+  z-index: 20;
   border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
+  border: 0.7px groove grey;
+  margin-top: 1.4rem;
+  box-shadow: 4px 2px 4px 3px #706f6f;
+  border-left: 0px groove rgba(28, 110, 164, 0.18);
+  margin-bottom: 30px;
 `;
-const Article = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 1rem;
-  row-gap: 1rem;
-  justify-content: center;
-  max-width: 400px;
-  margin: 10;
-  border: solid black;
-  padding: 20px;
-`;
-const Flex = styled.div`
-  display: flex;
 
-  justify-content: space-between;
-  width: 300px;
-
-  margin-left: 15px;
-  align-items: center;
-  height: 30vh;
-  flex-direction: flex-start;
-
-  border: solid black;
-  border-radius: 35px;
-  font-size: 2rem;
-`;
 const Container = styled.div`
-  
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 200px;
   position: absolute;
-  left: 100px
+
   height: 10vh;
 
   margin-top: 60px;
@@ -301,8 +270,17 @@ const Container = styled.div`
 `;
 const Input = styled.div`
   display: flex;
-  border-radius: 20px;
+  border-radius: 40px;
   flex-direction: column;
-
-  margin-top: 50px;
+  width: 200px;
+  margin: 20px 0;
 `;
+const Button = styled.div`
+
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  .myButton:hover 
+  background: #1C6EA4; 
+  .myButton:active 
+  background: #144E75;
+  margin-top:18px;
+  `

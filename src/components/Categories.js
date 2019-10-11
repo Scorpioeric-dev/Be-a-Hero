@@ -39,7 +39,7 @@ export class Categories extends Component {
           <a href="https://www.mayoclinic.org/tests-procedures/pancreas-transplant/about/pac-20384783">
             <span>Pancreas</span>
           </a>
-          <Link to="/Landing">
+          <Link to="/">
             <span onClick={this.cancel}>Home</span>
           </Link>
         </Flex>
@@ -62,13 +62,13 @@ const Flex = styled.div`
   top: 70px;
   height: 180px;
   border-radius: 30px;
-  border:solid white;
+  border:solid white 1px;
   cusor:hover;
   a:visited{
     color:white;
   }
   a:hover{
-    color:red;
+    color:aqua;
   }
 `;
 const Img = styled.img`

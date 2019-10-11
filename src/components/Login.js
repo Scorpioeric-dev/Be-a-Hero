@@ -44,13 +44,13 @@ export class Login extends Component {
         />
 
         <Article>
-          <input
+          <input className='authinput'
             type="text"
             placeholder="Email"
             onChange={e => this.handleChange(e, "email")}
           />
 
-          <input
+          <input className='authinput'
             type="password"
             placeholder="Password"
             onChange={e => this.handleChange(e, "password")}
@@ -73,7 +73,7 @@ export default connect(
 )(withRouter(Login));
 
 const Article = styled.div`
-  border: solid white;
+  border: solid white 1px;
   background: #00000088;
   opacity: 5px;
   color: white;
@@ -93,7 +93,7 @@ const Article = styled.div`
 const Button = styled.div`
   border-radius: 8px;
   color: white;
-  border: solid white;
+  border: solid white 1px;
   font-size: 1rem;
   width: 6vw;
   display: flex;

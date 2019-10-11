@@ -10,17 +10,20 @@ export class DoneeProfile extends Component {
       <div className="Donee">
         {!this.props.editing ? (
           <Flex>
-            <div className="text">
-              <div>Title: {this.props.e.title}</div>
-              <h5>Bloodtype: {this.props.e.blood_type}</h5>
-              {this.props.e.user_id === this.props.user_id ? (
-                <button onClick={this.props.edit}>edit</button>
-              ) : null}
-            </div>
-            <div className="img">
-              <Img src={this.props.e.profile_pic} alt="" />
-            </div>
-          </Flex>
+          <div className="img">
+          <div className='profile'>
+          <Img src={this.props.e.profile_pic} alt="" />
+          </div>
+          </div>
+          <div className="text">
+            <div>Status: {this.props.e.title}</div>
+            <h5>Bloodtype: {this.props.e.blood_type}</h5>
+            {this.props.e.user_id === this.props.user_id ? (
+              <Button onClick={this.props.edit}>edit</Button>
+            ) : null}
+          </div>
+        </Flex>
+
         ) : (
           <Container>
             <input
@@ -46,9 +49,9 @@ export class DoneeProfile extends Component {
               defaultvalue={this.props.profile_pic}
             />
 
-            <button onClick={() => this.props.update(this.props.donee_id)}>
+            <Button onClick={() => this.props.update(this.props.donee_id)}>
               save
-            </button>
+            </Button>
           </Container>
         )}
       </div>
@@ -65,13 +68,13 @@ export default connect(
   { setUser }
 )(withRouter(DoneeProfile));
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
+backgound-size:cover;
+width:100%;
+height:100%;
   border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
-  margin-left: 10px;
+ border: solid black;
+  
+position: relative;
 `;
 const Flex = styled.div`
   display: flex;
@@ -81,11 +84,11 @@ const Flex = styled.div`
 
   margin-left: 15px;
   align-items: center;
-  height: 30vh;
-  flex-direction: flex-start;
+  height: 400px;
+  flex-direction: column;
 
   border: solid black;
-  border-radius: 35px;
+  border-radius: 25px;
   font-size: 2rem;
 `;
 
@@ -103,3 +106,13 @@ const Container = styled.div`
   margin-top: 60px;
   border: solid black;
 `;
+
+const Button = styled.div`
+
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  .myButton:hover 
+  background: #1C6EA4; 
+  .myButton:active 
+  background: #144E75;
+  margin-top:10px;
+  `

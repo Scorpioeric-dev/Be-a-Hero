@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import store from "../Ducks/store";
 import { CANCEL, setUser } from "../Ducks/reducer";
 import { Link, withRouter } from "react-router-dom";
-
 import DoneeProfile from "./DoneeProfile";
 
 export class Donee extends Component {
@@ -27,6 +26,7 @@ export class Donee extends Component {
 
   componentDidMount() {
     this.getDoneeData();
+    this.getDonorData()
   }
 
   createDonee = () => {
@@ -68,11 +68,25 @@ export class Donee extends Component {
   //   }
   // }
 
+  getDonorData = () => {
+    axios.get("/api/donorData").then(res => {
+      console.log(res.data);
+      this.setState({
+        donorData: res.data
+      });
+    });
+  };
+
+
+
+
+
   getDoneeData = () => {
     axios.get("/api/doneeData").then(res => {
       this.setState({
         doneeData: res.data
       });
+      console.log('hit')
     });
   };
 
@@ -123,8 +137,10 @@ export class Donee extends Component {
     });
   };
   render() {
-    // console.log(this.state.doneeData);
-    var mapped = this.state.doneeData.filter(el => el.blood_type === this.props.blood_type).map(e => {
+    console.log(this.state.doneeData);
+    var mapped = this.state.doneeData
+    .filter(ele => ele.blood_type === this.props.blood_type)
+    .map(e => {
       return (
         <DoneeProfile
           key={e.id}
@@ -173,15 +189,15 @@ export class Donee extends Component {
           </Link>
         </Section>
 
-        {mapped}
+        <div className='flex'>{mapped}</div>
       </div>
     );
   }
 }
 
 function mapStateToProps(reduxState) {
-  const { user, user_id } = reduxState;
-  return { user, user_id };
+  const { user, user_id ,blood_type} = reduxState;
+  return { user, user_id,blood_type };
 }
 
 export default connect(

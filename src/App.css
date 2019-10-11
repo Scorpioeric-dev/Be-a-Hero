@@ -225,10 +225,17 @@ table {
   align-items: center;
   width: 225px;
   position: absolute;
-  left: 350px;
-  top: 60px;
+  left: 200px;
+  top: 80px;
   height: 360px;
   border-radius: 20px;
+  border:solid white 1.5px;
+}
+.authinput{
+  border:solid white 1.5px;
+  border-radius:7px;
+ text-align:center;
+ 
 }
 .image {
   position: relative;
@@ -267,6 +274,12 @@ h2 span {
   justify-content: center;
 
 }
+.create{
+  color:black;
+  font-size:2rem;
+  display:flex;
+  padding:10px;
+}
 
 .profile-text{
   font-display: center;
@@ -276,9 +289,10 @@ h2 span {
   display:flex;
   text-align:center ;
   align-items:center;
-  
+  color:black;
   justify-content: center;
   flex-direction: column;
+  margin-bottom:20px;
 }
 .flex{
   width:750px;
@@ -324,6 +338,7 @@ flex-direction: column;
 align-items: center;
 
 }
+
 hr{
   background-color:aquamarine;
   width:100%;
@@ -408,3 +423,36 @@ ul{
  .four {
    animation-delay: 0s;
  }
+
+
+ /* .parent{
+   
+   display:flex;
+   
+   justify-content: center;
+   flex-direction: row;
+   position: relative;
+ } */
+ 
+ .createinput{
+  padding: 12px 20px;
+   margin:8px 0 ;
+   
+  
+ }
+ .input{
+   margin:3px 0;
+   float:left;
+   border:solid black;
+   border-radius:8px;
+   color:black;
+ }
+
+ .stripeinput{
+   width:140px;
+   margin:15px 0;
+   border:solid aqua 1px;
+
+ }
+
+ 

@@ -70,31 +70,31 @@ export class Auth extends Component {
           alt=""
         />
         <div className="auth">
-          <input
+          <input className='authinput'
             placeholder="username"
             type="text"
             value={this.state.user_name}
             onChange={e => this.handleChange(e, "user_name")}
           />
-          <input
+          <input className='authinput'
             placeholder="email"
             type="text"
             value={this.state.email}
             onChange={e => this.handleChange(e, "email")}
           />
-          <input
+          <input className='authinput'
             placeholder="gender"
             type="text"
             value={this.state.gender}
             onChange={e => this.handleChange(e, "gender")}
           />
-          <input
+          <input className='authinput'
             placeholder="password"
             type="password"
             value={this.state.password}
             onChange={e => this.handleChange(e, "password")}
           />
-          <input 
+          <input className='authinput'
           placeholder='bloodtype'
           type='text'
           value={this.state.blood_type}
@@ -120,7 +120,7 @@ export default connect(
 const Button = styled.div`
   border-radius: 8px;
   color: white;
-  border: solid white;
+  border: solid white 1px;
   justify-content: center;
   font-size: 1rem;
   width: 7vw;

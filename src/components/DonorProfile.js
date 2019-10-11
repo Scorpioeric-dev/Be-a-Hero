@@ -21,12 +21,12 @@ export class DonorProfile extends Component {
           <div className="text">
           <h3>Status: {this.props.ele.title}</h3>
           <h3>Blood Type: {this.props.ele.blood_type}</h3>
-          
           {this.props.ele.user_id === this.props.user_id ? (
-          <button onClick={this.props.edit}>Edit</button>
+          <Button onClick={this.props.edit}>Edit</Button>
           ) : null}
           </div>
           </Flex>
+          
         ) : (
           <Container>
             <input
@@ -52,9 +52,9 @@ export class DonorProfile extends Component {
               defaultvalue={this.props.profile_pic}
             />
 
-            <button onClick={() => this.props.update(this.props.donor_id)}>
+            <Button onClick={() => this.props.update(this.props.donor_id)}>
               save
-            </button>
+            </Button>
           </Container>
         )}
       </div>
@@ -94,7 +94,7 @@ const Flex = styled.div`
 
   border: solid black;
   border-radius: 25px;
-  font-size: 1rem;
+  font-size: 2rem;
 `;
 const Container = styled.div`
   
@@ -110,3 +110,12 @@ const Container = styled.div`
   margin-top: 60px;
   border: solid black;
 `;
+const Button = styled.div`
+
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  .myButton:hover 
+  background: #1C6EA4; 
+  .myButton:active 
+  background: #144E75;
+  margin-top:10px;
+  `
