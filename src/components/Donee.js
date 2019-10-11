@@ -123,8 +123,8 @@ export class Donee extends Component {
     });
   };
   render() {
-    console.log(this.state.doneeData);
-    let mapped = this.state.doneeData.map(e => {
+    // console.log(this.state.doneeData);
+    var mapped = this.state.doneeData.filter(el => el.blood_type === this.props.blood_type).map(e => {
       return (
         <DoneeProfile
           key={e.id}

@@ -30,7 +30,7 @@ export class Donor extends Component {
   }
   getDonorData = () => {
     axios.get("/api/donorData").then(res => {
-      console.log(res.data)
+      console.log(res.data);
       this.setState({
         donorData: res.data
       });
@@ -70,7 +70,6 @@ export class Donor extends Component {
         hair_id
       })
       .then(res => {
-      
         this.setState({
           donor: res.data
         });
@@ -148,26 +147,30 @@ export class Donor extends Component {
     });
   };
   render() {
-    var zack = this.state.donorData.filter(el => el.blood_type === this.props.blood_type).map(ele => {
-      return (
-        <DonorProfile
-          key={ele.id}
-          ele={ele}
-          edit={this.toggleEdit}
-          update={() => this.updateDonor(ele.donor_id)}
-          handle={this.handleChange}
-          editing={this.state.editing}
-        />
-      );
-    })
-    console.log(this.state.donorData)
-    
+    var zack = this.state.donorData
+      .filter(el => el.blood_type === this.props.blood_type)
+      .map(ele => {
+        return (
+          <DonorProfile
+            key={ele.id}
+            ele={ele}
+            edit={this.toggleEdit}
+            update={() => this.updateDonor(ele.donor_id)}
+            handle={this.handleChange}
+            editing={this.state.editing}
+          />
+        );
+      });
+    console.log(this.state.donorData);
+
     return (
       <div>
-        <Main>
-          <Input>
+      <div className='navoffset'>
+      </div>
+      <Main>
+      <Input>
             <div className="create">
-              <h3>Create Your Profile</h3>
+            <h3>Create Your Profile</h3>
             </div>
             <input
               onChange={this.handleChange}
@@ -182,9 +185,9 @@ export class Donor extends Component {
               placeholder="Donee/Donor"
               onChange={this.handleChange}
               defaultvalue={this.state.title}
-            />
+              />
             <input
-              placeholder="Enter Bloodtype"
+            placeholder="Enter Bloodtype"
               type="text"
               defaultvalue={this.state.blood_type}
               onChange={this.handleChange}
@@ -195,15 +198,12 @@ export class Donor extends Component {
 
           <button onClick={this.createDonor}>submit</button>
 
-          
-
           <Link to="/landing">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Main>
 
-      {zack}
-       
+        <div className="flex">{zack}</div>
       </div>
     );
   }
@@ -226,10 +226,10 @@ const Main = styled.div`
   width: 200px;
   justify-content: space-evenly;
   position: absolute;
-  left: 800px;
+  left: 1000px;
   top: 75px;
   height: 75vh;
-
+margin-top:15px;
   border-radius: 20px;
   border: solid black;
   background-color: #00000088;
@@ -304,5 +304,5 @@ const Input = styled.div`
   border-radius: 20px;
   flex-direction: column;
 
-  margin-top: 100px;
+  margin-top: 50px;
 `;

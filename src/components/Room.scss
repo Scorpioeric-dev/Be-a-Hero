@@ -1,0 +1,68 @@
+$lightGray: #bdbdbd;
+$highlight: #363adb;
+
+.App {
+  h2 {
+    text-align: center;
+  }
+  .room-list {
+    display: flex;
+  }
+  
+  .room-joiner {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    padding: 9rem;
+    
+    
+    
+  }
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 800px;
+  width: 350px;
+  border: $lightGray solid;
+  h2 {
+    text-transform: capitalize;
+  }
+  .messages {
+    height: 80%;
+    width: 90%;
+    margin: 1rem;
+    background: $lightGray;
+    position: relative;
+  }
+  .message {
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem;
+    margin-right: 3rem;
+  }
+  .my-message {
+    @extend .message;
+    flex-direction: row-reverse;
+    margin-right: .5rem;
+    margin-left: 3rem;
+    color: $highlight;
+  }
+  .welcome-message {
+    font-size: 1rem;
+  }
+  input {
+    display: block;
+  };
+
+// .chatInput{
+//     display: flex;
+//   justify-content: column;
+//   position: absolute;
+//   top:25vh;
+//   left:40%;
+
+// }
+}

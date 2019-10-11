@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import io from "socket.io-client";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Room.css";
+import "./Room.scss";
 import PropTypes from "prop-types";
 
 export  class Room extends Component {
@@ -12,10 +12,10 @@ export  class Room extends Component {
     this.state = {
       messages: [],
       message: "",
-      username: "",
+      
       usernameSet: false,
 
-      room:[],
+      rooms:[],
       roomName:''
     };
     //connecting to server
@@ -54,7 +54,9 @@ export  class Room extends Component {
       `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
       {
         message: this.state.message,
-        username: this.state.username,
+        
+        user_name:this.props.reduxState.user_name,
+        profile_pic:this.props.reduxState.profile_pic,
         room: this.props.room
       }
     );
@@ -63,7 +65,7 @@ export  class Room extends Component {
   blast = () => {
     this.socket.emit(`blast to room socket`, {
       message: this.state.message,
-      username: this.state.username,
+  
       user_name: this.props.reduxState.user_name,
       profile_pic: this.props.reduxState.profile_pic,
       title:this.props.reduxState.title,
@@ -78,7 +80,7 @@ handlechange = e => {
 };
 
 setuserName = () => {
-    if (this.state.username) {
+    if (this.props.reduxState.user_name) {
         this.setState({
             usernameSet: true
         });
@@ -92,8 +94,9 @@ updateMessages = data => {
             ...this.state.messages,
             {
                 message: data.message,
-                username: data.username
-                //   profile_pic: data.profile_pic
+                user_name: data.user_name,
+                profile_pic: data.profile_pic,
+                title: data.title
             }
         ]
     });
@@ -103,16 +106,17 @@ updateMessages = data => {
 };
 
 render() {
+  console.log(this.props)
     
-    console.log('message')
+    console.log(this.state.messages)
     const messages = this.state.messages.map((message, i) => (
         <div
         key={i}
         className={
-          message.username === this.state.username ? "my-message" : "message"
+          message.user_name === this.props.reduxState.user_name ? "my-message" : "message"
         }
       >
-        <h5>{message.username}</h5>
+        <h5>{message.user_name}</h5>
         <p>{message.message}</p>
       </div>
     ));

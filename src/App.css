@@ -246,12 +246,12 @@ h2 {
   position: static;
 }
 
-h2 {
+/* h2 {
   position: absolute;
   top: 200px;
   left: 0;
   width: 100%;
-}
+} */
 h2 span.spacer {
   padding: 0 5px;
   font-size: 3rem;
@@ -276,13 +276,37 @@ h2 span {
   display:flex;
   text-align:center ;
   align-items:center;
-  margin-left: 30px;
+  
   justify-content: center;
   flex-direction: column;
+}
+.flex{
+  width:750px;
+  height:100vh;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-evenly;
+  overflow: scroll;
 
+}
+::-webkit-scrollbar{
+  display:none;
+}
 
-   
-  
+.profile{
+  width:150px;
+  height:150px;
+  border-radius: 50%;
+  margin-top:50px;
+  margin-left:20px;
+
+}
+.img{
+  height: 30%;
+  width: 100%;
+  background-color:aqua;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
 }
 .Donee{
   display:flex;
@@ -294,18 +318,49 @@ h2 span {
   padding:20px;
   top:75px;
 }
+.outer-home{
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+hr{
+  background-color:aquamarine;
+  width:100%;
+  height:5px;
+  
+}
+ul{
+  margin-left:20px;
+}
+.home{
+  display: flex;
+  align-items:flex-start;
+  justify-content:flex-start;
+  flex-direction: column;
+  width:80vw;
+  text-align: left;
+  line-height:150%;
+
+}
+.navoffset{
+  height:10vh;
+  width:100vw;
+}
 
 .About {
   width: 100vw;
-  height: 100vh;
+  height: 30vh;
+  margin-top:1vh;
   display: flex;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
+  flex-direction: column;
   
   
   /* position: relative; */
  }
- @keyframes bikes {
+ @keyframes sal {
   0% {
     opacity: 1;
   }
@@ -323,18 +378,18 @@ h2 span {
   }
  }
  .about-pics {
-  height: 90%;
-  width: 90%;
+  height: 98%;
+  width: 98%;
   position:relative;
   display: flex;
  }
  .about-pics img {
     background-size: cover;
-    margin-top: 70px;
+  
     height: 100%;
     width: 100%;
     position: absolute;
-    animation-name: bikes;
+    animation-name: sal;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-duration: 9s;
@@ -345,8 +400,11 @@ h2 span {
     animation-delay: 6s;
  }
  .two {
-    animation-delay: 3s;
+    animation-delay: 4s;
  }
  .three {
-    animation-delay: 0;
+    animation-delay: 2s;
+ }
+ .four {
+   animation-delay: 0s;
  }

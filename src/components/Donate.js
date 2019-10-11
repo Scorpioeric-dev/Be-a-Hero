@@ -3,6 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import "./Donate.css";
 import Swal from "sweetalert2";
+import styled from 'styled-components'
 
 class Donate extends Component {
   constructor() {
@@ -50,17 +51,20 @@ class Donate extends Component {
             opened={this.onOpened}
             closed={this.onClosed}
           >
-          </StripeCheckout>
-
+          </StripeCheckout>      
+          
+          
           <input
-            value={this.state.amount}
-            type="number"
-            onChange={e =>
-              this.setState({
-                amount: +e.target.value
-              })
-            }
+          value={this.state.amount}
+          type="number"
+          onChange={e =>
+            this.setState({
+              amount: +e.target.value
+            })
+            
+          }
           />
+          <Img src="" alt=''/>
           
           
           
@@ -73,3 +77,8 @@ class Donate extends Component {
 export default Donate;
 
 const imageUrl = "https://i.ytimg.com/vi/mRf3-JkwqfU/hqdefault.jpg";
+
+const Img = styled.img`
+display:flex;
+margin-top:20px;
+`

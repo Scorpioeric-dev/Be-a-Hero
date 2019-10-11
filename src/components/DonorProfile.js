@@ -10,18 +10,22 @@ export class DonorProfile extends Component {
     return (
       <div className="donor">
         {!this.props.editing ? (
+    
           <Flex>
-            <div className="text">
-              <h4>Title: {this.props.ele.title}</h4>
-              <h4>BloodType: {this.props.ele.blood_type}</h4>
-
-              {this.props.ele.user_id === this.props.user_id ? (
-                <button onClick={this.props.edit}>Edit</button>
-              ) : null}
-            </div>
-            <div className="img">
-              <Img src={this.props.ele.profile_pic} alt="" />
-            </div>
+          
+          <div className="img">
+          <div className='profile'>
+          <Img src={this.props.ele.profile_pic} alt="" />
+          </div>
+          </div>
+          <div className="text">
+          <h3>Status: {this.props.ele.title}</h3>
+          <h3>Blood Type: {this.props.ele.blood_type}</h3>
+          
+          {this.props.ele.user_id === this.props.user_id ? (
+          <button onClick={this.props.edit}>Edit</button>
+          ) : null}
+          </div>
           </Flex>
         ) : (
           <Container>
@@ -67,13 +71,15 @@ export default connect(
   { setUser }
 )(withRouter(DonorProfile));
 const Img = styled.img`
-  height: 100px;
-  width: 100px;
+backgound-size:cover;
+width:100%;
+height:100%;
   border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
-  margin-left: 10px;
+ border: solid black;
+  
+position: relative;
+
+
 `;
 const Flex = styled.div`
   display: flex;
@@ -83,12 +89,12 @@ const Flex = styled.div`
 
   margin-left: 15px;
   align-items: center;
-  height: 30vh;
-  flex-direction: flex-start;
+  height: 400px;
+  flex-direction: column;
 
   border: solid black;
-  border-radius: 35px;
-  font-size: 2rem;
+  border-radius: 25px;
+  font-size: 1rem;
 `;
 const Container = styled.div`
   
