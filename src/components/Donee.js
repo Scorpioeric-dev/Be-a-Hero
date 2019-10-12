@@ -26,7 +26,7 @@ export class Donee extends Component {
 
   componentDidMount() {
     this.getDoneeData();
-    this.getDonorData()
+    this.getDonorData();
   }
 
   createDonee = () => {
@@ -77,16 +77,12 @@ export class Donee extends Component {
     });
   };
 
-
-
-
-
   getDoneeData = () => {
     axios.get("/api/doneeData").then(res => {
       this.setState({
         doneeData: res.data
       });
-      console.log('hit')
+      console.log("hit");
     });
   };
 
@@ -139,65 +135,71 @@ export class Donee extends Component {
   render() {
     console.log(this.state.doneeData);
     var mapped = this.state.doneeData
-    .filter(ele => ele.blood_type === this.props.blood_type)
-    .map(e => {
-      return (
-        <DoneeProfile
-          key={e.id}
-          e={e}
-          edit={this.toggleEdit}
-          update={() => this.updateDonee(e.donee_id)}
-          handle={this.handleChange}
-          editing={this.state.editing}
-        />
-      );
-    });
+      .filter(ele => ele.blood_type === this.props.blood_type)
+      .map(e => {
+        return (
+          <DoneeProfile
+            key={e.id}
+            e={e}
+            edit={this.toggleEdit}
+            update={() => this.updateDonee(e.donee_id)}
+            handle={this.handleChange}
+            editing={this.state.editing}
+          />
+        );
+      });
     return (
       <div>
+        <div className="navoffset"></div>
         <Section>
           <Input>
             <div className="create">
               <h3>Create Your Profile</h3>
             </div>
-            <input
-              onChange={this.handleChange}
-              name="profile_pic"
-              type="text"
-              placeholder="Profile"
-              defaultvalue={this.state.profile_pic}
-            />
-            <input
-              name="title"
-              type="text"
-              placeholder="Title"
-              onChange={this.handleChange}
-              defaultvalue={this.state.title}
-            />
-            <input
-              placeholder="Bloodtype"
-              type="text"
-              defaultvalue={this.state.blood_type}
-              onChange={this.handleChange}
-              name="blood_type"
-            />
+            <div className="createinput">
+              <input
+                className="input1"
+                onChange={this.handleChange}
+                name="profile_pic"
+                type="text"
+                placeholder="Profile Picture"
+                defaultvalue={this.state.profile_pic}
+              />
+              <input
+                className="input1"
+                name="title"
+                type="text"
+                placeholder="Donee-Donor"
+                onChange={this.handleChange}
+                defaultvalue={this.state.title}
+              />
+              <input
+                className="input1"
+                placeholder="Enter Bloodtype"
+                type="text"
+                defaultvalue={this.state.blood_type}
+                onChange={this.handleChange}
+                name="blood_type"
+              />
+            </div>
           </Input>
           <Imag src={this.state.profile_pic} alt="preview" />
-          <button onClick={this.createDonee}>submit</button>
+          <Button onClick={this.createDonee}>submit</Button>
 
-          <Link to="/landing">
+          <Link to="/">
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Section>
-
-        <div className='flex'>{mapped}</div>
+        <Link to='/Donate' ><span>Donate Por Favor</span></Link>
+        <div className="flex">{mapped}</div>
       </div>
     );
   }
 }
 
 function mapStateToProps(reduxState) {
-  const { user, user_id ,blood_type} = reduxState;
-  return { user, user_id,blood_type };
+  const { user, user_id, blood_type } = reduxState;
+  return { user, user_id, blood_type };
 }
 
 export default connect(
@@ -206,43 +208,30 @@ export default connect(
 )(withRouter(Donee));
 
 const Section = styled.div`
-  background: #00000088;
-  color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
-  width: 200px;
-  position: absolute;
-  left: 800px;
-  top: 75px;
+  width: 250px;
+  justify-content: space-between;
+  position: relative;
+  left: 900px;
   height: 75vh;
-
+  margin-top: 15px;
   border-radius: 20px;
   border: solid black;
-`;
-
-
-const Img = styled.img`
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  border: solid black;
-  margin: 90px;
-  position: relative;
-  margin-left: 10px;
+  background-color: aqua;
 `;
 
 const Imag = styled.img`
-height: 140px;
-width: 140px;
-z-index: 20;
-border-radius: 50%;
-border: 0.7px groove grey;
-margin-top: 1.4rem;
-box-shadow: 4px 2px 4px 3px #706f6f;
-border-left: 0px groove rgba(28, 110, 164, 0.18);
-margin-bottom: 30px;
+  height: 140px;
+  width: 140px;
+  z-index: 20;
+  border-radius: 50%;
+  border: 0.7px groove grey;
+  margin-top: 1.4rem;
+  box-shadow: 4px 2px 4px 3px #706f6f;
+  border-left: 0px groove rgba(28, 110, 164, 0.18);
+  margin-bottom: 30px;
 `;
 const Flex = styled.div`
   display: flex;
@@ -264,6 +253,14 @@ const Input = styled.div`
   display: flex;
   border-radius: 20px;
   flex-direction: column;
-
-  margin-top: 100px;
+  width: 200px;
+  margin: 20px 0;
 `;
+const Button = styled.div`
+color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+.myButton:hover 
+background: #1C6EA4; 
+.myButton:active 
+background: #144E75;
+margin-top:18px;`
+  

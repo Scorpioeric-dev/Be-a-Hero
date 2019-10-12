@@ -63,6 +63,7 @@ class Donate extends Component {
                   amount: +e.target.value
                 })
               }
+
             />
             
 
@@ -81,8 +82,8 @@ const Img = styled.img`
   flex-direction:column;
   position:absolute
   width:90vw;
-  height:80vh;
+  height:70vh;
   justify-content:center;
-  align-items:
+  margiin-bottom:10px;
 
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { setUser } from "../Ducks/reducer";
+import {Link} from 'react-router-dom'
 
 export class DoneeProfile extends Component {
   render() {
@@ -10,20 +11,22 @@ export class DoneeProfile extends Component {
       <div className="Donee">
         {!this.props.editing ? (
           <Flex>
-          <div className="img">
-          <div className='profile'>
-          <Img src={this.props.e.profile_pic} alt="" />
-          </div>
-          </div>
-          <div className="text">
-            <div>Status: {this.props.e.title}</div>
-            <h5>Bloodtype: {this.props.e.blood_type}</h5>
-            {this.props.e.user_id === this.props.user_id ? (
-              <Button onClick={this.props.edit}>edit</Button>
-            ) : null}
-          </div>
-        </Flex>
-
+            <div className="img">
+              <div className="profile">
+                <Img src={this.props.e.profile_pic} alt="" />
+              </div>
+            </div>
+            <div className="text">
+              <div>Status: {this.props.e.title}</div>
+              <h5>Bloodtype: {this.props.e.blood_type}</h5>
+              <Link to="/Message">
+                <Button>Chat</Button>
+              </Link>
+              {this.props.e.user_id === this.props.user_id ? (
+                <Button onClick={this.props.edit}>edit</Button>
+              ) : null}
+            </div>
+          </Flex>
         ) : (
           <Container>
             <input
@@ -68,13 +71,13 @@ export default connect(
   { setUser }
 )(withRouter(DoneeProfile));
 const Img = styled.img`
-backgound-size:cover;
-width:100%;
-height:100%;
+  backgound-size: cover;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
- border: solid black;
-  
-position: relative;
+  border: solid black;
+
+  position: relative;
 `;
 const Flex = styled.div`
   display: flex;
@@ -115,4 +118,4 @@ const Button = styled.div`
   .myButton:active 
   background: #144E75;
   margin-top:10px;
-  `
+  `;

@@ -6,7 +6,11 @@ $highlight: #363adb;
     text-align: center;
   }
   .room-list {
-    display: flex;
+    display:flex;
+    justify-content: flex-start;
+    position: relative;
+    padding: 9rem;
+    
   }
   
   .room-joiner {

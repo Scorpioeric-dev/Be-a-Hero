@@ -73,7 +73,7 @@ export default connect(
 )(withRouter(Login));
 
 const Article = styled.div`
-  border: solid white 1px;
+  border: solid white 2px;
   background: #00000088;
   opacity: 5px;
   color: white;
@@ -83,11 +83,12 @@ const Article = styled.div`
   width: 200px;
   justify-content: space-evenly;
   position: absolute;
-  left: 650px;
+  left: 750px;
   top: 40px;
-  height: 180px;
-  border-radius: 20px;
-  margin-top: 35px;
+  height: 250px;
+  margin-top:320px;
+  border-radius: 9px;
+ 
   z-index: 1000;
 `;
 const Button = styled.div`

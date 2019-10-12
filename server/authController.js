@@ -18,11 +18,12 @@ module.exports = {
     delete newUser[0].hash;
 
     req.session.user = newUser[0];
-    console.log(req.session.user);
-
+    
     res
-      .status(201)
-      .send({ message: "Success", user: req.session.user, loggedIn: true });
+    .status(201)
+    .send({ message: "Success", user: req.session.user, loggedIn: true });
+    
+    console.log(req.session.user);
   },
   async login(req, res) {
     const db = req.app.get("db");

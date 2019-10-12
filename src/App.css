@@ -228,14 +228,21 @@ table {
   left: 200px;
   top: 80px;
   height: 360px;
-  border-radius: 20px;
+  border-radius: 10px;
   border:solid white 1.5px;
+  margin-top: 35px;
 }
 .authinput{
   border:solid white 1.5px;
   border-radius:7px;
  text-align:center;
  
+}
+.ainput{
+  border:solid black 1.5px;
+  border-radius:7px;
+ text-align:center;
+ margin:8px 0;
 }
 .image {
   position: relative;
@@ -441,12 +448,31 @@ ul{
   
  }
  .input{
-   margin:3px 0;
+   margin:6px 0;
    float:left;
-   border:solid black;
+   border:solid blue;
    border-radius:8px;
-   color:black;
+   color:black .5px;
+   text-align:center;
+   
  }
+
+ .input1{
+  margin:6px 0;
+  float:left;
+  border:solid black;
+  border-radius:8px;
+  color:black .5px;
+  text-align:center;
+  
+}
+.stripe{
+  display:flex;
+ position: absolute;
+ float: left;
+ margin-right: 60px;
+ margin-top:25px;
+}
 
  .stripeinput{
    width:140px;
@@ -455,4 +481,20 @@ ul{
 
  }
 
+ .left-chat-bubble{
+  border:solid blue 3px;
+  padding:10px;
+  border-radius: 20%;
+  display:table-cell;
+   color:blue;
+   
+ }
+ .intro{
+   font-weight:bold;
+   font-size: 1rem;
+   font-family:cursive;
+ }
+
+
+ 
  

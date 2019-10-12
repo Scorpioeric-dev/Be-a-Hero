@@ -172,21 +172,21 @@ export class Donor extends Component {
               <h3>Create Your Profile</h3>
             </div>
             <div className="createinput">
-              <input className='input'
+              <input className='input1'
                 onChange={this.handleChange}
                 name="profile_pic"
                 type="text"
                 placeholder="Profile Picture"
                 defaultvalue={this.state.profile_pic}
               />
-              <input className='input'
+              <input className='input1'
                 name="title"
                 type="text"
-                placeholder="Donee/Donor"
+                placeholder="Donee-Donor"
                 onChange={this.handleChange}
                 defaultvalue={this.state.title}
               />
-              <input className='input'
+              <input className='input1'
                 placeholder="Enter Bloodtype"
                 type="text"
                 defaultvalue={this.state.blood_type}

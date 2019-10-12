@@ -5,18 +5,19 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import "./Room.scss";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
-export  class Room extends Component {
+export class Room extends Component {
   constructor(props) {
     super(props);
     this.state = {
       messages: [],
       message: "",
-      
+
       usernameSet: false,
 
-      rooms:[],
-      roomName:''
+      rooms: [],
+      roomName: ""
     };
     //connecting to server
     this.socket = io.connect(":4400");
@@ -41,22 +42,22 @@ export  class Room extends Component {
   //     })
   // }
   joinRoom = () => {
-      const roomsArr = this.state.rooms.slice()
-      roomsArr.push(this.state.roomName)
-      this.setState({
-          roomName:'',
-          rooms:roomsArr
-      })
-  }
+    const roomsArr = this.state.rooms.slice();
+    roomsArr.push(this.state.roomName);
+    this.setState({
+      roomName: "",
+      rooms: roomsArr
+    });
+  };
 
   emit = () => {
     this.socket.emit(
       `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
       {
         message: this.state.message,
-        
-        user_name:this.props.reduxState.user_name,
-        profile_pic:this.props.reduxState.profile_pic,
+
+        user_name: this.props.reduxState.user_name,
+        profile_pic: this.props.reduxState.profile_pic,
         room: this.props.room
       }
     );
@@ -65,86 +66,106 @@ export  class Room extends Component {
   blast = () => {
     this.socket.emit(`blast to room socket`, {
       message: this.state.message,
-  
+
       user_name: this.props.reduxState.user_name,
       profile_pic: this.props.reduxState.profile_pic,
-      title:this.props.reduxState.title,
+      title: this.props.reduxState.title,
       room: this.state.room
     });
-};
+  };
 
-handlechange = e => {
+  handlechange = e => {
     this.setState({
-        [e.target.name]: e.target.value
+      [e.target.name]: e.target.value
     });
-};
+  };
 
-setuserName = () => {
+  setuserName = () => {
     if (this.props.reduxState.user_name) {
-        this.setState({
-            usernameSet: true
-        });
+      this.setState({
+        usernameSet: true
+      });
     }
     console.log("hit");
-};
+  };
 
-updateMessages = data => {
+  updateMessages = data => {
     this.setState({
-        messages: [
-            ...this.state.messages,
-            {
-                message: data.message,
-                user_name: data.user_name,
-                profile_pic: data.profile_pic,
-                title: data.title
-            }
-        ]
-    });
-    this.setState({
-        message: ""
-    });
-};
-
-render() {
-  console.log(this.props)
-    
-    console.log(this.state.messages)
-    const messages = this.state.messages.map((message, i) => (
-        <div
-        key={i}
-        className={
-          message.user_name === this.props.reduxState.user_name ? "my-message" : "message"
+      messages: [
+        ...this.state.messages,
+        {
+          message: data.message,
+          user_name: data.user_name,
+          profile_pic: data.profile_pic,
+          title: data.title
         }
+      ]
+    });
+    this.setState({
+      message: ""
+    });
+  };
+
+  render() {
+    console.log(this.props);
+
+    console.log(this.state.messages);
+    const messages = this.state.messages.map((message, i) => (
+      <div
+        className={
+          message.user_name === this.props.reduxState.user_name
+            ? "user"
+            : "non-user"
+        }
+        key={i}
       >
         <h5>{message.user_name}</h5>
-        <p>{message.message}</p>
+        <h5>{message.message}</h5>
       </div>
     ));
     return (
-      <div className="chatInput">
+      <div className="left-chat-bubble-wrap">
+        <div class="left-chat-bubble">
         <h5>Room: {this.props.room}</h5>
         {messages}
-        <div className="inputs">
-          <input
-            type="text"
-            onChange={this.handlechange}
-            name="message"
-            value={this.state.message}
-            placeholder="type here "
-          />
-          <button onClick={this.blast}>send</button>
         </div>
-      </div>
+        <div className="inputs">
+        <input
+        className="input"
+        type="text"
+        onChange={this.handlechange}
+        name="message"
+        value={this.state.message}
+        placeholder="type here "
+        />
+        <Button onClick={this.blast}>send</Button>
+        <div>
+        <Button>Connect to Doctor</Button>
+        </div>
+        </div>
+        </div>
     );
   }
 }
-function mapStateToProps(reduxState){
-    return{reduxState}
+function mapStateToProps(reduxState) {
+  return { reduxState };
 }
 
-
-export default connect(mapStateToProps,{})(Room)
+export default connect(
+  mapStateToProps,
+  {}
+)(Room);
 
 Room.propTypes = {
   room: PropTypes.string
 };
+
+const Button = styled.div`
+
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  .myButton:hover 
+  background: #1C6EA4; 
+  .myButton:active 
+  background: #144E75;
+  margin-top:10px;
+  `;

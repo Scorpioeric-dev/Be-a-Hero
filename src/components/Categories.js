@@ -50,8 +50,8 @@ export class Categories extends Component {
 export default connect(null)(withRouter(Categories));
 
 const Flex = styled.div`
-  background: #00000099;
-  color: white;
+  
+ background:white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,15 +61,18 @@ const Flex = styled.div`
   left: 1000px;
   top: 70px;
   height: 180px;
-  border-radius: 30px;
-  border:solid white 1px;
+  border-radius: 10px;
+  border:solid blue 2px;
   cusor:hover;
   a:visited{
-    color:white;
+    color:black;
   }
   a:hover{
-    color:aqua;
+    color:blue;
   }
+  z-index:9999;
+  margin-top:50px;
+  font-bold:
 `;
 const Img = styled.img`
   height: 100vh;
