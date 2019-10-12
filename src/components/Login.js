@@ -86,7 +86,7 @@ const Article = styled.div`
   left: 750px;
   top: 40px;
   height: 250px;
-  margin-top:320px;
+  margin-top:120px;
   border-radius: 9px;
  
   z-index: 1000;

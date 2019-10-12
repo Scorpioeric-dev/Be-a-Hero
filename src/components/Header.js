@@ -6,7 +6,6 @@ import { setUser } from "../Ducks/reducer";
 import axios from "axios";
 import swal from "sweetalert2";
 
-
 export class Header extends Component {
   constructor() {
     super();
@@ -31,55 +30,51 @@ export class Header extends Component {
 
   logout = async () => {
     const res = await axios.delete("/auth/logout");
-    this.props.history.push('/');
-    swal.fire({type:"success" ,text:res.data.message});
+    this.props.history.push("/");
+    swal.fire({ type: "success", text: res.data.message });
+    // window.location.reload()
   };
-  
+
   render() {
-    
     return (
-    
       <Main>
-        
-    
-        
-          {!this.state.editing ? (
-            <Main>
-              <Link to="/Donate">
-                <span>Donate</span>
-              </Link>
+        {!this.state.editing ? (
+          <Main>
+            <Link to="/Donate">
+              <span>Donate</span>
+            </Link>
 
-              <div>
-                <Link to="/Auth">
-                  <span onClick={this.toggleEdit}>Register</span>
-                </Link>
-              </div>
+            <div>
+              <Link to="/Auth">
+                <span onClick={this.toggleEdit}>Register</span>
+              </Link>
+            </div>
 
-              <Link to="/Login">
-                <span onClick={this.toggleEdit}>Login</span>
-              </Link>
-              <Link to="/Categories">
-                <span>Categories</span>
-              </Link>
-            </Main>
-          ) : (
-            <Main>
-              <Link to="/Categories">
-                <span>Categories</span>
-              </Link>
-              <Link to="/Donor">
-                <span>donor</span>
-              </Link>
-              <Link to="/Donee">
-                <span>donee</span>
-              </Link>
-              <Link to="/">
-                <span onClick={this.logout}>logout</span>
-              </Link>
-            </Main>
-          )}
+            <Link to="/Login">
+              <span onClick={this.toggleEdit}>Login</span>
+            </Link>
+            <Link to="/Categories">
+              <span>Categories</span>
+            </Link>
           </Main>
-  
+        ) : (
+          <Main>
+            <Link to="/Categories">
+              <span>Categories</span>
+            </Link>
+            <Link to="/Donor">
+              <span>donor</span>
+            </Link>
+            <Link to="/Donee">
+              <span>donee</span>
+            </Link>
+
+            <Link to="/">
+              <span onClick={this.logout}>logout</span>
+            </Link>
+          </Main>
+        )}
+      </Main>
     );
   }
 }
@@ -114,7 +109,35 @@ const Main = styled.div`
     a:hover{
       color:black;
     }
-    
+
+    @media (max-width:500px){
+      background:aquamarine;
+      color:white;
+      display:flex;
+      justify-content:space-around;
+  
+      align-items: center;
+       font:bold 12px/23px cursive;
+      width:100vw;
+      height:10vh
+      margin-bottom:5px;
+      color:black;
+      
+      position:fixed;
+      z-index:10;
+       
+      
+      
+      cursor:hover;
+      a:visited{
+        color:black;
+      }
+      a:hover{
+        color:white;
+      }
+
+      
+    }
     `;
 
 //

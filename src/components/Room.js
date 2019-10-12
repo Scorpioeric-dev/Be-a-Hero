@@ -141,6 +141,9 @@ export class Room extends Component {
         <Button onClick={this.blast}>send</Button>
         <div>
         <Button>Connect to Doctor</Button>
+        
+        <Link to='/Donate'><span>Donate Today</span></Link>
+      
         </div>
         </div>
         </div>

@@ -4,6 +4,8 @@ import axios from "axios";
 import "./Donate.css";
 import Swal from "sweetalert2";
 import styled from "styled-components";
+import {withRouter} from 'react-router-dom'
+
 
 class Donate extends Component {
   constructor() {
@@ -31,6 +33,8 @@ class Donate extends Component {
         // insert swal alert here when functional
         Swal.fire({ type: "success", text: res.data.message });
         console.log(res);
+        this.props.history.push('/')
+        
       });
     };
     render() {
@@ -57,14 +61,14 @@ class Donate extends Component {
             ></StripeCheckout>
             <input className='stripeinput'
               value={this.state.amount}
-              type="number"
+              type="number" 
               onChange={e =>
                 this.setState({
                   amount: +e.target.value
                 })
               }
-
-            />
+              />
+              <h1 className='donate-text'>Whole numbers only Please!</h1>
             
 
 

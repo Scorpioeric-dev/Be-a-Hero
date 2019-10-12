@@ -38,13 +38,14 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: 250px;
-  height: 100px;
+  width: 300px;
+  height: 115px;
   background-color: #2e2e2e;
   z-index: 20;
   border-radius: 10px;
   border: 3px solid #22cef9;
   justify-content: center;
+  
 }
 
 .parent {
@@ -61,4 +62,10 @@
   position: absolute;
   top:20vh;
   left:50%;
+}
+
+.donate-text{
+ color:white;
+ font-family: cursive;
+ padding: 2px;
 }
