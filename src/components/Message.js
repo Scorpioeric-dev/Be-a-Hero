@@ -31,10 +31,7 @@ export default class Message extends Component {
             <Room room="S.A.L" />
             {rooms}
             
-            <div className="room-joiner">
-            <input className='input' type="text" name="roomName" onChange={this.handleInput} />
-            <Button onClick={this.joinRoom}>Join Room</Button>
-            </div>
+            
             </div>
           </div>
         )

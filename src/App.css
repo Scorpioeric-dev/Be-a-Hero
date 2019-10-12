@@ -454,6 +454,7 @@ ul{
    border-radius:8px;
    color:black .5px;
    text-align:center;
+   width:30vw;
    
  }
 
@@ -483,16 +484,32 @@ ul{
 
  .left-chat-bubble{
   border:solid blue 3px;
-  padding:10px;
-  border-radius: 20%;
+  
+  
   display:table-cell;
    color:blue;
+   width:20vw;
+   height:8vh;
+   clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
    
  }
  .intro{
    font-weight:bold;
    font-size: 1rem;
    font-family:cursive;
+ }
+ .inputs{
+  align-content: center;
+   margin-top: 60%;
+ }
+
+ .room-text{
+   display: flex;
+   font-family: cursive;
+   font-size: 4rem;
+   align-content: center;
+   justify-content: center;
+   margin-bottom:0px;
  }
 
 

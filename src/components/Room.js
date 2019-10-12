@@ -125,19 +125,19 @@ export class Room extends Component {
     ));
     return (
       <div className="left-chat-bubble-wrap">
-        <div class="left-chat-bubble">
-        <h5>Room: {this.props.room}</h5>
-        {messages}
-        </div>
-        <div className="inputs">
-        <input
-        className="input"
-        type="text"
-        onChange={this.handlechange}
-        name="message"
-        value={this.state.message}
-        placeholder="type here "
-        />
+      <h5 className='room-text'>Room: {this.props.room}</h5>
+      <div class="left-chat-bubble">
+      {messages}
+      </div>
+      <div className="inputs">
+      <input
+      className="input"
+      type="text"
+      onChange={this.handlechange}
+      name="message"
+      value={this.state.message}
+      placeholder="type here "
+      />
         <Button onClick={this.blast}>send</Button>
         <div>
         <Button>Connect to Doctor</Button>
