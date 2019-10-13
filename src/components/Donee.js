@@ -154,7 +154,7 @@ export class Donee extends Component {
         <Section>
           <Input>
             <div className="create">
-              <h3>Create Your Profile</h3>
+              <h3>Create A Profile</h3>
             </div>
             <div className="createinput">
               <input
@@ -190,7 +190,7 @@ export class Donee extends Component {
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Section>
-        <Link to='/Donate' ><span>Donate Por Favor</span></Link>
+        <Link to='/Donate' ><span class='donate-span'>Make A Donation</span></Link>
         <div className="flex">{mapped}</div>
       </div>
     );
@@ -213,13 +213,13 @@ const Section = styled.div`
   align-items: center;
   width: 250px;
   justify-content: space-between;
-  position: relative;
-  left: 900px;
+  position: absolute;
+  margin-left: 1200px;
   height: 75vh;
   margin-top: 15px;
   border-radius: 20px;
   border: solid black;
-  background-color: aqua;
+  background: linear-gradient(#e66465, #9198e5);
 `;
 
 const Imag = styled.img`

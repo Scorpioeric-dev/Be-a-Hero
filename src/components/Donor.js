@@ -203,7 +203,7 @@ export class Donor extends Component {
             <span onClick={this.cancel}>Cancel</span>
           </Link>
         </Main>
-
+        <Link to='/Donate' ><span class='donate-span'>Make A Donation</span></Link>
         <div className="flex">{mack}</div>
       </div>
     );
@@ -226,13 +226,15 @@ const Main = styled.div`
   align-items: center;
   width: 250px;
   justify-content: space-between;
-  position: relative;
-  left: 900px;
+  position: absolute;
+  margin-left: 1200px;
   height: 75vh;
   margin-top: 15px;
   border-radius: 20px;
   border: solid black;
-  background-color: aqua;
+  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
 `;
 // const Profile = styled.img`
 //   height: 100px;

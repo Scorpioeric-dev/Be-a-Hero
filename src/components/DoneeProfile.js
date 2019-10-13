@@ -29,7 +29,7 @@ export class DoneeProfile extends Component {
           </Flex>
         ) : (
           <Container>
-            <input
+            <input className='input1'
               type="text"
               name="title"
               onChange={this.props.handle}
@@ -37,14 +37,14 @@ export class DoneeProfile extends Component {
               defaultvalue={this.props.title}
             />
 
-            <input
+            <input className='input1'
               type="text"
               name="blood_type"
               onChange={this.props.handle}
               placeholder="Blood"
               defaultvalue={this.props.blood_type}
             />
-            <input
+            <input className='input1'
               type="text"
               name="profile_pic"
               onChange={this.props.handle}
@@ -104,18 +104,18 @@ const Container = styled.div`
   width: 200px;
   position: absolute;
   left: 100px
-  height: 10vh;
-
+  height: 15vh;
+border-radius:10px;
   margin-top: 60px;
   border: solid black;
 `;
 
 const Button = styled.div`
 
-  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 3px 3px 10px 3px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
   .myButton:hover 
   background: #1C6EA4; 
   .myButton:active 
   background: #144E75;
-  margin-top:10px;
+  margin-bottom:10px;
   `;
