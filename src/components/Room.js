@@ -112,15 +112,20 @@ export class Room extends Component {
     console.log(this.state.messages);
     const messages = this.state.messages.map((message, i) => (
       <div
-        className={
-          message.user_name === this.props.reduxState.user_name
-            ? "user"
-            : "non-user"
-        }
-        key={i}
+      // className={
+      //   message.user_name === this.props.reduxState.user_name
+      //   ? "user"
+      //   : "non-user"
+      // }
+      // key={i}
       >
-        <h5>{message.user_name}:</h5>
-        <h5 className='message'> {message.message}</h5>
+      <h5> {message.user_name}</h5>
+      <h5 className={
+        message.user_name === this.props.reduxState.user_name
+        ? "user"
+        : "non-user"
+      }
+      key={i}> {message.message}</h5>
       </div>
     ));
     return (

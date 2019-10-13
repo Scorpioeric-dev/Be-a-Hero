@@ -27,7 +27,7 @@ export class Login extends Component {
     }
     console.log(res.data.user);
     swal.fire({ type: "success", text: res.data.message });
-    this.props.history.push('/')
+    this.props.history.push("/");
   };
   cancel = () => {
     store.dispatch({
@@ -44,24 +44,29 @@ export class Login extends Component {
         />
 
         <Article>
-          <input className='authinput'
+          <input
+            className="authinput"
             type="text"
             placeholder="Email"
             onChange={e => this.handleChange(e, "email")}
           />
 
-          <input className='authinput'
+          <input
+            className="authinput"
             type="password"
             placeholder="Password"
             onChange={e => this.handleChange(e, "password")}
           />
-          <Link>
-            <Button onClick={this.login}>Login</Button>
-          </Link>
-
-          <Link to="/">
-            <Button onClick={this.cancel}>Cancel</Button>
-          </Link>
+          <div id="do">
+            <Link>
+              <Button onClick={this.login}>Login</Button>
+            </Link>
+          </div>
+          <div id="do">
+            <Link to="/">
+              <Button onClick={this.cancel}>Cancel</Button>
+            </Link>
+          </div>
         </Article>
       </div>
     );
@@ -86,9 +91,12 @@ const Article = styled.div`
   left: 750px;
   top: 40px;
   height: 250px;
-  margin-top:120px;
+  margin-top: 120px;
   border-radius: 9px;
- 
+  #do a {
+    text-decoration:none;
+  
+  }
   z-index: 1000;
 `;
 const Button = styled.div`
@@ -106,6 +114,7 @@ const Button = styled.div`
   a:hover {
     color: pink;
   }
+  text-decoration: none;
 `;
 const Img = styled.img`
   height: 100vh;

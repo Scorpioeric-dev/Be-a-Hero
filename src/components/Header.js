@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { setUser } from "../Ducks/reducer";
 import axios from "axios";
 import swal from "sweetalert2";
-import Zoom from 'react-reveal'
-import logo from './images/healing-heart_logo_pink.png'
+import Zoom from "react-reveal";
+import logo from "./images/healing-heart_logo_pink.png";
 export class Header extends Component {
   constructor() {
     super();
@@ -33,7 +33,7 @@ export class Header extends Component {
     const res = await axios.delete("/auth/logout");
     this.props.history.push("/");
     swal.fire({ type: "success", text: res.data.message });
-    // window.location.reload()
+    window.location.reload()
   };
 
   clickHamburger() {
@@ -48,53 +48,60 @@ export class Header extends Component {
   render() {
     return (
       <Main>
-      {!this.state.editing ? (
-        <Main>
-        <Zoom>
-        <div id='do'>
-        <Link to="/Donate">
-        <span id="donate">Donate</span>
-        
-        </Link>
-        </div>
-        <span id='hamburger-menu'>&#9776;</span> 
-        
-        
-        <Link to="/Auth">
-        <span className="menu-option" onClick={this.toggleEdit}>
-        Register
-        </span>
-        </Link>
-        
-        
-        <Link to="/Login">
-        <span className="menu-option" onClick={this.toggleEdit}>
-        Login
-        </span>
-        </Link>
-        
-        <Link to="/Categories">
-        <span className="menu-option">Categories</span>
-        </Link>
-        
-        </Zoom>
-        </Main>
+        {!this.state.editing ? (
+          <Main>
+            <Zoom>
+              <div id="do">
+                <Link to="/Donate">
+                  <span id="donate">Donate</span>
+                </Link>
+              </div>
+              <span id="hamburger-menu">&#9776;</span>
+
+              <div id="do">
+                <Link to="/Auth">
+                  <span className="menu-option" onClick={this.toggleEdit}>
+                    Register
+                  </span>
+                </Link>
+              </div>
+
+              <div id="do">
+                <Link to="/Login">
+                  <span className="menu-option" onClick={this.toggleEdit}>
+                    Login
+                  </span>
+                </Link>
+              </div>
+              <div id="do">
+                <Link to="/Categories">
+                  <span className="menu-option">Categories</span>
+                </Link>
+              </div>
+            </Zoom>
+          </Main>
         ) : (
           <Main>
-            <Link to="/Categories">
-              <span>Categories</span>
-            </Link>
-            <Link to="/Donor">
-              <span>Donor</span>
-            </Link>
-            <Link to="/Donee">
-              <span>Donee</span>
-            </Link>
-
-            <Link to="/">
-              <span onClick={this.logout}>Logout</span>
-            </Link>
-           
+            <div id="do">
+              <Link to="/Categories">
+                <span>Categories</span>
+              </Link>
+            </div>
+            <div id="do">
+              <Link to="/Donor">
+                <span>Donor</span>
+              </Link>
+            </div>
+            <div id="do">
+              <Link to="/Donee">
+                <span>Donee</span>
+              </Link>
+            </div>
+            <div id="do">
+              <Link to="/">
+                <span onClick={this.logout}>Logout</span>
+              </Link>
+            </div>
           </Main>
         )}
       </Main>
@@ -173,6 +180,8 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
     #hamburger-menu{
       display:flex;
       margin-left:100px;
+      color:black;
+      
     }
 
   
@@ -202,15 +211,12 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
 
 //
 const Ham = styled.div`
-  color:blue;
-  display:none;
+  color: blue;
+  display: none;
 
-
-  @media(max-width:450px){
-    color:white;
-  display:flex; 
-  justify-content:flex-end;
+  @media (max-width: 450px) {
+    color: white;
+    display: flex;
+    justify-content: flex-end;
   }
-`
-
-
+`;

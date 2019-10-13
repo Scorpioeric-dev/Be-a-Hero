@@ -145,6 +145,7 @@ export class Donor extends Component {
     store.dispatch({
       type: CANCEL
     });
+    
   };
   render() {
     var mack = this.state.donorData
@@ -172,21 +173,24 @@ export class Donor extends Component {
               <h3>Create Your Profile</h3>
             </div>
             <div className="createinput">
-              <input className='input1'
+              <input
+                className="input1"
                 onChange={this.handleChange}
                 name="profile_pic"
                 type="text"
                 placeholder="Profile Picture"
                 defaultvalue={this.state.profile_pic}
               />
-              <input className='input1'
+              <input
+                className="input1"
                 name="title"
                 type="text"
                 placeholder="Donee-Donor"
                 onChange={this.handleChange}
                 defaultvalue={this.state.title}
               />
-              <input className='input1'
+              <input
+                className="input1"
                 placeholder="Enter Bloodtype"
                 type="text"
                 defaultvalue={this.state.blood_type}
@@ -198,12 +202,17 @@ export class Donor extends Component {
           <Imag src={this.state.profile_pic} alt="preview" />
 
           <Button onClick={this.createDonor}>submit</Button>
-
-          <Link to="/">
-            <span onClick={this.cancel}>Cancel</span>
-          </Link>
+          <div id="do">
+            <Link to="/">
+              <span onClick={this.cancel}>Cancel</span>
+            </Link>
+          </div>
         </Main>
-        <Link to='/Donate' ><span class='donate-span'>Make A Donation</span></Link>
+      
+          <Link to="/Donate">
+            <span class="donate-span">Make A Donation</span>
+          </Link>
+    
         <div className="flex">{mack}</div>
       </div>
     );
@@ -227,14 +236,23 @@ const Main = styled.div`
   width: 250px;
   justify-content: space-between;
   position: absolute;
-  margin-left: 900px;
+  margin-left: 1100px;
   height: 85vh;
-  margin-top: 15px;
+  margin-top: 80px;
   border-radius: 20px;
   border: solid black;
-  background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+  background: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+    #do a {
+      text-decoration:none;
+    
+    }
+   
 `;
 // const Profile = styled.img`
 //   height: 100px;
@@ -255,6 +273,12 @@ const Imag = styled.img`
   box-shadow: 4px 2px 4px 3px #706f6f;
   border-left: 0px groove rgba(28, 110, 164, 0.18);
   margin-bottom: 30px;
+  transition:transform .2s;
+
+  :hover{
+    transform: scale(1.5);
+
+  }
 `;
 
 const Container = styled.div`
@@ -279,7 +303,7 @@ const Input = styled.div`
 `;
 const Button = styled.div`
 
-  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 3px 3px 9px 3px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
   .myButton:hover 
   background: #1C6EA4; 
   .myButton:active 
@@ -287,5 +311,5 @@ const Button = styled.div`
   margin-top:18px;
   justify-content:space-between;
   margin-left:10px;
-
-  `
+  cursor:pointer;
+  `;

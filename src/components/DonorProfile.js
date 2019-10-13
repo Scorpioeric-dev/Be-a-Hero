@@ -80,6 +80,12 @@ const Img = styled.img`
   height: 100%;
   border-radius: 50%;
   border: solid black;
+  transition:transform .2s;
+
+  :hover{
+    transform: scale(1.5);
+
+  }
 
   position: relative;
 `;

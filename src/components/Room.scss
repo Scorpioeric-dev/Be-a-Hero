@@ -8,9 +8,10 @@ $highlight: #363adb;
   .room-list {
     display:flex;
     justify-content: center;
-    position: relative;
     padding: 5rem;
+    
   
+    
     
   }
   
@@ -60,6 +61,7 @@ $highlight: #363adb;
   }
   input {
     display: block;
+  
   };
 
 // .chatInput{

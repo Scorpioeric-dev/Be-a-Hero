@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 
+
+
+
+//add number to recipient for demo purposes
 export default class Twilio extends Component {
     state ={
         text:{

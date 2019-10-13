@@ -127,9 +127,20 @@ const Button = styled.div`
   display: flex;
   align-items: center;
   float: left;
+  cursor:pointer;
+  text-decoration:none;
+  @media(max-width:450px){
+    width:16vw;
+    font-size:.8rem;
+  }
 `;
 const Img = styled.img`
   height: 100vh;
   width: 100vw;
   margin: none;
+  @media(max-width:450px){
+    height:100vh;
+    width:100vw;
+
+  }
 `;

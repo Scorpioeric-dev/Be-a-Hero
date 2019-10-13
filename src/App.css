@@ -237,10 +237,29 @@ table {
   border: solid white 1.5px;
   margin-top: 35px;
 }
+@media(max-width:450px){
+  .auth{
+    background: #00000088;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 225px;
+  position: absolute;
+  left: 80px;
+  top: 80px;
+  height: 280px;
+  border-radius: 10px;
+  border: solid white 1.5px;
+  margin-top: 55px;
+  }
+}
 .authinput {
   border: solid white 1.5px;
   border-radius: 7px;
   text-align: center;
+  outline:none;
 }
 .ainput {
   border: solid black 1.5px;
@@ -505,6 +524,7 @@ ul {
   color: black 0.5px;
   text-align: center;
   width: 30vw;
+  outline:none;
 }
 
 .input1 {
@@ -514,6 +534,7 @@ ul {
   border-radius: 8px;
   color: black 0.5px;
   text-align: center;
+  outline:none;
 }
 .stripe {
   display: flex;
@@ -532,13 +553,15 @@ ul {
   display:flex;
 align-items: center;  
 flex-direction: column;
-height: 15vh;
+min-height: 15vh;
+width:40vw;
+margin-top: 20px;
 /* position:absolute; */
 }
 
 .left-chat-bubble {
- flex-direction: column;
-justify-content: center;
+  flex-direction: column;
+
   display: flex;
 margin-top:5em;
   width: 20vw;
@@ -596,7 +619,7 @@ padding:.2em;
   min-width:2em;
 }
 .user{
-  float:left;
+  flex-direction:row-reverse;
   background-color: rgb(255, 251, 240);
   border-radius:5px;
   display:flex;
@@ -607,8 +630,11 @@ padding:.2em;
   text-align: center;
   word-wrap:break-word;
   overflow-wrap:break-word;
+  float:right;
+  padding:6px;
 }
 .non-user{
+  float:left;
 background-color: #93c3f0;
 display:flex;
 border-radius:5px;
@@ -620,5 +646,6 @@ border-radius:5px;
   text-align: center;
   word-wrap:break-word;
   overflow-wrap:break-word;
+  padding:6px;
 }
 

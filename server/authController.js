@@ -39,7 +39,7 @@ module.exports = {
       console.log(req.session);
       return res
         .status(200)
-        .send({ message: "logged in", user: req.session.user, loggedIn: true });
+        .send({ message: "Welcome Back", user: req.session.user, loggedIn: true });
     }
   },
 

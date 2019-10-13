@@ -76,8 +76,13 @@ const Img = styled.img`
   height: 100%;
   border-radius: 50%;
   border: solid black;
-
   position: relative;
+  transition:transform .2s;
+
+  :hover{
+    transform: scale(1.5);
+
+  }
 `;
 const Flex = styled.div`
   display: flex;
@@ -93,6 +98,7 @@ const Flex = styled.div`
   border: solid black;
   border-radius: 25px;
   font-size: 2rem;
+  
 `;
 
 const Container = styled.div`

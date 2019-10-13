@@ -185,11 +185,11 @@ export class Donee extends Component {
           </Input>
           <Imag src={this.state.profile_pic} alt="preview" />
           <Button onClick={this.createDonee}>submit</Button>
-
           <Link to="/">
             <span onClick={this.cancel}>Cancel</span>
-          </Link>
-        </Section>
+            </Link>
+
+            </Section>
         <Link to='/Donate' ><span class='donate-span'>Make A Donation</span></Link>
         <div className="flex">{mapped}</div>
       </div>
@@ -214,9 +214,9 @@ const Section = styled.div`
   width: 250px;
   justify-content: space-between;
   position: absolute;
-  margin-left: 900px;
+  margin-left: 1100px;
   height: 85vh;
-  margin-top: 15px;
+  margin-top: 80px;
   border-radius: 20px;
   border: solid black;
   background: linear-gradient(#e66465, #9198e5);
@@ -232,6 +232,13 @@ const Imag = styled.img`
   box-shadow: 4px 2px 4px 3px #706f6f;
   border-left: 0px groove rgba(28, 110, 164, 0.18);
   margin-bottom: 30px;
+  transition:transform .2s;
+
+  :hover{
+    transform: scale(1.5);
+
+  }
+ 
 `;
 const Flex = styled.div`
   display: flex;
@@ -257,10 +264,11 @@ const Input = styled.div`
   margin: 20px 0;
 `;
 const Button = styled.div`
-color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 5px 5px 15px 5px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 3px 3px 9px 3px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
 .myButton:hover 
 background: #1C6EA4; 
 .myButton:active 
 background: #144E75;
-margin-top:18px;`
+margin-top:18px;
+cursor:pointer;`
   

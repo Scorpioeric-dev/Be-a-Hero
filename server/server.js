@@ -58,13 +58,16 @@ app.put('/api/editDonor/:donor_id',transCtrl.editDonor)
 
 //sending twilio text
 app.get('/send-text',(req,res) => {
+  console.log(req.query)
   // getting values ,passed via the query string
   const {recipient,textmessage} = req.query
-  client.message.create({
+  client.messages.create({
     body:textmessage,
     to:"+1" + recipient,
-    from:"+8016530129"//from twilio
-  }).then((message) => console.log(message.body))})
+    from:"+18016530129"//from twilio
+  })
+  .then((message) => console.log(message.body))})
+  
 
 massive(connection_string).then(db => {
   app.set("db", db);
