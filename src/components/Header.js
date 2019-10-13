@@ -45,37 +45,38 @@ export class Header extends Component {
       dropdown.classList.add("hide");
     }
   }
-  // <span id='donate'>&#9776;</span> hamburger display for iphone
   render() {
     return (
       <Main>
       {!this.state.editing ? (
         <Main>
         <Zoom>
-        <Link to="/Donate">
         <div id='do'>
+        <Link to="/Donate">
         <span id="donate">Donate</span>
         
-        </div>
         </Link>
+        </div>
+        <span id='hamburger-menu'>&#9776;</span> 
         
-        <div>
+        
         <Link to="/Auth">
         <span className="menu-option" onClick={this.toggleEdit}>
         Register
         </span>
         </Link>
-        </div>
+        
         
         <Link to="/Login">
         <span className="menu-option" onClick={this.toggleEdit}>
         Login
         </span>
         </Link>
+        
         <Link to="/Categories">
         <span className="menu-option">Categories</span>
         </Link>
-       
+        
         </Zoom>
         </Main>
         ) : (
@@ -84,14 +85,14 @@ export class Header extends Component {
               <span>Categories</span>
             </Link>
             <Link to="/Donor">
-              <span>donor</span>
+              <span>Donor</span>
             </Link>
             <Link to="/Donee">
-              <span>donee</span>
+              <span>Donee</span>
             </Link>
 
             <Link to="/">
-              <span onClick={this.logout}>logout</span>
+              <span onClick={this.logout}>Logout</span>
             </Link>
            
           </Main>
@@ -111,9 +112,9 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
     display:flex;
     justify-content:space-around;
     
-    
+    font-size:1.8rem;
     align-items: center;
-     font:bold 24px/45px sans-serif;
+    
     width:100vw;
     height:10vh
     margin-bottom:15px;
@@ -123,14 +124,22 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
     z-index:10;
     
     
+    #hamburger-menu{
+      display:none;
+
+    }
+
+    #do a {
+      text-decoration:none;
     
+    }
     
     cursor:hover;
     a:visited{
-      color:blue;
+      color:black;
     }
     a:hover{
-      color:black;
+      color:white;
     }
 
    
@@ -154,11 +163,18 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
      text-decoration:none;
     } 
    
+   
   #do{
     display:flex;
     justify-content:space-around;
     text-decoration:none;
     }
+   
+    #hamburger-menu{
+      display:flex;
+      margin-left:100px;
+    }
+
   
   
   
@@ -174,10 +190,10 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
   
   cursor:hover;
   a:visited{
-    color:white;
+    color:black;
   }
   a:hover{
-    color:black;
+    color:white;
   }
   
   

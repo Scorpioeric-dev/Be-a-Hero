@@ -130,7 +130,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+.App{
+  font-family: 'Playfair Display', serif;
 
+}
 
 /* .square {
   height: 50px;
@@ -524,35 +528,36 @@ ul {
   margin: 15px 0;
   border: solid aqua 1px;
 }
+.left-chat-bubble-wrap{
+  display:flex;
+align-items: center;  
+flex-direction: column;
+height: 15vh;
+/* position:absolute; */
+}
 
 .left-chat-bubble {
-  border: solid blue 3px;
-
-  display: table-cell;
-  color: blue;
+ flex-direction: column;
+justify-content: center;
+  display: flex;
+margin-top:5em;
   width: 20vw;
-  height: 8vh;
-  /* clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 75%,
-    75% 75%,
-    75% 100%,
-    50% 75%,
-    0% 75%
-  ); */
+  min-height: 8vh;
+ 
+  
 }
 .intro {
+  margin-top:.5em;
   font-weight: bold;
-  font-size: 1rem;
-  font-family: cursive;
+  font-size: 1.3rem;
+  /* font-family: cursive; */
 }
 
 @media(max-width:450px){
   .intro{
     font-weight: bold;
     font-size: 1.7rem;
-    font-family: cursive;
+    /* font-family: cursive; */
     padding:2px;
     margin:2px;
   }
@@ -565,10 +570,10 @@ ul {
 .room-text {
   display: flex;
   font-family: cursive;
-  font-size: 4rem;
+  font-size: 3.5rem;
   align-content: center;
   justify-content: center;
-  margin-bottom: 0px;
+  margin-top:20px;
 }
 
 .donate-span{
@@ -576,3 +581,44 @@ ul {
   padding:15px;
   margin-bottom: 10px;
 }
+
+/* .user{
+  display:flex;
+  font-family: sans-serif;
+  color:black;
+  font-size: 1rem;
+  flex-direction: column;
+} */
+.message{
+  font-family: cursive;
+  color:black;
+padding:.2em;
+  min-width:2em;
+}
+.user{
+  float:left;
+  background-color: rgb(255, 251, 240);
+  border-radius:5px;
+  display:flex;
+  flex-wrap: wrap;
+  margin-top:.3rem;
+  border:3px solid gray;
+  height:auto;
+  text-align: center;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+.non-user{
+background-color: #93c3f0;
+display:flex;
+border-radius:5px;
+  display:flex;
+  flex-wrap: wrap;
+  margin-top:.3rem;
+  border:3px solid gray;
+  height:auto;
+  text-align: center;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+

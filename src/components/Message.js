@@ -32,7 +32,9 @@ export default class Message extends Component {
           <div className="room-list">
             <Room room="S.A.L" />
             {rooms}
+            <div className='twilio'>
             <Twilio/>
+            </div>
             
             </div>
           </div>
@@ -49,4 +51,5 @@ export default class Message extends Component {
     .myButton:active 
     background: #144E75;
     margin-top:10px;
+    
     `;

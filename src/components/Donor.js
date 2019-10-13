@@ -227,8 +227,8 @@ const Main = styled.div`
   width: 250px;
   justify-content: space-between;
   position: absolute;
-  margin-left: 1200px;
-  height: 75vh;
+  margin-left: 900px;
+  height: 85vh;
   margin-top: 15px;
   border-radius: 20px;
   border: solid black;
@@ -285,4 +285,7 @@ const Button = styled.div`
   .myButton:active 
   background: #144E75;
   margin-top:18px;
+  justify-content:space-between;
+  margin-left:10px;
+
   `
