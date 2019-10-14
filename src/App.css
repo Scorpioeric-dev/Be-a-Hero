@@ -536,19 +536,16 @@ ul {
   text-align: center;
   outline:none;
 }
-.stripe {
-  display: flex;
-  position: absolute;
-  float: left;
-  margin-right: 60px;
-  margin-top: 25px;
-}
+
+
+
 
 .stripeinput {
   width: 140px;
   margin: 15px 0;
   border: solid aqua 1px;
 }
+
 .left-chat-bubble-wrap{
   display:flex;
 align-items: center;  

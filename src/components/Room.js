@@ -180,5 +180,10 @@ const Button = styled.div`
 :hover{
   background-color:#1C6EA4;
   cursor:pointer;
+  @media(max-width:450px){
+    height:3vh;
+    width:16vw;
+    font-size:.8rem;
+  }
 }
   `;

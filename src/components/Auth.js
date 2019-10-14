@@ -130,6 +130,7 @@ const Button = styled.div`
   cursor:pointer;
   text-decoration:none;
   @media(max-width:450px){
+    height:3vh;
     width:16vw;
     font-size:.8rem;
   }

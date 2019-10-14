@@ -98,6 +98,23 @@ const Article = styled.div`
   
   }
   z-index: 1000;
+
+  @media(max-width:450px){
+    background: #00000088;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 225px;
+  position: absolute;
+  left: 80px;
+  top: 80px;
+  height: 280px;
+  border-radius: 10px;
+  border: solid white 1.5px;
+  margin-top: 55px;
+  }
 `;
 const Button = styled.div`
   border-radius: 8px;
@@ -115,6 +132,11 @@ const Button = styled.div`
     color: pink;
   }
   text-decoration: none;
+  @media(max-width:450px){
+    height:3vh;
+    width:16vw;
+    font-size:.8rem;
+  }
 `;
 const Img = styled.img`
   height: 100vh;
