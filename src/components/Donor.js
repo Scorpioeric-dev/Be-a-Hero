@@ -28,23 +28,6 @@ export class Donor extends Component {
     this.getDonorData();
     this.getDoneeData();
   }
-  getDonorData = () => {
-    axios.get("/api/donorData").then(res => {
-      console.log(res.data);
-      this.setState({
-        donorData: res.data
-      });
-    });
-  };
-
-  getDoneeData = () => {
-    axios.get("/api/doneeData").then(res => {
-      this.setState({
-        doneeData: res.data
-      });
-      //axios call not being hit here
-    });
-  };
 
   createDonor = () => {
     const {
@@ -78,6 +61,23 @@ export class Donor extends Component {
     this.getDonorData();
   };
 
+  getDonorData = () => {
+    axios.get("/api/donorData").then(res => {
+      console.log(res.data);
+      this.setState({
+        donorData: res.data
+      });
+    });
+  };
+
+  getDoneeData = () => {
+    axios.get("/api/doneeData").then(res => {
+      this.setState({
+        doneeData: res.data
+      });
+      //axios call not being hit here
+    });
+  };
   // componentDidUpdate(previousProps, previousState) {
   //   if (previousState.donorData.length !== this.state.donorData.length) {
   //     this.render();
@@ -145,7 +145,6 @@ export class Donor extends Component {
     store.dispatch({
       type: CANCEL
     });
-    
   };
   render() {
     var mack = this.state.donorData
@@ -208,11 +207,11 @@ export class Donor extends Component {
             </Link>
           </div>
         </Main>
-      
-          <Link to="/Donate">
-            <span class="donate-span">Make A Donation</span>
-          </Link>
-    
+
+        <Link to="/Donate">
+          <span class="donate-span">Make A Donation</span>
+        </Link>
+
         <div className="flex">{mack}</div>
       </div>
     );
@@ -248,11 +247,9 @@ const Main = styled.div`
     ),
     linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
     linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
-    #do a {
-      text-decoration:none;
-    
-    }
-   
+  #do a {
+    text-decoration: none;
+  }
 `;
 // const Profile = styled.img`
 //   height: 100px;
@@ -273,11 +270,10 @@ const Imag = styled.img`
   box-shadow: 4px 2px 4px 3px #706f6f;
   border-left: 0px groove rgba(28, 110, 164, 0.18);
   margin-bottom: 30px;
-  transition:transform .2s;
+  transition: transform 0.2s;
 
-  :hover{
+  :hover {
     transform: scale(1.5);
-
   }
 `;
 

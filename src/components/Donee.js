@@ -185,10 +185,12 @@ export class Donee extends Component {
           </Input>
           <Imag src={this.state.profile_pic} alt="preview" />
           <Button onClick={this.createDonee}>submit</Button>
+          <div id="do">
+          
           <Link to="/">
             <span onClick={this.cancel}>Cancel</span>
             </Link>
-
+            </div>
             </Section>
         <Link to='/Donate' ><span class='donate-span'>Make A Donation</span></Link>
         <div className="flex">{mapped}</div>
@@ -220,6 +222,9 @@ const Section = styled.div`
   border-radius: 20px;
   border: solid black;
   background: linear-gradient(#e66465, #9198e5);
+  #do a {
+    text-decoration: none;
+  }
 `;
 
 const Imag = styled.img`
@@ -270,5 +275,7 @@ background: #1C6EA4;
 .myButton:active 
 background: #144E75;
 margin-top:18px;
+margin-left:10px;
+justify-content:space-between;
 cursor:pointer;`
   

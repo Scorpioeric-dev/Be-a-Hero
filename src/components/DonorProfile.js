@@ -83,7 +83,7 @@ const Img = styled.img`
   transition:transform .2s;
 
   :hover{
-    transform: scale(1.5);
+    transform: scale(1.2);
 
   }
 
@@ -113,19 +113,20 @@ const Container = styled.div`
   width: 200px;
   position: absolute;
   left: 100px
-  height: 15vh;
+  height: 30vh;
 border-radius:10px;
-  margin-top: 60px;
+  margin-top: 80px;
   border: solid black;
 `;
 const Button = styled.div`
 display:flex;
 justify-content:space-between;
-  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 3px 3px 10px 3px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); border: 2px solid rgb(28, 110, 164); display: inline-block;}
   .myButton:hover 
   background: #1C6EA4; 
   .myButton:active 
 position:relative;
   margin-bottom:10px;
   align-items:flex-end;
+  cursor:pointer;
   `;

@@ -39,7 +39,8 @@ export default class Home extends Component {
               other organs combined. Unfortunately, the number of people waiting
               for kidneys is much larger than the number of available kidneys
               from living and deceased donors. You can save a life by being a
-              kidney donor.
+              kidney donor.<p>Register and create a profile to begin the process of communicating with potential donors and donees.
+              </p>
             </p>
             <h1 className="intro">Being a living kidney donor</h1>
             <hr />

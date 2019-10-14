@@ -51,28 +51,66 @@ export default connect(null)(withRouter(Categories));
 
 const Flex = styled.div`
   
- background:white;
+ background: #00000088;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 150px;
+  width: 200px;
   justify-content: space-evenly;
   position: absolute;
-  left: 1000px;
-  top: 70px;
-  height: 180px;
+  left: 900px;
+  top: 40px;
+  height: 250px;
   border-radius: 10px;
-  border:solid blue 2px;
+  border:solid white;
   cusor:hover;
   a:visited{
-    color:black;
+    color:white;
   }
   a:hover{
     color:blue;
   }
-  z-index:9999;
   margin-top:50px;
-  font-bold:
+
+  transition:transform .0s;
+:hover{
+  transform:scale(1.2);
+}
+
+@media(max-width:450px){
+  background: #00000088;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   width: 150px;
+   justify-content: space-evenly;
+   position: absolute;
+   left: 100px;
+   top: 40px;
+   height: 250px;
+   border-radius: 10px;
+   border:solid white;
+   cusor:hover;
+   a:visited{
+     color:white;
+   }
+   a:hover{
+     color:blue;
+   }
+   margin-top:150px;
+
+   transition:transform .2s;
+  :hover{
+  transform:scale(1.5);
+}
+
+
+}
+
+
+}
+
+
 `;
 const Img = styled.img`
   height: 100vh;

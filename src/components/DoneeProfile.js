@@ -71,9 +71,25 @@ export default connect(
   { setUser }
 )(withRouter(DoneeProfile));
 const Img = styled.img`
-  backgound-size: cover;
+  background-size: cover;
   width: 100%;
   height: 100%;
+  border-radius: 50%;
+  border: solid black;
+  position: relative;
+  transition:transform .2s;
+  margin-bottom:10px;
+
+  :hover{
+    transform: scale(1.2);
+
+  }
+  postion:relative;
+
+@media(max-width:450px){
+  background-size: cover;
+  width: 50%;
+  height: 50%;
   border-radius: 50%;
   border: solid black;
   position: relative;
@@ -83,6 +99,12 @@ const Img = styled.img`
     transform: scale(1.5);
 
   }
+  postion:relative;
+}
+
+
+
+
 `;
 const Flex = styled.div`
   display: flex;
@@ -98,6 +120,23 @@ const Flex = styled.div`
   border: solid black;
   border-radius: 25px;
   font-size: 2rem;
+
+  @media(max-width:450px){
+    background-color:rgb(204,162,162)
+    display: flex;
+
+  justify-content: space-between;
+  width: 150px;
+
+  margin-left: 15px;
+  align-items: center;
+  height: 200px;
+  flex-direction: column;
+
+  border: solid black;
+  border-radius: 25px;
+  font-size: 2rem;
+  }
   
 `;
 
@@ -110,18 +149,47 @@ const Container = styled.div`
   width: 200px;
   position: absolute;
   left: 100px
+  height: 30vh;
+border-radius:10px;
+  margin-top: 80px;
+  border: solid black;
+ 
+  @media(max-width:450px){
+    display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100px;
+  position: absolute;
+  left: 100px
   height: 15vh;
 border-radius:10px;
-  margin-top: 60px;
+  margin-top: 80px;
   border: solid black;
+  }
 `;
 
-const Button = styled.div`
-
-  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); box-shadow: rgb(0, 0, 0) 3px 3px 10px 3px; border: 2px solid rgb(28, 110, 164); display: inline-block;}
+const Button = styled.button`
+display:flex;
+justify-content:space-between;
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); border: 2px solid rgb(28, 110, 164); display: inline-block;}
   .myButton:hover 
   background: #1C6EA4; 
   .myButton:active 
   background: #144E75;
   margin-bottom:10px;
+  align-items:flex-end;
+  cursor:pointer;
+
+  @media(max-width:450px){
+    display:flex;
+justify-content:space-between;
+  color: rgb(95, 210, 255); font-size: 9px; line-height: 9px; padding: 3px; border-radius: 5px; font-family: Georgia, serif; font-weight: normal; text-decoration: none; font-style: normal; font-variant: normal; text-transform: none; background-image: linear-gradient(to right, rgb(28, 110, 164) 0%, rgb(35, 136, 203) 50%, rgb(20, 78, 117) 100%); border: 2px solid rgb(28, 110, 164); display: inline-block;}
+  .myButton:hover 
+  background: #1C6EA4; 
+  .myButton:active 
+  background: #144E75;
+  margin-bottom:5px;
+  cursor:pointer;
+  }
   `;

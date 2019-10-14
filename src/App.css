@@ -322,6 +322,21 @@ h2 span {
   flex-direction: column;
   margin-bottom: 20px;
 }
+
+@media(max-width:450px){
+  .text{
+    display: flex;
+  text-align: center;
+  align-items: center;
+  color: black;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: .5em;
+  padding:10px;
+  margin:5px;
+  }
+}
 .flex {
   width: 750px;
   height: 100vh;
@@ -340,6 +355,16 @@ h2 span {
   border-radius: 50%;
   margin-top: 55px;
   margin-left: 20px;
+}
+
+@media(max-width:450px){
+  .profile{
+    width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 25px;
+  margin-left: 20px;
+  }
 }
 .img {
   height: 40%;
@@ -479,7 +504,7 @@ ul {
     background-size: cover;
 
     height: 95%;
-    width: 100%;
+    width: 95%;
     position: absolute;
     animation-name: sal;
     animation-timing-function: linear;
@@ -570,6 +595,7 @@ margin-top:5em;
   margin-top:.5em;
   font-weight: bold;
   font-size: 1.3rem;
+
   /* font-family: cursive; */
 }
 
@@ -578,7 +604,7 @@ margin-top:5em;
     font-weight: bold;
     font-size: 1.7rem;
     /* font-family: cursive; */
-    padding:2px;
+    padding:3px;
     margin:2px;
   }
 }
