@@ -56,7 +56,7 @@ export class Header extends Component {
                   <span id="donate">Donate</span>
                 </Link>
               </div>
-              <span id="hamburger-menu">&#9776;</span>
+              <span id="hamburger-menu" onClick={this.clickHamburger}>&#9776;</span>
 
               <div id="do">
                 <Link to="/Auth">
@@ -181,6 +181,7 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
       display:flex;
       margin-left:100px;
       color:black;
+
       
     }
 
@@ -220,3 +221,7 @@ const Ham = styled.div`
     justify-content: flex-end;
   }
 `;
+
+//ssh-keygen
+
+// ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDHTK0jOT0tEaYmm4ip2Udh3r32Ab7l0tJ17MJTtGlsmZsB04L1SDpDpCO2Iw0U7MSq8mZjujaWIvg7ey5Ky8bc85CatEj4mBCqZ3spPWM1Gq2KG9hGFAdM0LfsfW29k237mdXijslfhIuHyiHNh5WoathXU6Kk4e6zLrO48E3PM0oFoJieyAoKZuuY8enTHOqH/eDTfzp07iJFlVKkUofbfLb7bnAHcpt+S9ps5wJVLdRWqYDYATxJL3tRKAPDOBbYmu2dCvmssx4BzHdwygs/HhUefiJR2W33MXJCIyNpSRmO0g8aEU2ykCtnvzqPKfqEW/I7T5TOfWroGH6jqy/VeSmreieqhWDLGx9t7wQMjHnQp6x5VKAPRFzm6Xf5xMsswDNGF3zzfPZati6s0rH8SOhy/+4u2bbG2vo6kqJlGyfTp05jb3CKALBBY3CaM6CoKGK2wwRJkHxrK6C3xuM+Qd6JLbM028IPI86KDirgh2iDMc1Oqy1OwsVMeJK7560= Owner@DESKTOP-VM5EDL3

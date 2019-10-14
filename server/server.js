@@ -29,6 +29,8 @@ const io = socket(server)
 //opens doorway securely communicating with servers
 app.use(cors())
 app.use(express.json());
+app.use(express.static(`${__dirname}/../build`))
+app.use("/static",express.static("./media"))
 app.use(
   session({
     resave: false,
