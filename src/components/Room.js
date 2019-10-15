@@ -7,7 +7,7 @@ import "./Room.scss";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 require('dotenv').config()
-const {react_app_socket_connect} = process.env
+const {REACT_APP_SOCKET_CONNECT} = process.env
 
 export class Room extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export class Room extends Component {
       roomName: ""
     };
     //connecting to server
-    this.socket = io.connect(react_app_socket_connect,{secure:true});
+    this.socket = io.connect(REACT_APP_SOCKET_CONNECT);
     //functions being invoked within sockets
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
