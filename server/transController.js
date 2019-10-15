@@ -1,8 +1,6 @@
-
-
 module.exports = {
   postDonor: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const db = req.app.get("db");
     const { user_id } = req.session.user;
     const {
@@ -30,7 +28,7 @@ module.exports = {
     res.status(200).send(donor);
   },
   postDonee: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const db = req.app.get("db");
     const { user_id } = req.session.user;
 
@@ -69,11 +67,10 @@ module.exports = {
       // title,
       // profile_pic
     ]);
-    console.log(req.session.user)
+    console.log(req.session.user);
     res.status(200).send(donorData);
   },
   getDoneeData: async (req, res) => {
-    
     const db = req.app.get("db");
     const { donee_id, user_name, blood_type, title, profile_pic } = req.query;
     let doneeData = await db.find_donee_username_bloodtype([
@@ -88,9 +85,9 @@ module.exports = {
 
   editDonee: async (req, res) => {
     const { title, profile_pic, blood_type } = req.body;
-    console.log(req.body)
+    console.log(req.body);
     const { donee_id } = req.params;
-    console.log(req.params)
+    console.log(req.params);
     const db = req.app.get("db");
     const edit = await db.edit_donee([
       donee_id,
@@ -111,6 +108,19 @@ module.exports = {
       blood_type
     ]);
     res.status(200).send(edit);
+  },
+  doneeById: async (req, res) => {
+    const { user_id } = req.session.user;
+    console.log(user_id)
+    const db = req.app.get("db");
+    const aDonee = await db.donee_By_Id([user_id]);
+    res.status(200).send(aDonee);
+  },
+  donorById: async(req,res) => {
+    const {user_id} = req.session.user
+    console.log(user_id)
+    const db = req.app.get('db')
+    const aDonor = await db.donor_By_Id([user_id])
+    res.status(200).send(aDonor) 
   }
-  
 };

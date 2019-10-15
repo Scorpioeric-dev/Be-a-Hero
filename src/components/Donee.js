@@ -25,8 +25,8 @@ export class Donee extends Component {
   };
 
   componentDidMount() {
-    this.getDoneeData();
     this.getDonorData();
+    this.getDoneeData();
   }
 
   createDonee = () => {

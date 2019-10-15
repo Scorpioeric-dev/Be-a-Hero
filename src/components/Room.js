@@ -13,14 +13,14 @@ export class Room extends Component {
     this.state = {
       messages: [],
       message: "",
-
+      profile_pic: "https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
       usernameSet: false,
 
       rooms: [],
       roomName: ""
     };
     //connecting to server
-    this.socket = io.connect(":4400");
+    this.socket = io.connect({secure: true});
     //functions being invoked within sockets
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
@@ -30,7 +30,31 @@ export class Room extends Component {
     if (this.props.room !== "global") {
       this.socket.emit("join chat", { room: this.state.room });
     }
+    this.getDoneeById()
+    // if(this.state.profile_pic !== ''){
+
+    // }
+    // this.getDonorById()
   };
+
+getDoneeById = () => {
+axios.get(`/api/doneeById`).then(res => {
+  console.log(res.data.profile_pic)
+  this.setState({
+    profile_pic:res.data.profile_pic
+  })
+})
+}
+
+getDonorById = () => {
+  
+  axios.get(`/api/donorById`).then(res => {
+    console.log(res.data.profile_pic)
+    this.setState({
+      profile_pic:res.data.profile_pic
+    })
+  })
+  }
 
   // getMessages = () => {
   //     //need to figure out the actual param I want to set example donor/donne?
@@ -50,25 +74,26 @@ export class Room extends Component {
     });
   };
 
-  emit = () => {
-    this.socket.emit(
-      `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
-      {
-        message: this.state.message,
+  // emit = () => {
+  //   this.socket.emit(
+  //     `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
+  //     {
+  //       message: this.state.message,
 
-        user_name: this.props.reduxState.user_name,
-        profile_pic: this.props.reduxState.profile_pic,
-        room: this.props.room
-      }
-    );
-  };
+  //       user_name: this.props.reduxState.user_name,
+  //       profile_pic: this.props.reduxState.profile_pic,
+  //       room: this.props.room
+  //     }
+  //   );
+  // };
 
   blast = () => {
     this.socket.emit(`blast to room socket`, {
-      message: this.state.message,
+      messagez: this.state.message,
 
       user_name: this.props.reduxState.user_name,
-      profile_pic: this.props.reduxState.profile_pic,
+      // profile_pic: this.props.reduxState.profile_pic,
+      profile_pic: this.state.profile_pic,
       title: this.props.reduxState.title,
       room: this.state.room
     });
@@ -96,7 +121,7 @@ export class Room extends Component {
         {
           message: data.message,
           user_name: data.user_name,
-          profile_pic: data.profile_pic,
+          profile_pic:data.profile_pic,
           title: data.title
         }
       ]
@@ -119,39 +144,43 @@ export class Room extends Component {
       // }
       // key={i}
       >
-      <h5> {message.user_name}</h5>
-      <h5 className={
-        message.user_name === this.props.reduxState.user_name
-        ? "user"
-        : "non-user"
-      }
-      key={i}> {message.message}</h5>
+        <h5> {message.user_name}</h5>
+        <img src={this.state.profile_pic} alt="myUser"/>
+        <h5
+          className={
+            message.user_name === this.props.reduxState.user_name
+              ? "user"
+              : "non-user"
+          }
+          key={i}
+        >
+          {" "}
+          {message.message}
+        </h5>
       </div>
     ));
     return (
       <div className="left-chat-bubble-wrap">
-      <h5 className='room-text'>Room: {this.props.room}</h5>
-      <div class="left-chat-bubble">
-      {messages}
+        <h5 className="room-text">Room: {this.props.room}</h5>
+        <div class="left-chat-bubble">{messages}</div>
+        <div className="inputs">
+          <input
+            className="input"
+            type="text"
+            onChange={this.handlechange}
+            name="message"
+            value={this.state.message}
+            placeholder="type here "
+          />
+          
+          <Button onClick={this.blast}>send</Button>
+          <div>
+            <Link to="/Donate">
+              <span>Donate Today</span>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="inputs">
-      <input
-      className="input"
-      type="text"
-      onChange={this.handlechange}
-      name="message"
-      value={this.state.message}
-      placeholder="type here "
-      />
-        <Button onClick={this.blast}>send</Button>
-        <div>
-        
-        
-        <Link to='/Donate'><span>Donate Today</span></Link>
-      
-        </div>
-        </div>
-        </div>
     );
   }
 }

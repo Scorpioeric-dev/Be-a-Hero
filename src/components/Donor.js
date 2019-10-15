@@ -57,7 +57,7 @@ export class Donor extends Component {
           donor: res.data
         });
       });
-
+    // window.location.reload();
     this.getDonorData();
   };
 
