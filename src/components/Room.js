@@ -32,31 +32,31 @@ export class Room extends Component {
     if (this.props.room !== "global") {
       this.socket.emit("join chat", { room: this.state.room });
     }
-    this.getDoneeById()
+    // this.getDoneeById()
     // if(this.state.profile_pic !== ''){
 
     // }
     // this.getDonorById()
   };
 
-getDoneeById = () => {
-axios.get(`/api/doneeById`).then(res => {
-  console.log(res.data.profile_pic)
-  this.setState({
-    profile_pic:res.data.profile_pic
-  })
-})
-}
+// getDoneeById = () => {
+// axios.get(`/api/doneeById`).then(res => {
+//   console.log(res.data.profile_pic)
+//   this.setState({
+//     profile_pic:res.data.profile_pic
+//   })
+// })
+// }
 
-getDonorById = () => {
+// getDonorById = () => {
   
-  axios.get(`/api/donorById`).then(res => {
-    console.log(res.data.profile_pic)
-    this.setState({
-      profile_pic:res.data.profile_pic
-    })
-  })
-  }
+//   axios.get(`/api/donorById`).then(res => {
+//     console.log(res.data.profile_pic)
+//     this.setState({
+//       profile_pic:res.data.profile_pic
+//     })
+//   })
+//   }
 
   // getMessages = () => {
   //     //need to figure out the actual param I want to set example donor/donne?
