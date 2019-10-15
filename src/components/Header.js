@@ -37,7 +37,7 @@ export class Header extends Component {
   };
 
   clickHamburger() {
-    const dropdown = document.getElementById("dropdown");
+    const dropdown = document.getElementById("#dropdown");
     console.dir(dropdown);
     if (dropdown.classList.contains("hide")) {
       dropdown.classList.remove("hide");

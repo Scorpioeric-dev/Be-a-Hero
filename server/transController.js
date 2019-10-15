@@ -109,18 +109,18 @@ module.exports = {
     ]);
     res.status(200).send(edit);
   },
-  doneeById: async (req, res) => {
-    const { user_id } = req.session.user;
-    console.log(user_id)
-    const db = req.app.get("db");
-    const aDonee = await db.donee_By_Id([user_id]);
-    res.status(200).send(aDonee);
-  },
-  donorById: async(req,res) => {
-    const {user_id} = req.session.user
-    console.log(user_id)
-    const db = req.app.get('db')
-    const aDonor = await db.donor_By_Id([user_id])
-    res.status(200).send(aDonor) 
-  }
+  // doneeById: async (req, res) => {
+  //   const { user_id } = req.session.user;
+  //   console.log(user_id)
+  //   const db = req.app.get("db");
+  //   const aDonee = await db.donee_By_Id([user_id]);
+  //   res.status(200).send(aDonee);
+  // },
+  // donorById: async(req,res) => {
+  //   const {user_id} = req.session.user
+  //   console.log(user_id)
+  //   const db = req.app.get('db')
+  //   const aDonor = await db.donor_By_Id([user_id])
+  //   res.status(200).send(aDonor) 
+  // }
 };

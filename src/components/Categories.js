@@ -51,7 +51,7 @@ export default connect(null)(withRouter(Categories));
 
 const Flex = styled.div`
   
- background: #00000088;
+ background-color: #00000088;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,15 +62,15 @@ const Flex = styled.div`
   top: 40px;
   height: 250px;
   border-radius: 10px;
-  border:solid white;
+  border:solid black;
   cusor:hover;
   a:visited{
-    color:white;
+    color:black;
   }
   a:hover{
-    color:blue;
+    color:white;
   }
-  margin-top:50px;
+  margin-top:90px;
 
   transition:transform .0s;
 :hover{
@@ -78,7 +78,7 @@ const Flex = styled.div`
 }
 
 @media(max-width:450px){
-  background: #00000088;
+  background-color: #00000088;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -89,13 +89,13 @@ const Flex = styled.div`
    top: 40px;
    height: 250px;
    border-radius: 10px;
-   border:solid white;
+   border:solid black;
    cusor:hover;
    a:visited{
-     color:white;
+     color:black;
    }
    a:hover{
-     color:blue;
+     color:white;
    }
    margin-top:150px;
 

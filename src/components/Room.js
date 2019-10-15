@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import "./Room.scss";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+require('dotenv').config()
+const {react_app_socket_connect} = process.env
 
 export class Room extends Component {
   constructor(props) {
@@ -13,14 +15,14 @@ export class Room extends Component {
     this.state = {
       messages: [],
       message: "",
-      profile_pic: "https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+      // profile_pic: "https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
       usernameSet: false,
 
       rooms: [],
       roomName: ""
     };
     //connecting to server
-    this.socket = io.connect({secure: true});
+    this.socket = io.connect(react_app_socket_connect);
     //functions being invoked within sockets
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
@@ -74,22 +76,22 @@ getDonorById = () => {
     });
   };
 
-  // emit = () => {
-  //   this.socket.emit(
-  //     `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
-  //     {
-  //       message: this.state.message,
+  emit = () => {
+    this.socket.emit(
+      `emit to ${this.props.room !== "global" ? "room" : "global"}socket`,
+      {
+        message: this.state.message,
 
-  //       user_name: this.props.reduxState.user_name,
-  //       profile_pic: this.props.reduxState.profile_pic,
-  //       room: this.props.room
-  //     }
-  //   );
-  // };
+        user_name: this.props.reduxState.user_name,
+        profile_pic: this.props.reduxState.profile_pic,
+        room: this.props.room
+      }
+    );
+  };
 
   blast = () => {
     this.socket.emit(`blast to room socket`, {
-      messagez: this.state.message,
+      message: this.state.message,
 
       user_name: this.props.reduxState.user_name,
       // profile_pic: this.props.reduxState.profile_pic,
@@ -145,7 +147,6 @@ getDonorById = () => {
       // key={i}
       >
         <h5> {message.user_name}</h5>
-        <img src={this.state.profile_pic} alt="myUser"/>
         <h5
           className={
             message.user_name === this.props.reduxState.user_name
