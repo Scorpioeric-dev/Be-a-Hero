@@ -22,7 +22,7 @@ export class Room extends Component {
       roomName: ""
     };
     //connecting to server
-    this.socket = io.connect(react_app_socket_connect);
+    this.socket = io.connect(react_app_socket_connect,{secure:true});
     //functions being invoked within sockets
     this.socket.on("global response", data => this.updateMessages(data));
     this.socket.on("room response", data => this.updateMessages(data));
