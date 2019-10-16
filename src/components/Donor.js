@@ -235,7 +235,7 @@ const Main = styled.div`
   width: 250px;
   justify-content: space-between;
   position: absolute;
-  margin-left: 1100px;
+  margin-left: 60em;
   height: 85vh;
   margin-top: 80px;
   border-radius: 20px;
@@ -249,6 +249,7 @@ const Main = styled.div`
     linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
   #do a {
     text-decoration: none;
+    margin-bottom:30px;
   }
 `;
 // const Profile = styled.img`

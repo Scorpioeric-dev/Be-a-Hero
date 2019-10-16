@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+require('dotenv/config')
+const {_twilio_recipient} = process.env
 
 
 
@@ -9,8 +11,8 @@ import styled from 'styled-components'
 export default class Twilio extends Component {
     state ={
         text:{
-            recipient:'',
-            textmessage:'Hola Mundo'
+            recipient:_twilio_recipient,
+            textmessage:'Start Process'
         }
     }
 
@@ -21,7 +23,7 @@ export default class Twilio extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='twilio-button'>
                <Button onClick={this.sendtext}>Text a Doctor</Button> 
             </div>
         )

@@ -57,6 +57,7 @@ export class Donee extends Component {
         this.setState({
           donee: res.data
         });
+        console.log(res.data)
 
         this.getDoneeData();
       });
@@ -213,10 +214,10 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left:60em;
   width: 250px;
   justify-content: space-between;
   position: absolute;
-  margin-left: 1100px;
   height: 85vh;
   margin-top: 80px;
   border-radius: 20px;
@@ -224,6 +225,8 @@ const Section = styled.div`
   background: linear-gradient(#e66465, #9198e5);
   #do a {
     text-decoration: none;
+    padding:10px;
+  
   }
 `;
 

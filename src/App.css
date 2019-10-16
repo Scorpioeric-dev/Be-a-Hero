@@ -338,7 +338,7 @@ h2 span {
   }
 }
 .flex {
-  width: 750px;
+  width: 75vw;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
@@ -502,7 +502,7 @@ ul {
 @media (max-width:450px){
   .about-pics img {
     background-size: cover;
-
+margin-left:9px;
     height: 95%;
     width: 95%;
     position: absolute;
@@ -540,6 +540,7 @@ ul {
 .createinput {
   padding: 12px 20px;
   margin: 8px 0;
+  
 }
 .input {
   margin: 6px 0;
@@ -560,6 +561,8 @@ ul {
   color: black 0.5px;
   text-align: center;
   outline:none;
+background-color:rgb(219, 209, 209);
+
 }
 
 
@@ -670,5 +673,15 @@ border-radius:5px;
   word-wrap:break-word;
   overflow-wrap:break-word;
   padding:6px;
+}
+.twilio-button{
+  display:flex;
+  margin-top:30px;
+}
+@media(max-width:450px){
+  .twilio-button{
+   margin-left:20px; 
+  margin-top:30px;
+  }
 }
 
